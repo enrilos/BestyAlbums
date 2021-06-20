@@ -19,7 +19,7 @@ namespace BestyAlbums.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation();
+                .AddRazorRuntimeCompilation(); // Adding Razor Runtime Compilation allows real-time page updates while refreshing.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

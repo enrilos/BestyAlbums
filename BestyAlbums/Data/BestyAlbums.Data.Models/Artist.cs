@@ -2,13 +2,17 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class Artist
     {
+        [Key]
         public int Id { get; set; }
 
         public DateTime Founded { get; set; }
 
+        [Required]
+        [StringLength(maximumLength: 30, MinimumLength = 2)]
         public string Location { get; set; }
 
         public double Rating { get; set; }
