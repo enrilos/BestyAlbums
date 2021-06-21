@@ -26,9 +26,44 @@
 
         public DbSet<Studio> Studios { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(builder);
+
+            builder
+                .Entity<Artist>()
+                .HasMany(x => x.Members)
+                .WithOne(s => s.Artist)
+                .HasForeignKey(x => x.ArtistId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Artist>()
+                .HasMany(x => x.Albums)
+                .WithOne(s => s.Artist)
+                .HasForeignKey(x => x.ArtistId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Artist>()
+                .HasMany(x => x.Singles)
+                .WithOne(s => s.Artist)
+                .HasForeignKey(x => x.ArtistId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Album>()
+                .HasOne(x => x.Studio)
+                .WithMany(s => s.RecordedAlbums)
+                .HasForeignKey(x => x.StudioId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Single>()
+                .HasOne(x => x.Studio)
+                .WithMany(s => s.RecordedSingles)
+                .HasForeignKey(x => x.StudioId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

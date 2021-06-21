@@ -21,8 +21,6 @@
 
         public List<Album> Albums { get; set; } = new List<Album>();
 
-        public List<Song> Songs { get; set; } = new List<Song>();
-
         public List<Single> Singles { get; set; } = new List<Single>();
     }
 }
