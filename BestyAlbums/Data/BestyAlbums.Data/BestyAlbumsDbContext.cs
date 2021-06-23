@@ -52,6 +52,13 @@
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
+                .Entity<Song>()
+                .HasOne(x => x.Album)
+                .WithMany(s => s.Songs)
+                .HasForeignKey(x => x.AlbumId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
                 .Entity<Album>()
                 .HasOne(x => x.Studio)
                 .WithMany(s => s.RecordedAlbums)
