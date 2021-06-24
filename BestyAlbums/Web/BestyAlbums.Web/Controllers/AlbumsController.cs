@@ -2,9 +2,9 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    public class HomeController : Controller
+    public class AlbumsController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Add()
         {
             return View();
         }
