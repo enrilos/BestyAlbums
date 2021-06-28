@@ -32,6 +32,6 @@
         public string ImageURL { get; set; }
 
         public Artist Artist { get; set; }
-        public int ArtistId { get; set; }
+        public int? ArtistId { get; set; }
     }
 }
