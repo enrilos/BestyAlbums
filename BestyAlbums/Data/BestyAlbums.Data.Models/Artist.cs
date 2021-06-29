@@ -9,6 +9,10 @@
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(maximumLength: 30, MinimumLength = 2)]
+        public string Name { get; set; }
+
         public DateTime Founded { get; set; }
 
         [Required]
