@@ -46,6 +46,11 @@
 
             builder
                 .Entity<Artist>()
+                .HasIndex(x => x.Name)
+                .IsUnique();
+
+            builder
+                .Entity<Artist>()
                 .HasMany(x => x.Singles)
                 .WithOne(s => s.Artist)
                 .HasForeignKey(x => x.ArtistId)

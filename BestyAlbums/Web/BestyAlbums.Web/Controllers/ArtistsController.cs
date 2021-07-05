@@ -26,12 +26,22 @@
                 return RedirectToAction("Error", "Home");
             }
 
+            if (this.artistService.Exists(model.Name))
+            {
+                return RedirectToAction("ArtistExistsError", "Artists");
+            }
+
             this.artistService.Add(model.Name, model.Founded, model.Location, model.Rating);
 
             return RedirectToAction("Success", "Artists");
-        }    
+        }
 
         public IActionResult Success()
+        {
+            return View();
+        }
+
+        public IActionResult ArtistExistsError()
         {
             return View();
         }

@@ -4,6 +4,7 @@
     using Data;
     using Data.Models;
     using System;
+    using System.Linq;
 
     public class ArtistService : IArtistService
     {
@@ -28,6 +29,16 @@
             this.context.SaveChanges();
 
             return artist.Id;
+        }
+
+        public bool Exists(string name)
+        {
+            if(this.context.Artists.FirstOrDefault(x => x.Name == name) == null)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
