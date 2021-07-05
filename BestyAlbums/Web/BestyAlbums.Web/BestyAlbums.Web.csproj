@@ -9,4 +9,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\BestyAlbums.Data\BestyAlbums.Data.csproj" />
+    <ProjectReference Include="..\..\Services\BestyAlbums.Services\BestyAlbums.Services.csproj" />
+  </ItemGroup>
+
 </Project>

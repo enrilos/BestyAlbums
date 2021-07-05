@@ -1,10 +1,14 @@
 namespace BestyAlbums.Web
 {
+    using Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Services;
+    using Services.Contracts;
 
     public class Startup
     {
@@ -18,8 +22,16 @@ namespace BestyAlbums.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add DbContext whose connection string is inside appsettings.json.
+            services.AddDbContext<BestyAlbumsDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+
+            // Adding Controllers with views + Razor Runtime Compilation allows real-time page updates while refreshing.
             services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation(); // Adding Razor Runtime Compilation allows real-time page updates while refreshing.
+                .AddRazorRuntimeCompilation();
+
+            services.AddTransient<IArtistService, ArtistService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

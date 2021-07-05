@@ -9,7 +9,7 @@
         {
         }
 
-        public BestyAlbumsDbContext(DbContextOptions options)
+        public BestyAlbumsDbContext(DbContextOptions<BestyAlbumsDbContext> options)
             : base(options)
         {
         }
