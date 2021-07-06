@@ -13,5 +13,10 @@
         {
             return View();
         }
+
+        public IActionResult Success()
+        {
+            return View();
+        }
     }
 }

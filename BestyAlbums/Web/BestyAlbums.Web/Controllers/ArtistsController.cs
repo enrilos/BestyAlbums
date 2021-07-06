@@ -33,7 +33,7 @@
 
             this.artistService.Add(model.Name, model.Founded, model.Location, model.Rating);
 
-            return RedirectToAction("Success", "Artists");
+            return RedirectToAction("Success", "Home");
         }
 
         public IActionResult Success()

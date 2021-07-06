@@ -32,6 +32,7 @@ namespace BestyAlbums.Web
                 .AddRazorRuntimeCompilation();
 
             services.AddTransient<IArtistService, ArtistService>();
+            services.AddTransient<IMemberService, MemberService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

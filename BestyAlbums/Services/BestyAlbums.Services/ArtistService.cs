@@ -40,5 +40,13 @@
 
             return true;
         }
+
+        public string[] GetAllArtistsNames()
+        {
+            return this.context.Artists
+                .ToList()
+                .Select(x => x.Name)
+                .ToArray();
+        }
     }
 }
