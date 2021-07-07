@@ -18,5 +18,7 @@
         public Gender Gender { get; set; }
 
         public string ImageURL { get; set; }
+
+        public string Artist { get; set; }
     }
 }

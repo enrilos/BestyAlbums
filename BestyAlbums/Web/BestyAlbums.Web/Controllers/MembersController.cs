@@ -30,7 +30,8 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            this.memberService.Add(model.FirstName, model.LastName, model.BirthDate, model.Joined, model.Left, model.Gender, model.ImageURL);
+            var artist = this.artistService.GetArtistByName(model.Artist);
+            this.memberService.Add(model.FirstName, model.LastName, model.BirthDate, model.Joined, model.Left, model.Gender, model.ImageURL, artist);
 
             return RedirectToAction("Success", "Home");
         }

@@ -15,7 +15,7 @@
             this.context = context;
         }
 
-        public int Add(string firstName, string lastName, DateTime birthdate, DateTime joined, DateTime? left, Gender gender, string imageUrl)
+        public int Add(string firstName, string lastName, DateTime birthdate, DateTime joined, DateTime? left, Gender gender, string imageUrl, Artist artist)
         {
             var member = new Member
             {
@@ -25,7 +25,8 @@
                 Joined = joined,
                 Left = left,
                 Gender = gender,
-                ImageURL = imageUrl
+                ImageURL = imageUrl,
+                Artist = artist
             };
 
             this.context.Members.Add(member);

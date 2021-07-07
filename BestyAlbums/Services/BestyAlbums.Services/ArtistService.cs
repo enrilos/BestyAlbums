@@ -42,6 +42,11 @@
             return true;
         }
 
+        public Artist GetArtistByName(string name)
+        {
+            return this.context.Artists.FirstOrDefault(x => x.Name == name);
+        }
+
         public IList<string> GetAllNames()
         {
             return this.context

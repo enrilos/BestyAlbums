@@ -21,9 +21,9 @@
             <input type="date" name="birthdate" id="birthdate" />
         </div>
         <div>
-            <label for="joinDate">Joined:</label>
+            <label for="joined">Joined:</label>
             <br />
-            <input type="date" name="joinDate" id="joinDate" />
+            <input type="date" name="joined" id="joined" />
         </div>
         <div>
             <label for="left">Left:</label>
@@ -31,9 +31,12 @@
             <input type="date" name="left" id="left" />
         </div>
         <div>
-            <label for="gender">Gender:</label>
+            <label>Gender:</label>
             <br />
-            <input type="text" name="gender" id="gender" />
+            <select>
+                <option value="@BestyAlbums.Data.Models.Enums.Gender.Male">Male</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Gender.Female">Female</option>
+            </select>
         </div>
         <div>
             <label for="imageUrl">ImageUrl:</label>
@@ -41,7 +44,9 @@
             <input type="text" name="imageUrl" id="imageUrl" />
         </div>
         <div>
-            <select>
+            <label>Artist:</label>
+            <br />
+            <select name="artist">
                     @for (int i = 0; i < Model.Count(); i++)
                     {
                         <option value="@Model[i]">@Model[i]</option>
