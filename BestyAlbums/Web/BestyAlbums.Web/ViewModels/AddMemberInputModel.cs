@@ -15,8 +15,6 @@
 
         public DateTime? Left { get; set; }
 
-        public DateTime? Died { get; set; }
-
         public Gender Gender { get; set; }
 
         public string ImageURL { get; set; }

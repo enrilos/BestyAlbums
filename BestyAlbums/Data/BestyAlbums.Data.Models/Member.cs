@@ -23,8 +23,6 @@
 
         public DateTime? Left { get; set; }
 
-        public DateTime? Died { get; set; }
-
         [EnumDataType(typeof(Gender))]
         public Gender Gender { get; set; }
 

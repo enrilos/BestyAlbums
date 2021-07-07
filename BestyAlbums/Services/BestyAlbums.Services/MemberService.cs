@@ -3,12 +3,35 @@
     using Data.Models.Enums;
     using Contracts;
     using System;
+    using Data.Models;
+    using Data;
 
     public class MemberService : IMemberService
     {
-        public int Add(string firstName, string lastName, DateTime birthdate, DateTime joined, DateTime left, DateTime died, Gender gender, string imageUrl)
+        private readonly BestyAlbumsDbContext context;
+
+        public MemberService(BestyAlbumsDbContext context)
         {
-            return 1;
+            this.context = context;
+        }
+
+        public int Add(string firstName, string lastName, DateTime birthdate, DateTime joined, DateTime? left, Gender gender, string imageUrl)
+        {
+            var member = new Member
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                BirthDate = birthdate,
+                Joined = joined,
+                Left = left,
+                Gender = gender,
+                ImageURL = imageUrl
+            };
+
+            this.context.Members.Add(member);
+            this.context.SaveChanges();
+
+            return member.Id;
         }
     }
 }

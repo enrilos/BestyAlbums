@@ -1,4 +1,5 @@
-﻿
+﻿@model IList<string>
+
 <div style="padding-bottom: 20px;">
     <h2>Add a member to an artist.</h2>
 </div>
@@ -30,11 +31,6 @@
             <input type="date" name="left" id="left" />
         </div>
         <div>
-            <label for="died">Died:</label>
-            <br />
-            <input type="date" name="died" id="died" />
-        </div>
-        <div>
             <label for="gender">Gender:</label>
             <br />
             <input type="text" name="gender" id="gender" />
@@ -46,8 +42,10 @@
         </div>
         <div>
             <select>
-
-                <option value="value">text</option>
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <option value="@Model[i]">@Model[i]</option>
+                    }
             </select>
         </div>
 

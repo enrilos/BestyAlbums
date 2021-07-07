@@ -1,6 +1,7 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
     using System;
+    using System.Collections.Generic;
 
     public interface IArtistService
     {
@@ -8,6 +9,6 @@
 
         bool Exists(string name);
 
-        string[] GetAllArtistsNames();
+        IList<string> GetAllNames();
     }
 }

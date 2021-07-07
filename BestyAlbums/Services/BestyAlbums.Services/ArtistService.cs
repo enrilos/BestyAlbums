@@ -4,6 +4,7 @@
     using Data;
     using Data.Models;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     public class ArtistService : IArtistService
@@ -41,12 +42,13 @@
             return true;
         }
 
-        public string[] GetAllArtistsNames()
+        public IList<string> GetAllNames()
         {
-            return this.context.Artists
+            return this.context
+                .Artists
                 .ToList()
                 .Select(x => x.Name)
-                .ToArray();
+                .ToList();
         }
     }
 }

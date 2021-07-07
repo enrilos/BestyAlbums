@@ -7,15 +7,19 @@
     public class MembersController : Controller
     {
         private readonly IMemberService memberService;
+        private readonly IArtistService artistService;
 
-        public MembersController(IMemberService memberService)
+        public MembersController(IMemberService memberService, IArtistService artistService)
         {
             this.memberService = memberService;
+            this.artistService = artistService;
         }
 
         public IActionResult Add()
         {
-            return View();
+            var artistsNames = artistService.GetAllNames();
+
+            return View(artistsNames);
         }
 
         [HttpPost]
@@ -25,6 +29,8 @@
             {
                 return RedirectToAction("Error", "Home");
             }
+
+            this.memberService.Add(model.FirstName, model.LastName, model.BirthDate, model.Joined, model.Left, model.Gender, model.ImageURL);
 
             return RedirectToAction("Success", "Home");
         }
