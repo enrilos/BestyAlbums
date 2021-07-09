@@ -17,11 +17,9 @@
 
         public AlbumStatus AlbumStatus { get; set; }
 
-        //public Artist Artist { get; set; }
-        //public int ArtistId { get; set; }
+        public string Artist { get; set; }
 
-        //public Studio Studio { get; set; }
-        //public int StudioId { get; set; }
+        public StudioType StudioType { get; set; }
 
         public string Label { get; set; }
 

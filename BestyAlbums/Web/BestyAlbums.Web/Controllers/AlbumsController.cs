@@ -1,13 +1,25 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
-    using ViewModels;
     using Microsoft.AspNetCore.Mvc;
+    using Services.Contracts;
+    using ViewModels;
 
     public class AlbumsController : Controller
     {
+        private readonly IArtistService artistService;
+        private readonly IAlbumService albumService;
+
+        public AlbumsController(IArtistService artistService, IAlbumService albumService)
+        {
+            this.artistService = artistService;
+            this.albumService = albumService;
+        }
+
         public IActionResult Add()
         {
-            return View();
+            var artists = this.artistService.GetAllNames();
+
+            return View(artists);
         }
 
         [HttpPost]
@@ -18,7 +30,7 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            // add
+            this.albumService.Add(model.Name, model.Released, model.Genre, model.CoverURL, model.Price, model.AlbumStatus, model.Artist, model.StudioType, model.Label, model.ProductionTimeInDays);
 
             return RedirectToAction("Success", "Home");
         }
