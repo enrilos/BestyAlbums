@@ -10,6 +10,8 @@
         [Key]
         public int Id { get; set; }
 
+        public string Name { get; set; }
+
         public DateTime Released { get; set; }
 
         [EnumDataType(typeof(Genre))]
@@ -27,8 +29,7 @@
         public Artist Artist { get; set; }
         public int ArtistId { get; set; }
 
-        public Studio Studio { get; set; }
-        public int StudioId { get; set; }
+        public StudioType StudioType { get; set; }
 
         [StringLength(maximumLength: 50, MinimumLength = 2)]
         public string Label { get; set; }

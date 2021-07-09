@@ -24,8 +24,6 @@
 
         public DbSet<Song> Songs { get; set; }
 
-        public DbSet<Studio> Studios { get; set; }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -50,6 +48,11 @@
                 .IsUnique();
 
             builder
+                .Entity<Album>()
+                .HasIndex(x => x.Name)
+                .IsUnique();
+
+            builder
                 .Entity<Artist>()
                 .HasMany(x => x.Singles)
                 .WithOne(s => s.Artist)
@@ -61,20 +64,6 @@
                 .HasOne(x => x.Album)
                 .WithMany(s => s.Songs)
                 .HasForeignKey(x => x.AlbumId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Entity<Album>()
-                .HasOne(x => x.Studio)
-                .WithMany(s => s.RecordedAlbums)
-                .HasForeignKey(x => x.StudioId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Entity<Single>()
-                .HasOne(x => x.Studio)
-                .WithMany(s => s.RecordedSingles)
-                .HasForeignKey(x => x.StudioId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

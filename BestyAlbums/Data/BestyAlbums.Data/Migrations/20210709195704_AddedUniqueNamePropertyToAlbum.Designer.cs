@@ -4,14 +4,16 @@ using BestyAlbums.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BestyAlbums.Data.Migrations
 {
     [DbContext(typeof(BestyAlbumsDbContext))]
-    partial class BestyAlbumsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210709195704_AddedUniqueNamePropertyToAlbum")]
+    partial class AddedUniqueNamePropertyToAlbum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +57,7 @@ namespace BestyAlbums.Data.Migrations
                     b.Property<DateTime>("Released")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StudioType")
+                    b.Property<int>("StudioId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -65,6 +67,8 @@ namespace BestyAlbums.Data.Migrations
                     b.HasIndex("Name")
                         .IsUnique()
                         .HasFilter("[Name] IS NOT NULL");
+
+                    b.HasIndex("StudioId");
 
                     b.ToTable("Albums");
                 });
@@ -169,12 +173,14 @@ namespace BestyAlbums.Data.Migrations
                     b.Property<DateTime>("Released")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StudioType")
+                    b.Property<int>("StudioId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ArtistId");
+
+                    b.HasIndex("StudioId");
 
                     b.ToTable("Singles");
                 });
@@ -203,6 +209,37 @@ namespace BestyAlbums.Data.Migrations
                     b.ToTable("Songs");
                 });
 
+            modelBuilder.Entity("BestyAlbums.Data.Models.Studio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Discontinued")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Founded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Headquarters")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("StudioType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WebsiteURL")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Studios");
+                });
+
             modelBuilder.Entity("BestyAlbums.Data.Models.Album", b =>
                 {
                     b.HasOne("BestyAlbums.Data.Models.Artist", "Artist")
@@ -211,7 +248,15 @@ namespace BestyAlbums.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("BestyAlbums.Data.Models.Studio", "Studio")
+                        .WithMany("RecordedAlbums")
+                        .HasForeignKey("StudioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Artist");
+
+                    b.Navigation("Studio");
                 });
 
             modelBuilder.Entity("BestyAlbums.Data.Models.Member", b =>
@@ -233,7 +278,15 @@ namespace BestyAlbums.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("BestyAlbums.Data.Models.Studio", "Studio")
+                        .WithMany("RecordedSingles")
+                        .HasForeignKey("StudioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Artist");
+
+                    b.Navigation("Studio");
                 });
 
             modelBuilder.Entity("BestyAlbums.Data.Models.Song", b =>
@@ -259,6 +312,13 @@ namespace BestyAlbums.Data.Migrations
                     b.Navigation("Members");
 
                     b.Navigation("Singles");
+                });
+
+            modelBuilder.Entity("BestyAlbums.Data.Models.Studio", b =>
+                {
+                    b.Navigation("RecordedAlbums");
+
+                    b.Navigation("RecordedSingles");
                 });
 #pragma warning restore 612, 618
         }

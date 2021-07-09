@@ -20,8 +20,7 @@
         public Artist Artist { get; set; }
         public int ArtistId { get; set; }
 
-        public Studio Studio { get; set; }
-        public int StudioId { get; set; }
+        public StudioType StudioType { get; set; }
 
         public DateTime Released { get; set; }
 
