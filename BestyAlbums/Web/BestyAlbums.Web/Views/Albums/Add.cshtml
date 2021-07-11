@@ -6,7 +6,76 @@
 <div class="border border-dark rounded w-50" style="padding: 10px; font-size: 20px;">
     <form action="/Albums/Add" method="post">
         <div>
-            <!--inputs here-->>
+            <label for="name">Name:</label>
+            <br />
+            <input type="text" name="name" id="name" />
+        </div>
+        <div>
+            <label for="released">Released:</label>
+            <br />
+            <input type="date" name="released" id="released" />
+        </div>
+        <div>
+            <label>Genre:</label>
+            <br />
+            <select name="genre">
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.AlternativeMetal">AlternativeMetal</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.HipHop">HipHop</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.NuMetal">NuMental</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.Pop">Pop</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.Rap">Rap</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.RapMetal">RapMetal</option>
+            </select>
+        </div>
+        <div>
+            <label for="coverUrl">CoverUrl:</label>
+            <br />
+            <input type="text" name="coverUrl" id="coverUrl" />
+        </div>
+        <div>
+            <label for="price">Price:</label>
+            <br />
+            <input type="number" name="price" id="price" />
+        </div>
+        <div>
+            <label>AlbumStatus:</label>
+            <br />
+            <select name="albumStatus">
+                <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued">Discontinued</option>
+                <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction">InProduction</option>
+                <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling">Selling</option>
+                <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased">Unreleased</option>
+            </select>
+        </div>
+        <div>
+            <label>Artist:</label>
+            <br />
+            <select name="artist">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <option value="@Model[i]">@Model[i]</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label>StudioType:</label>
+            <br />
+            <select name="studioType">
+                <option value="@BestyAlbums.Data.Models.Enums.StudioType.MovieStudio">MovieStudio</option>
+                <option value="@BestyAlbums.Data.Models.Enums.StudioType.RadioStudio">RadioStudio</option>
+                <option value="@BestyAlbums.Data.Models.Enums.StudioType.RecordingStudio">RecordingStudio</option>
+                <option value="@BestyAlbums.Data.Models.Enums.StudioType.TelevisionStudio">TelevisionStudio</option>
+            </select>
+        </div>
+        <div>
+            <label for="label">Label:</label>
+            <br />
+            <input type="text" name="label" id="label" />
+        </div>
+        <div>
+            <label for="productionTimeInDays">Production days time:</label>
+            <br />
+            <input type="number" name="productionTimeInDays" id="productionTimeInDays" />
         </div>
         <div style="padding-top: 10px; text-align: right;">
             <button>Submit</button>

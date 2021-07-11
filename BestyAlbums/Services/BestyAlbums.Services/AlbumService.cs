@@ -1,11 +1,10 @@
 ﻿namespace BestyAlbums.Services
 {
-    using BestyAlbums.Data.Models;
     using Contracts;
     using Data;
+    using Data.Models;
     using Data.Models.Enums;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     public class AlbumService : IAlbumService
