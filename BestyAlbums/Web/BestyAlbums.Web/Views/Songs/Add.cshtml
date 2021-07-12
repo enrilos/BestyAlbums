@@ -1,3 +1,16 @@
-﻿@{
-    <p>adding songs here.</p>
-}
+﻿@model IList<string>
+<div style="padding-bottom: 20px;">
+    <h2>Add an album.</h2>
+</div>
+<div class="border border-dark rounded w-50" style="padding: 10px; font-size: 20px;">
+    <form action="/Songs/Add" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <br />
+            <input type="text" name="name" id="name" />
+        </div>
+        <div style="padding-top: 10px; text-align: right;">
+            <button>Submit</button>
+        </div>
+    </form>
+</div>

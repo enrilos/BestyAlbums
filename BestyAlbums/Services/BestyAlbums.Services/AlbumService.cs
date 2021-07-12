@@ -5,6 +5,7 @@
     using Data.Models;
     using Data.Models.Enums;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     public class AlbumService : IAlbumService
@@ -43,6 +44,14 @@
             this.context.SaveChanges();
 
             return album.Id;
+        }
+
+        public IList<string> GetAllAlbums()
+        {
+            return this.context.Albums
+                .ToList()
+                .Select(x => x.Name)
+                .ToList();
         }
     }
 }
