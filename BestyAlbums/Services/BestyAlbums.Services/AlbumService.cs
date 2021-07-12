@@ -39,7 +39,10 @@
                 ProductionTimeInDays = productionTimeInDays
             };
 
-            return 1;
+            this.context.Albums.Add(album);
+            this.context.SaveChanges();
+
+            return album.Id;
         }
     }
 }
