@@ -9,6 +9,16 @@
             <br />
             <input type="text" name="name" id="name" />
         </div>
+        <div>
+            <label>Album:</label>
+            <br />
+            <select name="album">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <option value="@Model[i]">@Model[i]</option>
+                }
+            </select>
+        </div>
         <div style="padding-top: 10px; text-align: right;">
             <button>Submit</button>
         </div>

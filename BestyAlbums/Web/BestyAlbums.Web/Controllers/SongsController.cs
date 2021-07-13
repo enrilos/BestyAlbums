@@ -30,7 +30,7 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            this.songService.Add(model.Name, model.Length, model.Album);
+            this.songService.Add(model.Name, model.Album);
 
             return RedirectToAction("Success", "Home");
         }

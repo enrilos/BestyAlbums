@@ -1,7 +1,7 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
-    using BestyAlbums.Data.Models;
     using Data;
+    using Data.Models;
     using System;
     using System.Linq;
 
@@ -14,7 +14,7 @@
             this.context = context;
         }
 
-        public int Add(string name, TimeSpan length, string album)
+        public int Add(string name, string album)
         {
             var foundAlbum = this.context.Albums.FirstOrDefault(x => x.Name == album);
 
@@ -26,7 +26,6 @@
             var song = new Song
             {
                 Name = name,
-                Length = length,
                 Album = foundAlbum
             };
 

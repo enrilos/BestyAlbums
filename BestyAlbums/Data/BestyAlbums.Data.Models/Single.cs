@@ -12,8 +12,6 @@
         [StringLength(maximumLength: 20, MinimumLength = 2)]
         public string Name { get; set; }
 
-        public TimeSpan Length { get; set; }
-
         [EnumDataType(typeof(Genre))]
         public Genre Genre { get; set; }
 
