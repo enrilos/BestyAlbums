@@ -1,5 +1,19 @@
-﻿@{ 
-    <div>
-        <p>Adding Singles functionallity.</p>
-    </div>
-}
+﻿@model IList<string>
+<div style="padding-bottom: 20px;">
+    <h2>Add a Single.</h2>
+</div>
+<div class="border border-dark rounded w-50" style="padding: 10px; font-size: 20px;">
+    <form action="/Single/Add" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <br />
+            <input type="text" name="name" id="name" />
+        </div>
+        <div>
+
+        </div>
+        <div style="padding-top: 10px; text-align: right;">
+            <button>Submit</button>
+        </div>
+    </form>
+</div>

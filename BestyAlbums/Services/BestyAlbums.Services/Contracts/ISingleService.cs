@@ -1,6 +1,7 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
-    interface ISingleService
+    public interface ISingleService
     {
+        int Add()
     }
 }

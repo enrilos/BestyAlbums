@@ -35,6 +35,7 @@ namespace BestyAlbums.Web
             services.AddTransient<IMemberService, MemberService>();
             services.AddTransient<IAlbumService, AlbumService>();
             services.AddTransient<ISongService, SongService>();
+            services.AddTransient<ISingleService, SingleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
