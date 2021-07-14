@@ -1,7 +1,8 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
-    using BestyAlbums.Services.Contracts;
     using Microsoft.AspNetCore.Mvc;
+    using Services.Contracts;
+    using Web.ViewModels;
 
     public class SinglesController : Controller
     {
@@ -19,6 +20,19 @@
             var allArtists = this.artistService.GetAllNames();
 
             return View(allArtists);
+        }
+
+        [HttpPost]
+        public IActionResult Add(AddSingleInputModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            this.singleService.Add(model.Name, model.Genre, model.Artist, model.StudioType, model.Released, model.ProductionTimeInDays);
+
+            return RedirectToAction("Success", "Home");
         }
     }
 }

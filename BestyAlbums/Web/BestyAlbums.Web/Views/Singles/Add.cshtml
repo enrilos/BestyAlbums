@@ -3,14 +3,53 @@
     <h2>Add a Single.</h2>
 </div>
 <div class="border border-dark rounded w-50" style="padding: 10px; font-size: 20px;">
-    <form action="/Single/Add" method="post">
+    <form action="/Singles/Add" method="post">
         <div>
             <label for="name">Name:</label>
             <br />
             <input type="text" name="name" id="name" />
         </div>
         <div>
-
+            <label>Genre:</label>
+            <br />
+            <select name="genre">
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.AlternativeMetal">AlternativeMetal</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.HipHop">HipHop</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.NuMetal">NuMental</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.Pop">Pop</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.Rap">Rap</option>
+                <option value="@BestyAlbums.Data.Models.Enums.Genre.RapMetal">RapMetal</option>
+            </select>
+        </div>
+        <div>
+            <label>Artist:</label>
+            <br />
+            <select name="artist">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <option value="@Model[i]">@Model[i]</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label>StudioType:</label>
+            <br />
+            <select name="studioType">
+                <option value="@BestyAlbums.Data.Models.Enums.StudioType.MovieStudio">MovieStudio</option>
+                <option value="@BestyAlbums.Data.Models.Enums.StudioType.RadioStudio">RadioStudio</option>
+                <option value="@BestyAlbums.Data.Models.Enums.StudioType.RecordingStudio">RecordingStudio</option>
+                <option value="@BestyAlbums.Data.Models.Enums.StudioType.TelevisionStudio">TelevisionStudio</option>
+            </select>
+        </div>
+        <div>
+            <label for="released">Released:</label>
+            <br />
+            <input type="date" name="released" id="released" />
+        </div>
+        <div>
+            <label for="productionTimeInDays">Production days time:</label>
+            <br />
+            <input type="number" name="productionTimeInDays" id="productionTimeInDays" />
         </div>
         <div style="padding-top: 10px; text-align: right;">
             <button>Submit</button>
