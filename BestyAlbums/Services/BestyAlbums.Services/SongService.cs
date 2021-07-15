@@ -2,6 +2,7 @@
 {
     using Data;
     using Data.Models;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Linq;
 
@@ -16,11 +17,18 @@
 
         public int Add(string name, string album)
         {
-            var foundAlbum = this.context.Albums.FirstOrDefault(x => x.Name == album);
+            var foundAlbum = this.context.Albums
+                .Include(x => x.Songs)
+                .ToList()
+                .FirstOrDefault(x => x.Name == album);
 
             if(foundAlbum == null)
             {
                 throw new ArgumentNullException("Album name was not found.");
+            }
+            if(foundAlbum.Songs.Any(x => x.Name == name && album == foundAlbum.Name))
+            {
+                return -1;
             }
 
             var song = new Song

@@ -3,6 +3,7 @@
     using Services.Contracts;
     using Microsoft.AspNetCore.Mvc;
     using BestyAlbums.Web.ViewModels;
+    using System;
 
     public class SongsController : Controller
     {
@@ -30,7 +31,19 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            this.songService.Add(model.Name, model.Album);
+            try
+            {
+                int result = this.songService.Add(model.Name, model.Album);
+
+                if(result < 0)
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                return RedirectToAction("Error", "Home");
+            }
 
             return RedirectToAction("Success", "Home");
         }
