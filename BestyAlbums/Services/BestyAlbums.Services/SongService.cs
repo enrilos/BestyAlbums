@@ -28,7 +28,7 @@
             }
             if(foundAlbum.Songs.Any(x => x.Name == name && album == foundAlbum.Name))
             {
-                return -1;
+                throw new InvalidOperationException("Song in with that name is already present in the album.");
             }
 
             var song = new Song

@@ -33,14 +33,13 @@
 
             try
             {
-                int result = this.songService.Add(model.Name, model.Album);
-
-                if(result < 0)
-                {
-                    return RedirectToAction("Error", "Home");
-                }
+                this.songService.Add(model.Name, model.Album);
             }
             catch (ArgumentNullException)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            catch (InvalidOperationException)
             {
                 return RedirectToAction("Error", "Home");
             }
