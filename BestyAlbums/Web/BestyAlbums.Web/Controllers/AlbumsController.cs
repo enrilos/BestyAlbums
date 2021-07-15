@@ -25,7 +25,7 @@
         [HttpPost]
         public IActionResult Add(AddAlbumInputModel model)
         {
-            if (!this.ModelState.IsValid)
+            if (!this.ModelState.IsValid || this.albumService.Exists(model.Name))
             {
                 return RedirectToAction("Error", "Home");
             }
