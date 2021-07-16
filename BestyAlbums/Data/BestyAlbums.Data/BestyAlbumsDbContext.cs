@@ -65,6 +65,16 @@
                 .WithMany(s => s.Songs)
                 .HasForeignKey(x => x.AlbumId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Song>()
+                .HasIndex(x => new { x.Name, x.AlbumId })
+                .IsUnique();
+
+            builder
+                .Entity<Member>()
+                .HasIndex(x => new { x.ArtistId, x.FirstName, x.LastName })
+                .IsUnique();
         }
     }
 }
