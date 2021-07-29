@@ -1,26 +1,22 @@
 ﻿@model IList<string>
-<div style="padding-bottom: 20px;">
-    <h2>Add a Song.</h2>
-</div>
-<div class="border border-dark rounded w-50" style="padding: 10px; font-size: 20px;">
+<h2>Add a Song.</h2>
+<div style="padding-bottom: 30px;">
     <form action="/Songs/Add" method="post">
-        <div>
-            <label for="name">Name:</label>
-            <br />
-            <input type="text" name="name" id="name" />
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" type="text" name="name" />
         </div>
-        <div>
-            <label>Album:</label>
-            <br />
-            <select name="album">
+        <div class="form-group">
+            <label>Album</label>
+            <select class="form-select rounded" name="album">
                 @for (int i = 0; i < Model.Count; i++)
                 {
                     <option value="@Model[i]">@Model[i]</option>
                 }
             </select>
         </div>
-        <div style="padding-top: 10px; text-align: right;">
-            <button>Submit</button>
+        <div class="submitDiv">
+            <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
