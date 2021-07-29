@@ -1,22 +1,19 @@
 ﻿@model IList<string>
 
 <h2>Add an album.</h2>
-<div class="border border-dark rounded w-50" style="padding: 10px; font-size: 20px;">
+<div style="padding-bottom: 30px;">
     <form action="/Albums/Add" method="post">
-        <div>
-            <label for="name">Name:</label>
-            <br />
-            <input type="text" name="name" id="name" />
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" type="text" name="name" />
         </div>
-        <div>
-            <label for="released">Released:</label>
-            <br />
-            <input type="date" name="released" id="released" />
+        <div class="form-group">
+            <label for="released">Released</label>
+            <input class="form-control" id="released" type="date" name="released" />
         </div>
-        <div>
-            <label>Genre:</label>
-            <br />
-            <select name="genre">
+        <div class="form-group">
+            <label>Genre</label>
+            <select class="form-select rounded" name="genre">
                 <option value="@BestyAlbums.Data.Models.Enums.Genre.AlternativeMetal">AlternativeMetal</option>
                 <option value="@BestyAlbums.Data.Models.Enums.Genre.HipHop">HipHop</option>
                 <option value="@BestyAlbums.Data.Models.Enums.Genre.NuMetal">NuMental</option>
@@ -25,58 +22,51 @@
                 <option value="@BestyAlbums.Data.Models.Enums.Genre.RapMetal">RapMetal</option>
             </select>
         </div>
-        <div>
-            <label for="coverUrl">CoverUrl:</label>
-            <br />
-            <input type="text" name="coverUrl" id="coverUrl" />
+        <div class="form-group">
+            <label for="coverUrl">CoverUrl</label>
+            <input class="form-control" id="coverUrl" type="text" name="coverUrl" />
         </div>
-        <div>
-            <label for="price">Price:</label>
-            <br />
-            <input type="number" step="0.01" name="price" id="price" />
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input class="form-control" id="price" type="number" step="0.01" name="price" />
         </div>
-        <div>
-            <label>AlbumStatus:</label>
-            <br />
-            <select name="albumStatus">
+        <div class="form-group">
+            <label>Status</label>
+            <select class="form-select rounded" name="albumStatus">
                 <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued">Discontinued</option>
                 <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction">InProduction</option>
                 <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling">Selling</option>
                 <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased">Unreleased</option>
             </select>
         </div>
-        <div>
-            <label>Artist:</label>
-            <br />
-            <select name="artist">
+        <div class="form-group">
+            <label>Artist</label>
+            <select class="form-select rounded" name="artist">
                 @for (int i = 0; i < Model.Count; i++)
                 {
                     <option value="@Model[i]">@Model[i]</option>
                 }
             </select>
         </div>
-        <div>
-            <label>StudioType:</label>
-            <br />
-            <select name="studioType">
+        <div class="form-group">
+            <label>StudioType</label>
+            <select class="form-select rounded" name="studioType">
                 <option value="@BestyAlbums.Data.Models.Enums.StudioType.MovieStudio">MovieStudio</option>
                 <option value="@BestyAlbums.Data.Models.Enums.StudioType.RadioStudio">RadioStudio</option>
                 <option value="@BestyAlbums.Data.Models.Enums.StudioType.RecordingStudio">RecordingStudio</option>
                 <option value="@BestyAlbums.Data.Models.Enums.StudioType.TelevisionStudio">TelevisionStudio</option>
             </select>
         </div>
-        <div>
-            <label for="label">Label:</label>
-            <br />
-            <input type="text" name="label" id="label" />
+        <div class="form-group">
+            <label for="label">Label</label>
+            <input class="form-control" id="label" type="text" name="label" />
         </div>
-        <div>
-            <label for="productionTimeInDays">Production days time:</label>
-            <br />
-            <input type="number" name="productionTimeInDays" id="productionTimeInDays" />
+        <div class="form-group">
+            <label for="productionTimeInDays">Production days time</label>
+            <input class="form-control" id="productionTimeInDays" type="number" name="productionTimeInDays" />
         </div>
-        <div style="padding-top: 10px; text-align: right;">
-            <button>Submit</button>
+        <div class="submitDiv">
+            <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
