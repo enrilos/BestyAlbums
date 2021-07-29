@@ -1,30 +1,24 @@
-﻿<div style="padding-bottom: 20px;">
-    <h2>Add your favourite artist here!</h2>
-</div>
-<div class="border border-dark rounded w-50" style="padding: 10px; font-size: 20px;">
+﻿<h2>Add your favourite artist here!</h2>
+<div>
     <form action="/Artists/Add" method="post">
-        <div>
-            <label for="artistName">Name:</label>
-            <br />
-            <input type="text" name="name" id="artistName" />
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" type="text" name="name" />
         </div>
-        <div>
-            <label for="artistFounded">Founded:</label>
-            <br />
-            <input type="date" name="founded" id="artistFounded" />
+        <div class="form-group">
+            <label for="founded">Founded</label>
+            <input class="form-control" id="founded" type="date" name="founded" />
         </div>
-        <div>
-            <label for="artistLocation">Location:</label>
-            <br />
-            <input type="text" name="location" id="artistLocation" />
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input class="form-control" id="location" type="text" name="location" />
         </div>
-        <div>
-            <label for="artistRating">Rating:</label>
-            <br />
-            <input type="number" step="0.01" name="rating" id="artistRating" />
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <input class="form-control" id="rating" type="number" step="0.1" name="rating" />
         </div>
-        <div style="padding-top: 10px; text-align: right;">
-            <button>Submit</button>
+        <div class="submitDiv">
+            <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
