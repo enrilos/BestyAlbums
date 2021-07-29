@@ -1,61 +1,50 @@
 ﻿@model IList<string>
 
-<div style="padding-bottom: 20px;">
-    <h2>Add a member to an artist.</h2>
-</div>
-<div class="border border-dark rounded w-50" style="padding: 10px; font-size: 20px;">
+<h2>Add a member to an artist.</h2>
+<div style="padding-bottom: 30px;">
     <form action="/Members/Add" method="post">
-        <div>
-            <label for="firstName">First Name:</label>
-            <br />
-            <input type="text" name="firstName" id="firstName" />
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input class="form-control" id="firstName" type="text" name="firstName" />
         </div>
-        <div>
-            <label for="lastName">Last Name:</label>
-            <br />
-            <input type="text" name="lastName" id="lastName" />
+        <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input class="form-control" id="lastName" type="text" name="lastName" />
         </div>
-        <div>
-            <label for="birthdate">Birth Date:</label>
-            <br />
-            <input type="date" name="birthdate" id="birthdate" />
+        <div class="form-group">
+            <label for="birthdate">Birthdate</label>
+            <input class="form-control" id="birthdate" type="date" name="birthdate" />
         </div>
-        <div>
-            <label for="joined">Joined:</label>
-            <br />
-            <input type="date" name="joined" id="joined" />
+        <div class="form-group">
+            <label for="joined">Joined</label>
+            <input class="form-control" id="joined" type="date" name="joined" />
         </div>
-        <div>
-            <label for="left">Left:</label>
-            <br />
-            <input type="date" name="left" id="left" />
+        <div class="form-group">
+            <label for="left">Left</label>
+            <input class="form-control" id="left" type="date" name="left" />
         </div>
-        <div>
-            <label>Gender:</label>
-            <br />
-            <select>
+        <div class="form-group">
+            <label>Gender</label>
+            <select class="form-select rounded">
                 <option value="@BestyAlbums.Data.Models.Enums.Gender.Male">Male</option>
                 <option value="@BestyAlbums.Data.Models.Enums.Gender.Female">Female</option>
             </select>
         </div>
-        <div>
-            <label for="imageUrl">ImageUrl:</label>
-            <br />
-            <input type="text" name="imageUrl" id="imageUrl" />
+        <div class="form-group">
+            <label for="imageUrl">ImageUrl</label>
+            <input class="form-control" id="imageUrl" type="text" name="imageUrl" />
         </div>
-        <div>
-            <label>Artist:</label>
-            <br />
-            <select name="artist">
-                    @for (int i = 0; i < Model.Count(); i++)
-                    {
-                        <option value="@Model[i]">@Model[i]</option>
-                    }
+        <div class="form-group">
+            <label>Artist</label>
+            <select class="form-select rounded" name="artist">
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    <option value="@Model[i]">@Model[i]</option>
+                }
             </select>
         </div>
-
-        <div style="padding-top: 10px; text-align: right;">
-            <button>Submit</button>
+        <div class="submitDiv">
+            <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
