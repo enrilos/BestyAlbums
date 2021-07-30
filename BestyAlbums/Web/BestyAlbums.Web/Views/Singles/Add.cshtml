@@ -1,18 +1,14 @@
 ﻿@model IList<string>
-<div style="padding-bottom: 20px;">
-    <h2>Add a Single.</h2>
-</div>
-<div class="border border-dark rounded w-50" style="padding: 10px; font-size: 20px;">
+<h2>Add a Single.</h2>
+<div style="padding-bottom: 30px;">
     <form action="/Singles/Add" method="post">
-        <div>
-            <label for="name">Name:</label>
-            <br />
-            <input type="text" name="name" id="name" />
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" type="text" name="name" />
         </div>
-        <div>
-            <label>Genre:</label>
-            <br />
-            <select name="genre">
+        <div class="form-group">
+            <label>Genre</label>
+            <select class="form-select rounded" name="genre">
                 <option value="@BestyAlbums.Data.Models.Enums.Genre.AlternativeMetal">AlternativeMetal</option>
                 <option value="@BestyAlbums.Data.Models.Enums.Genre.HipHop">HipHop</option>
                 <option value="@BestyAlbums.Data.Models.Enums.Genre.NuMetal">NuMental</option>
@@ -21,38 +17,34 @@
                 <option value="@BestyAlbums.Data.Models.Enums.Genre.RapMetal">RapMetal</option>
             </select>
         </div>
-        <div>
-            <label>Artist:</label>
-            <br />
-            <select name="artist">
+        <div class="form-group">
+            <label>Artist</label>
+            <select class="form-select rounded" name="artist">
                 @for (int i = 0; i < Model.Count; i++)
                 {
                     <option value="@Model[i]">@Model[i]</option>
                 }
             </select>
         </div>
-        <div>
-            <label>StudioType:</label>
-            <br />
-            <select name="studioType">
+        <div class="form-group">
+            <label>StudioType</label>
+            <select class="form-select rounded" name="studioType">
                 <option value="@BestyAlbums.Data.Models.Enums.StudioType.MovieStudio">MovieStudio</option>
                 <option value="@BestyAlbums.Data.Models.Enums.StudioType.RadioStudio">RadioStudio</option>
                 <option value="@BestyAlbums.Data.Models.Enums.StudioType.RecordingStudio">RecordingStudio</option>
                 <option value="@BestyAlbums.Data.Models.Enums.StudioType.TelevisionStudio">TelevisionStudio</option>
             </select>
         </div>
-        <div>
-            <label for="released">Released:</label>
-            <br />
-            <input type="date" name="released" id="released" />
+        <div class="form-group">
+            <label for="released">Released</label>
+            <input class="form-control" id="released" type="date" name="released" />
         </div>
-        <div>
-            <label for="productionTimeInDays">Production days time:</label>
-            <br />
-            <input type="number" name="productionTimeInDays" id="productionTimeInDays" />
+        <div class="form-group">
+            <label for="productionTimeInDays">Production days time</label>
+            <input class="form-control" id="productionTimeInDays" type="number" name="productionTimeInDays" />
         </div>
-        <div style="padding-top: 10px; text-align: right;">
-            <button>Submit</button>
+        <div class="submitDiv">
+            <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
