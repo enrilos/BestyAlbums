@@ -13,6 +13,11 @@
             this.artistService = artistService;
         }
 
+        public IActionResult All()
+        {
+            return View();
+        }
+
         public IActionResult Add()
         {
             return View();

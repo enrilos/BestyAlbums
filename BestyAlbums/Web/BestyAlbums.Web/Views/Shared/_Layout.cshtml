@@ -7,38 +7,29 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css">
 </head>
-<body>
+<body class="index">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">BestyAlbums</a>
-
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-
                     <ul class="navbar-nav flex-grow-1">
-
-                        <li class="nav-item border rounded" style="margin: 0 10px 0 0;">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Artists" asp-action="Add">Add Artist</a>
+                        <li>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Artists" asp-action="All">Add Artist</a>
                         </li>
-
-                        <li class="nav-item border rounded" style="margin: 0 10px 0 0;">
+                        <li>
                             <a class="nav-link text-white" asp-area="" asp-controller="Members" asp-action="Add">Add Member</a>
                         </li>
-
-                        <li class="nav-item border rounded" style="margin: 0 10px 0 0;">
+                        <li>
                             <a class="nav-link text-white" asp-area="" asp-controller="Albums" asp-action="Add">Add Ablum</a>
                         </li>
-
-                        <li class="nav-item border rounded" style="margin: 0 10px 0 0;">
+                        <li>
                             <a class="nav-link text-white" asp-area="" asp-controller="Songs" asp-action="Add">Add Song</a>
                         </li>
-
-                        <li class="nav-item border rounded" style="margin: 0 10px 0 0;">
+                        <li>
                             <a class="nav-link text-white" asp-area="" asp-controller="Singles" asp-action="Add">Add Single</a>
                         </li>
-
                     </ul>
-
                 </div>
             </div>
         </nav>
@@ -50,8 +41,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted fixed-bottom">
-        <div class="container h6" style="text-align: center;">
+    <footer class="bg-dark border-top footer text-white fixed-bottom">
+        <div class="container h6 text-center">
             &copy; 2021 - BestyAlbums is a property of <a href="https://github.com/enrilos/BestyAlbums">github/enrilos</a>
         </div>
     </footer>
