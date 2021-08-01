@@ -21,6 +21,7 @@
                 .GetAll()
                 .Select(a => new ArtistAllViewModel
                 {
+                    Id = a.Id,
                     Name = a.Name,
                     Founded = a.Founded,
                     Location = a.Location,
@@ -38,7 +39,7 @@
         }
 
         [HttpPost]
-        public IActionResult Add(AddArtistInputModel model)
+        public IActionResult Add(ArtistInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -52,6 +53,26 @@
 
             this.artistService.Add(model.Name, model.Founded, model.Location, model.Rating, model.ImageUrl);
 
+            return RedirectToAction("Success", "Home");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var artist = this.artistService.GetArtistById(id);
+            var artistModel = new ArtistInputModel
+            {
+                Name = artist.Name,
+                Founded = artist.Founded,
+                Location = artist.Location,
+                Rating = artist.Rating,
+                ImageUrl = artist.ImageUrl
+            };
+            return View(artistModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, ArtistInputModel model)
+        {
             return RedirectToAction("Success", "Home");
         }
 

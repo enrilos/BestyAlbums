@@ -4,6 +4,8 @@
 
     public class ArtistAllViewModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public DateTime Founded { get; set; }

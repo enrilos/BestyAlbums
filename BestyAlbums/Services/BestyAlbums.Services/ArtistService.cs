@@ -61,5 +61,10 @@
         {
             return this.context.Artists.ToList();
         }
+
+        public Artist GetArtistById(int id)
+        {
+            return this.context.Artists.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

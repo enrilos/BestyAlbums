@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class AddArtistInputModel
+    public class ArtistInputModel
     {
         public string Name { get; set; }
 

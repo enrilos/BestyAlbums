@@ -12,6 +12,8 @@
 
         Artist GetArtistByName(string name);
 
+        Artist GetArtistById(int id);
+
         IList<string> GetAllNames();
 
         IList<Artist> GetAll();
