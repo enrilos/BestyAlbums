@@ -1,7 +1,8 @@
 ﻿@model ArtistInputModel
 
     <div class="formDiv">
-        <form action="/Artists/Add" method="post">
+        <!--It is crucial to put asp-action="Edit" here since it allows the form to map the inputs and Id (which is required) with the viewmodel above-->
+        <form asp-controller="Artists" asp-action="Edit" method="post">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input class="form-control" id="name" type="text" name="name" value="@Model.Name"/>

@@ -71,7 +71,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, ArtistInputModel model)
+        public IActionResult Edit(ArtistInputModel model)
         {
             return RedirectToAction("Success", "Home");
         }
