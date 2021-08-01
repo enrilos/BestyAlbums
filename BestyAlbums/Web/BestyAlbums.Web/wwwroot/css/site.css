@@ -2,6 +2,7 @@
     padding-top: 20px;
     text-align: left;
 }
+
 .formDiv {
     padding: 30px;
 }
@@ -37,9 +38,9 @@
     width: 50%;
 }
 
-.homeTitleDiv > p {
-    height: 55px;
-}
+    .homeTitleDiv > p {
+        height: 55px;
+    }
 
 .homeMainDiv {
     position: absolute;
@@ -49,13 +50,19 @@
     padding-top: 20px;
 }
 
-.homeMainDiv > p {
-    height: 85px;
-}
+    .homeMainDiv > p {
+        height: 85px;
+    }
 
 .topCenterBtnLink {
     margin: 20px;
     padding: 16px;
     font-size: 20px;
     width: 50%;
+}
+
+.listingImageSize {
+    height: 450px;
+    width: 350px;
+    object-fit: cover;
 }
