@@ -21,6 +21,8 @@
 
         public double Rating { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public List<Member> Members { get; set; } = new List<Member>();
 
         public List<Album> Albums { get; set; } = new List<Album>();

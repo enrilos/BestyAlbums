@@ -16,14 +16,15 @@
             this.context = context;
         }
 
-        public int Add(string name, DateTime founded, string location, double rating)
+        public int Add(string name, DateTime founded, string location, double rating, string imageUrl)
         {
             var artist = new Artist
             {
                 Name = name,
                 Founded = founded,
                 Location = location,
-                Rating = rating
+                Rating = rating,
+                ImageUrl = imageUrl
             };
 
             this.context.Artists.Add(artist);
@@ -54,6 +55,11 @@
                 .ToList()
                 .Select(x => x.Name)
                 .ToList();
+        }
+
+        public IList<Artist> GetAll()
+        {
+            return this.context.Artists.ToList();
         }
     }
 }

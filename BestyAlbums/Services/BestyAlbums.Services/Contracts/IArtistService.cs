@@ -6,12 +6,14 @@
 
     public interface IArtistService
     {
-        int Add(string name, DateTime founded, string location, double rating);
+        int Add(string name, DateTime founded, string location, double rating, string imageUrl);
 
         bool Exists(string name);
 
         Artist GetArtistByName(string name);
 
         IList<string> GetAllNames();
+
+        IList<Artist> GetAll();
     }
 }

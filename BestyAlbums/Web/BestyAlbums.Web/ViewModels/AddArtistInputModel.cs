@@ -11,5 +11,7 @@
         public string Location { get; set; }
 
         public double Rating { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

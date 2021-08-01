@@ -3,6 +3,7 @@
     using Services.Contracts;
     using ViewModels;
     using Microsoft.AspNetCore.Mvc;
+    using System.Linq;
 
     public class ArtistsController : Controller
     {
@@ -15,7 +16,20 @@
 
         public IActionResult All()
         {
-            return View();
+            // AutoMapper is optional.
+            var artists = artistService
+                .GetAll()
+                .Select(a => new ArtistAllViewModel
+                {
+                    Name = a.Name,
+                    Founded = a.Founded,
+                    Location = a.Location,
+                    Rating = a.Rating,
+                    ImageUrl = a.ImageUrl
+                })
+                .ToList();
+
+            return View(artists);
         }
 
         public IActionResult Add()
@@ -36,7 +50,7 @@
                 return RedirectToAction("ArtistExistsError", "Artists");
             }
 
-            this.artistService.Add(model.Name, model.Founded, model.Location, model.Rating);
+            this.artistService.Add(model.Name, model.Founded, model.Location, model.Rating, model.ImageUrl);
 
             return RedirectToAction("Success", "Home");
         }

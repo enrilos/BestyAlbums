@@ -53,8 +53,9 @@
     height: 85px;
 }
 
-.index {
-    background-size: cover;
-    background-position: center top;
-    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1a0e9ad0-6f62-42b6-9856-779871556b04/d4ariv0-b241cf9b-847b-4bb0-ba99-35e32ecc682d.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzFhMGU5YWQwLTZmNjItNDJiNi05ODU2LTc3OTg3MTU1NmIwNFwvZDRhcml2MC1iMjQxY2Y5Yi04NDdiLTRiYjAtYmE5OS0zNWUzMmVjYzY4MmQuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.pJdNBIi0oiHxA21DHT11toYnjuft2B4ZSH8YaaWqc30");
+.topCenterBtnLink {
+    margin: 20px;
+    padding: 16px;
+    font-size: 20px;
+    width: 50%;
 }
