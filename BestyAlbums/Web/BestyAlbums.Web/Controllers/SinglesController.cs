@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
-    using Web.ViewModels;
+    using Models;
 
     public class SinglesController : Controller
     {

@@ -1,7 +1,7 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
     using Services.Contracts;
-    using ViewModels;
+    using Models;
     using Microsoft.AspNetCore.Mvc;
     using System.Linq;
 

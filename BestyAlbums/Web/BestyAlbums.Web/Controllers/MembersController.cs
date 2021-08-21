@@ -2,7 +2,7 @@
 {
     using Services.Contracts;
     using Microsoft.AspNetCore.Mvc;
-    using ViewModels;
+    using Models;
 
     public class MembersController : Controller
     {

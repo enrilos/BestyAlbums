@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
-    using ViewModels;
+    using Models;
 
     public class AlbumsController : Controller
     {

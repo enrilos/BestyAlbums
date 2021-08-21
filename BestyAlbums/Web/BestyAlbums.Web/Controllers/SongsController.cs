@@ -2,7 +2,7 @@
 {
     using Services.Contracts;
     using Microsoft.AspNetCore.Mvc;
-    using BestyAlbums.Web.ViewModels;
+    using Models;
     using System;
 
     public class SongsController : Controller

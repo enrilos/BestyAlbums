@@ -1,4 +1,4 @@
-﻿namespace BestyAlbums.Web.ViewModels
+﻿namespace BestyAlbums.Web.Models
 {
     using System.ComponentModel.DataAnnotations;
 
