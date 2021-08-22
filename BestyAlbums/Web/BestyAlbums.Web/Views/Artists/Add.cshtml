@@ -1,6 +1,6 @@
 ﻿<h2>Add your favourite artist here!</h2>
-<div class="formDiv">
-    <form action="/Artists/Add" method="post">
+<div class="standardDiv">
+    <form asp-controller="Artists" asp-action="Add" method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control" id="name" type="text" name="name" />

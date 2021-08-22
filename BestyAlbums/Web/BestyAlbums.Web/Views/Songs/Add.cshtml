@@ -1,7 +1,7 @@
 ﻿@model IList<string>
 <h2>Add a song.</h2>
-<div class="formDiv">
-    <form action="/Songs/Add" method="post">
+<div class="standardDiv">
+    <form asp-controller="Songs" asp-action="Add" method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control" id="name" type="text" name="name" />
