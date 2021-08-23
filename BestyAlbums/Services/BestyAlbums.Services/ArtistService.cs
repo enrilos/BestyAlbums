@@ -33,9 +33,9 @@
             return artist.Id;
         }
 
-        public bool Exists(string name)
+        public bool Exists(int id)
         {
-            if(this.context.Artists.FirstOrDefault(x => x.Name == name) == null)
+            if(this.context.Artists.FirstOrDefault(x => x.Id == id) == null)
             {
                 return false;
             }
@@ -65,6 +65,21 @@
         public Artist GetArtistById(int id)
         {
             return this.context.Artists.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void Edit(Artist model)
+        {
+            var artist = this.context
+                .Artists
+                .Find(model.Id);
+
+            artist.Name = model.Name;
+            artist.Founded = model.Founded;
+            artist.Location = model.Location;
+            artist.Rating = model.Rating;
+            artist.ImageUrl = model.ImageUrl;
+
+            this.context.SaveChanges();
         }
     }
 }

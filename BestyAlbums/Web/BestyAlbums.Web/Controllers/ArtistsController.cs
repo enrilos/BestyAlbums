@@ -4,6 +4,7 @@
     using Models;
     using Microsoft.AspNetCore.Mvc;
     using System.Linq;
+    using BestyAlbums.Data.Models;
 
     public class ArtistsController : Controller
     {
@@ -16,7 +17,6 @@
 
         public IActionResult All()
         {
-            // AutoMapper is optional.
             var artists = artistService
                 .GetAll()
                 .Select(a => new ArtistAllViewModel
@@ -46,7 +46,7 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            if (this.artistService.Exists(model.Name))
+            if (this.artistService.Exists(model.Id))
             {
                 return RedirectToAction("ArtistExistsError", "Artists");
             }
@@ -73,6 +73,27 @@
         [HttpPost]
         public IActionResult Edit(ArtistInputModel model)
         {
+            if (!this.artistService.Exists(model.Id))
+            {
+                return BadRequest();
+            }
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            var artist = new Artist
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Founded = model.Founded,
+                Location = model.Location,
+                Rating = model.Rating,
+                ImageUrl = model.ImageUrl
+            };
+
+            this.artistService.Edit(artist);
+
             return RedirectToAction("Success", "Home");
         }
 

@@ -8,7 +8,9 @@
     {
         int Add(string name, DateTime founded, string location, double rating, string imageUrl);
 
-        bool Exists(string name);
+        bool Exists(int id);
+
+        void Edit(Artist model);
 
         Artist GetArtistByName(string name);
 
