@@ -1,10 +1,10 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
-    using Services.Contracts;
-    using Models;
+    using Data.Models;
     using Microsoft.AspNetCore.Mvc;
+    using Models;
+    using Services.Contracts;
     using System.Linq;
-    using BestyAlbums.Data.Models;
 
     public class ArtistsController : Controller
     {

@@ -1,10 +1,13 @@
 ﻿namespace BestyAlbums.Services
 {
-    using Data.Models.Enums;
     using Contracts;
-    using System;
-    using Data.Models;
     using Data;
+    using Data.Models;
+    using Data.Models.Enums;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class MemberService : IMemberService
     {
@@ -33,6 +36,25 @@
             this.context.SaveChanges();
 
             return member.Id;
+        }
+
+        public IList<Member> GetAll()
+        {
+            return this.context.Members
+                .Include(x => x.Artist)
+                .ToList()
+                .Select(x => new Member()
+                {
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    BirthDate = x.BirthDate,
+                    Joined = x.Joined,
+                    Left = x.Left,
+                    Gender = x.Gender,
+                    ImageURL = x.ImageURL,
+                    Artist = x.Artist
+                })
+                .ToList();
         }
     }
 }

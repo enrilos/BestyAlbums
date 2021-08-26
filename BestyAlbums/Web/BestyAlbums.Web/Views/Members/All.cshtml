@@ -1,0 +1,26 @@
+﻿@model IList<MemberAllViewModel>
+
+<div class="topCenterBtnLink text-center mx-auto">
+    <a class="btn btn-primary btn-lg btn-block rounded" href="/Members/Add">Add member</a>
+</div>
+<div class="border standardDiv">
+    <table class="text-center mx-auto">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td class="border">
+                    <img class="listingImageSize" src="@Model[i].ImageURL" alt="Artist image" />
+                    <p>@Model[i].FirstName @Model[i].LastName</p>
+                    <p>Birthday: @Model[i].BirthDate.ToString("yyyy-MM-dd")</p>
+                    <p>Artist: @Model[i].Artist</p
+                    <p>Joined: @Model[i].Joined.ToString("yyyy-MM-dd")</p>
+                    @if (@Model[i].Left != null)
+                    {
+                        <p>Left: @Model[i].Left?.ToString("yyyy-MM-dd")</p>
+                    }
+                    <p>Gender: @Model[i].Gender</p>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

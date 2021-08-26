@@ -3,6 +3,8 @@
     using Services.Contracts;
     using Microsoft.AspNetCore.Mvc;
     using Models;
+    using System.Linq;
+    using BestyAlbums.Web.Models.Members;
 
     public class MembersController : Controller
     {
@@ -34,6 +36,26 @@
             this.memberService.Add(model.FirstName, model.LastName, model.BirthDate, model.Joined, model.Left, model.Gender, model.ImageURL, artist);
 
             return RedirectToAction("Success", "Home");
+        }
+
+        public IActionResult All()
+        {
+            var members = memberService.GetAll()
+                .Select(x => new MemberAllViewModel()
+                {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    BirthDate = x.BirthDate,
+                    Joined = x.Joined,
+                    Left = x.Left,
+                    Gender = x.Gender,
+                    ImageURL = x.ImageURL,
+                    Artist = x.Artist.Name
+                })
+                .ToList();
+
+            return View(members);
         }
     }
 }
