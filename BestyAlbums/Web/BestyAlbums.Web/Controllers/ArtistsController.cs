@@ -48,17 +48,23 @@
 
             if (this.artistService.Exists(model.Id))
             {
-                return RedirectToAction("ArtistExistsError", "Artists");
+                return BadRequest();
             }
 
             this.artistService.Add(model.Name, model.Founded, model.Location, model.Rating, model.ImageUrl);
 
-            return RedirectToAction("Success", "Home");
+            return RedirectToAction("Artists", "All");
         }
 
         public IActionResult Edit(int id)
         {
             var artist = this.artistService.GetArtistById(id);
+
+            if(artist == null)
+            {
+                return BadRequest();
+            }
+
             var artistModel = new ArtistInputModel
             {
                 Name = artist.Name,
@@ -67,6 +73,7 @@
                 Rating = artist.Rating,
                 ImageUrl = artist.ImageUrl
             };
+
             return View(artistModel);
         }
 
@@ -94,7 +101,7 @@
 
             this.artistService.Edit(artist);
 
-            return RedirectToAction("Success", "Home");
+            return RedirectToAction("Artists", "All");
         }
 
         public IActionResult Success()

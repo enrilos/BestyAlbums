@@ -1,0 +1,53 @@
+﻿@model MemberInputModel
+
+<div class="standardDiv">
+    <!--It is crucial to put asp-action="Edit" here since it allows the form to map the inputs and Id (which is required) with the viewmodel above-->
+    <form asp-controller="Artists" asp-action="Edit" method="post">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input class="form-control" id="firstName" type="text" name="firstName" value="@Model.FirstName" />
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input class="form-control" id="lastName" type="text" name="lastName" value="@Model.LastName" />
+        </div>
+        <div class="form-group">
+            <label for="birthdate">Birthdate</label>
+            <input class="form-control" id="birthdate" type="date" name="birthdate" value="@Model.BirthDate.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="form-group">
+            <label for="joindate">Joined</label>
+            <input class="form-control" id="joindate" type="date" name="joindate" value="@Model.Joined.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="form-group">
+            <label for="left">Left</label>
+            <input class="form-control" id="left" type="date" name="left" value="@Model.Left?.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <select class="form-select rounded" name="gender">
+                @if (Model.Gender == BestyAlbums.Data.Models.Enums.Gender.Male)
+                {
+                    <option value="@BestyAlbums.Data.Models.Enums.Gender.Male" selected>Male</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.Gender.Female">Female</option>
+                }
+                else
+                {
+                    <option value="@BestyAlbums.Data.Models.Enums.Gender.Male">Male</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.Gender.Female" selected>Female</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="imageUrl">ImageUrl</label>
+            <input class="form-control" id="imageUrl" type="text" name="imageUrl" value="@Model.ImageURL" />
+        </div>
+        <div class="form-group">
+            <label for="artist">Artist</label>
+            <p>@Model.Artist</p>
+        </div>
+        <div class="submitDiv">
+            <input class="btn btn-primary" type="submit" value="Submit" />
+        </div>
+    </form>
+</div>

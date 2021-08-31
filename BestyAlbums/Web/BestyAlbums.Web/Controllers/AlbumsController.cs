@@ -23,7 +23,7 @@
         }
 
         [HttpPost]
-        public IActionResult Add(AddAlbumInputModel model)
+        public IActionResult Add(AlbumInputModel model)
         {
             if (!this.ModelState.IsValid || this.albumService.Exists(model.Name))
             {

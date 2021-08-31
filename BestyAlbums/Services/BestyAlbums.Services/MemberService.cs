@@ -38,6 +38,11 @@
             return member.Id;
         }
 
+        public Member Get(int id)
+        {
+            return this.context.Members.Include(x => x.Artist).FirstOrDefault(x => x.Id == id);
+        }
+
         public IList<Member> GetAll()
         {
             return this.context.Members
@@ -45,6 +50,7 @@
                 .ToList()
                 .Select(x => new Member()
                 {
+                    Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     BirthDate = x.BirthDate,

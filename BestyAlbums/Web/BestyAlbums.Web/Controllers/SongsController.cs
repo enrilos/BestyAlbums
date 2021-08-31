@@ -24,7 +24,7 @@
         }
 
         [HttpPost]
-        public IActionResult Add(AddSongInputModel model)
+        public IActionResult Add(SongInputModel model)
         {
             if (!this.ModelState.IsValid)
             {

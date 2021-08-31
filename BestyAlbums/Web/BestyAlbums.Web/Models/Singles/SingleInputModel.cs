@@ -4,7 +4,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class AddSingleInputModel
+    public class SingleInputModel
     {
         [StringLength(maximumLength: 20, MinimumLength = 2)]
         public string Name { get; set; }

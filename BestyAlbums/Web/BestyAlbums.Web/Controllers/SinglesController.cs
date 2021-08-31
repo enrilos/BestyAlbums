@@ -23,7 +23,7 @@
         }
 
         [HttpPost]
-        public IActionResult Add(AddSingleInputModel model)
+        public IActionResult Add(SingleInputModel model)
         {
             if (!this.ModelState.IsValid)
             {

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class AddSongInputModel
+    public class SongInputModel
     {
         [StringLength(maximumLength: 20, MinimumLength = 2)]
         public string Name { get; set; }

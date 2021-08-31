@@ -11,14 +11,15 @@
                 <td class="border">
                     <img class="listingImageSize" src="@Model[i].ImageURL" alt="Artist image" />
                     <p>@Model[i].FirstName @Model[i].LastName</p>
-                    <p>Birthday: @Model[i].BirthDate.ToString("yyyy-MM-dd")</p>
-                    <p>Artist: @Model[i].Artist</p
-                    <p>Joined: @Model[i].Joined.ToString("yyyy-MM-dd")</p>
+                    <p>Birthday: @Model[i].BirthDate</p>
+                    <p>Artist: @Model[i].Artist</p>
+                    <p>Joined: @Model[i].Joined</p>
                     @if (@Model[i].Left != null)
                     {
-                        <p>Left: @Model[i].Left?.ToString("yyyy-MM-dd")</p>
+                        <p>Left: @Model[i].Left</p>
                     }
                     <p>Gender: @Model[i].Gender</p>
+                    <a class="btn btn-primary rounded" href="/Members/Edit/@Model[i].Id">Edit</a>
                 </td>
             </tr>
         }

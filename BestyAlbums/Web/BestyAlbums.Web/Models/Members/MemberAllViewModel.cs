@@ -1,7 +1,6 @@
 ﻿namespace BestyAlbums.Web.Models.Members
 {
     using Data.Models.Enums;
-    using System;
 
     public class MemberAllViewModel
     {
@@ -11,11 +10,11 @@
 
         public string LastName { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public string BirthDate { get; set; }
 
-        public DateTime Joined { get; set; }
+        public string Joined { get; set; }
 
-        public DateTime? Left { get; set; }
+        public string Left { get; set; }
 
         public Gender Gender { get; set; }
 
