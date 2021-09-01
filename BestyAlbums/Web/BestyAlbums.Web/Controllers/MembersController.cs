@@ -1,10 +1,11 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
-    using Services.Contracts;
+    using Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using Models;
+    using Models.Members;
+    using Services.Contracts;
     using System.Linq;
-    using BestyAlbums.Web.Models.Members;
 
     public class MembersController : Controller
     {
@@ -67,7 +68,7 @@
                 return BadRequest();
             }
 
-            var memberInputModel = new MemberInputModel()
+            var memberInputModel = new MemberInputModel
             {
                 Id = member.Id,
                 FirstName = member.FirstName,
@@ -81,6 +82,35 @@
             };
 
             return View(memberInputModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(MemberInputModel model)
+        {
+            if(!this.memberService.Exists(model.Id))
+            {
+                return BadRequest();
+            }
+            if(!ModelState.IsValid)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            var member = new Member
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                BirthDate = model.BirthDate,
+                Joined = model.Joined,
+                Left = model.Left,
+                Gender = model.Gender,
+                ImageURL = model.ImageURL
+            };
+
+            this.memberService.Edit(member);
+
+            return RedirectToAction("All", "Members");
         }
     }
 }

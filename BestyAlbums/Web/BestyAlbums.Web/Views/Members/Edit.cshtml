@@ -2,7 +2,7 @@
 
 <div class="standardDiv">
     <!--It is crucial to put asp-action="Edit" here since it allows the form to map the inputs and Id (which is required) with the viewmodel above-->
-    <form asp-controller="Artists" asp-action="Edit" method="post">
+    <form asp-controller="Members" asp-action="Edit" method="post">
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input class="form-control" id="firstName" type="text" name="firstName" value="@Model.FirstName" />
@@ -16,8 +16,8 @@
             <input class="form-control" id="birthdate" type="date" name="birthdate" value="@Model.BirthDate.ToString("yyyy-MM-dd")" />
         </div>
         <div class="form-group">
-            <label for="joindate">Joined</label>
-            <input class="form-control" id="joindate" type="date" name="joindate" value="@Model.Joined.ToString("yyyy-MM-dd")" />
+            <label for="joined">Joined</label>
+            <input class="form-control" id="joined" type="date" name="joined" value="@Model.Joined.ToString("yyyy-MM-dd")" />
         </div>
         <div class="form-group">
             <label for="left">Left</label>

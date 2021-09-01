@@ -12,5 +12,9 @@
         IList<Member> GetAll();
 
         Member Get(int id);
+
+        bool Exists(int id);
+
+        void Edit(Member model);
     }
 }

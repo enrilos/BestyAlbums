@@ -101,17 +101,7 @@
 
             this.artistService.Edit(artist);
 
-            return RedirectToAction("Artists", "All");
-        }
-
-        public IActionResult Success()
-        {
-            return View();
-        }
-
-        public IActionResult ArtistExistsError()
-        {
-            return View();
+            return RedirectToAction("All", "Artists");
         }
     }
 }
