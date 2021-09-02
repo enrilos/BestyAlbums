@@ -7,7 +7,8 @@
         [Key]
         public int Id { get; set; }
 
-        [StringLength(maximumLength: 20, MinimumLength = 2)]
+        [Required]
+        [StringLength(maximumLength: 32, MinimumLength = 2)]
         public string Name { get; set; }
 
         public Album Album { get; set; }

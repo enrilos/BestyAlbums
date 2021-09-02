@@ -10,6 +10,8 @@
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(maximumLength: 32, MinimumLength = 2)]
         public string Name { get; set; }
 
         public DateTime Released { get; set; }
@@ -17,10 +19,11 @@
         [EnumDataType(typeof(Genre))]
         public Genre Genre { get; set; }
         
+        [Required]
         [StringLength(maximumLength: 256, MinimumLength = 10)]
-        public string CoverURL { get; set; }
+        public string CoverUrl { get; set; }
 
-        [Range(typeof(decimal), "0", "9999.99")]
+        [Range(typeof(double), "0", "9999.99")]
         public decimal Price { get; set; }
 
         [EnumDataType(typeof(AlbumStatus))]
@@ -31,7 +34,8 @@
 
         public StudioType StudioType { get; set; }
 
-        [StringLength(maximumLength: 50, MinimumLength = 2)]
+        [Required]
+        [StringLength(maximumLength: 32, MinimumLength = 2)]
         public string Label { get; set; }
 
         public int? ProductionTimeInDays { get; set; }

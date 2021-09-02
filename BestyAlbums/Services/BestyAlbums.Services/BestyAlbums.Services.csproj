@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\BestyAlbums.Data.Models\BestyAlbums.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\BestyAlbums.Data\BestyAlbums.Data.csproj" />
   </ItemGroup>
 
