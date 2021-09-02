@@ -7,6 +7,7 @@
     public class AlbumInputModel
     {
         [Required]
+        [StringLength(maximumLength: 32, MinimumLength = 2)]
         public string Name { get; set; }
 
         public DateTime Released { get; set; }
@@ -28,6 +29,7 @@
         [StringLength(maximumLength: 32, MinimumLength = 1)]
         public string Artist { get; set; }
 
+        [EnumDataType(typeof(StudioType))]
         public StudioType StudioType { get; set; }
 
         [Required]
