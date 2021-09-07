@@ -4,8 +4,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class MemberInputModel
+    public class MemberEditModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(maximumLength: 32, MinimumLength = 2)]
         public string FirstName { get; set; }

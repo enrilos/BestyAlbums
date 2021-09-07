@@ -43,6 +43,16 @@
             return true;
         }
 
+        public bool Exists(string name)
+        {
+            if (this.context.Artists.FirstOrDefault(x => x.Name == name) == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public Artist GetArtistByName(string name)
         {
             return this.context.Artists.FirstOrDefault(x => x.Name == name);

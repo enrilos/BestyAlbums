@@ -10,6 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\BestyAlbums.Models.InputModels\BestyAlbums.Models.InputModels.csproj" />
+    <ProjectReference Include="..\..\Models\BestyAlbums.Models.ViewModels\BestyAlbums.Models.ViewModels.csproj" />
     <ProjectReference Include="..\..\Services\BestyAlbums.Services\BestyAlbums.Services.csproj" />
   </ItemGroup>
 

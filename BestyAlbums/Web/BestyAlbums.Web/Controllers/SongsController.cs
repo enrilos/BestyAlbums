@@ -1,8 +1,8 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
-    using Services.Contracts;
+    using BestyAlbums.Models.InputModels.Songs;
     using Microsoft.AspNetCore.Mvc;
-    using Models;
+    using Services.Contracts;
     using System;
 
     public class SongsController : Controller

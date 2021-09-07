@@ -1,8 +1,8 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
+    using BestyAlbums.Models.InputModels.Albums;
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
-    using Models;
 
     public class AlbumsController : Controller
     {
@@ -30,7 +30,17 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            this.albumService.Add(model.Name, model.Released, model.Genre, model.CoverURL, model.Price, model.AlbumStatus, model.Artist, model.StudioType, model.Label, model.ProductionTimeInDays);
+            this.albumService.Add(
+                model.Name,
+                model.Released,
+                model.Genre,
+                model.CoverURL,
+                model.Price,
+                model.AlbumStatus,
+                model.Artist,
+                model.StudioType,
+                model.Label,
+                model.ProductionTimeInDays);
 
             return RedirectToAction("Success", "Home");
         }

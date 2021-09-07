@@ -32,7 +32,7 @@
                 Name = name,
                 Released = released,
                 Genre = genre,
-                CoverURL= coverUrl,
+                CoverUrl= coverUrl,
                 Price = price,
                 AlbumStatus = albumStatus,
                 Artist = foundArtist,

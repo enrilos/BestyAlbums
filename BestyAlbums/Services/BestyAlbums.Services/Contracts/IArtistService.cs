@@ -10,6 +10,8 @@
 
         bool Exists(int id);
 
+        bool Exists(string name);
+
         void Edit(Artist model);
 
         Artist GetArtistByName(string name);

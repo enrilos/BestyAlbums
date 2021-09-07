@@ -1,4 +1,4 @@
-﻿namespace BestyAlbums.Web.Models.Members
+﻿namespace BestyAlbums.Models.ViewModels.Members
 {
     using Data.Models.Enums;
 
@@ -18,7 +18,7 @@
 
         public Gender Gender { get; set; }
 
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
 
         public string Artist { get; set; }
     }

@@ -1,9 +1,9 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
+    using BestyAlbums.Models.InputModels.Members;
+    using BestyAlbums.Models.ViewModels.Members;
     using Data.Models;
     using Microsoft.AspNetCore.Mvc;
-    using Models;
-    using Models.Members;
     using Services.Contracts;
     using System.Linq;
 
@@ -34,7 +34,7 @@
             }
 
             var artist = this.artistService.GetArtistByName(model.Artist);
-            this.memberService.Add(model.FirstName, model.LastName, model.BirthDate, model.Joined, model.Left, model.Gender, model.ImageURL, artist);
+            this.memberService.Add(model.FirstName, model.LastName, model.BirthDate, model.Joined, model.Left, model.Gender, model.ImageUrl, artist);
 
             return RedirectToAction("Members", "All");
         }
@@ -51,7 +51,7 @@
                     Joined = x.Joined.ToString("yyyy-MM-dd"),
                     Left = x.Left?.ToString("yyyy-MM-dd"),
                     Gender = x.Gender,
-                    ImageURL = x.ImageURL,
+                    ImageUrl = x.ImageUrl,
                     Artist = x.Artist.Name
                 })
                 .ToList();
@@ -70,14 +70,13 @@
 
             var memberInputModel = new MemberInputModel
             {
-                Id = member.Id,
                 FirstName = member.FirstName,
                 LastName = member.LastName,
                 BirthDate = member.BirthDate,
                 Joined = member.Joined,
                 Left = member.Left,
                 Gender = member.Gender,
-                ImageURL = member.ImageURL,
+                ImageUrl = member.ImageUrl,
                 Artist = member.Artist.Name
             };
 
@@ -85,7 +84,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(MemberInputModel model)
+        public IActionResult Edit(MemberEditModel model)
         {
             if(!this.memberService.Exists(model.Id))
             {
@@ -105,7 +104,7 @@
                 Joined = model.Joined,
                 Left = model.Left,
                 Gender = model.Gender,
-                ImageURL = model.ImageURL
+                ImageUrl = model.ImageUrl
             };
 
             this.memberService.Edit(member);

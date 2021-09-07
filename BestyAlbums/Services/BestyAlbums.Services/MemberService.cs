@@ -28,7 +28,7 @@
                 Joined = joined,
                 Left = left,
                 Gender = gender,
-                ImageURL = imageUrl,
+                ImageUrl = imageUrl,
                 Artist = artist
             };
 
@@ -48,7 +48,7 @@
             member.Joined = model.Joined;
             member.Left = model.Left;
             member.Gender = model.Gender;
-            member.ImageURL = model.ImageURL;
+            member.ImageUrl = model.ImageUrl;
 
             this.context.SaveChanges();
         }
@@ -82,7 +82,7 @@
                     Joined = x.Joined,
                     Left = x.Left,
                     Gender = x.Gender,
-                    ImageURL = x.ImageURL,
+                    ImageUrl = x.ImageUrl,
                     Artist = x.Artist
                 })
                 .ToList();

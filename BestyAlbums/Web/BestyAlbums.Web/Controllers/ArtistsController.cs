@@ -1,8 +1,9 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
+    using BestyAlbums.Models.InputModels.Artists;
+    using BestyAlbums.Models.ViewModels.Artists;
     using Data.Models;
     using Microsoft.AspNetCore.Mvc;
-    using Models;
     using Services.Contracts;
     using System.Linq;
 
@@ -46,7 +47,7 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            if (this.artistService.Exists(model.Id))
+            if (this.artistService.Exists(model.Name))
             {
                 return BadRequest();
             }
@@ -78,7 +79,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(ArtistInputModel model)
+        public IActionResult Edit(ArtistEditModel model)
         {
             if (!this.artistService.Exists(model.Id))
             {

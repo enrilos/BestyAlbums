@@ -1,4 +1,4 @@
-﻿namespace BestyAlbums.Web.Models
+﻿namespace BestyAlbums.Models.InputModels.Albums
 {
     using Data.Models.Enums;
     using System;
