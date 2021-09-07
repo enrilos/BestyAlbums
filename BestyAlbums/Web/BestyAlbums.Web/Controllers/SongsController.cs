@@ -44,7 +44,8 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            return RedirectToAction("Success", "Home");
+            // This should redirect to all songs after the functionality is finished.
+            return RedirectToAction("Index", "Home");
         }
     }
 }

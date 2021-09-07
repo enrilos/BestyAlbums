@@ -42,7 +42,8 @@
                 model.Label,
                 model.ProductionTimeInDays);
 
-            return RedirectToAction("Success", "Home");
+            // This should redirect to all albums after the functionality is finished.
+            return RedirectToAction("Index", "Home");
         }
     }
 }

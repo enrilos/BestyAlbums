@@ -32,7 +32,8 @@
 
             this.singleService.Add(model.Name, model.Genre, model.Artist, model.StudioType, model.Released, model.ProductionTimeInDays);
 
-            return RedirectToAction("Success", "Home");
+            // This should redirect to all singles after the functionality is finished.
+            return RedirectToAction("Index", "Home");
         }
     }
 }
