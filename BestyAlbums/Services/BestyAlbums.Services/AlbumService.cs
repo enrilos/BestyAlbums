@@ -94,5 +94,12 @@
         {
             return this.context.Albums.ToList();
         }
+
+        public void Delete(int id)
+        {
+            var album = this.context.Albums.FirstOrDefault(x => x.Id == id);
+            this.context.Albums.Remove(album);
+            this.context.SaveChanges();
+        }
     }
 }

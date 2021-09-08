@@ -88,5 +88,12 @@
                 })
                 .ToList();
         }
+
+        public void Delete(int id)
+        {
+            var member = this.context.Members.FirstOrDefault(x => x.Id == id);
+            this.context.Members.Remove(member);
+            this.context.SaveChanges();
+        }
     }
 }

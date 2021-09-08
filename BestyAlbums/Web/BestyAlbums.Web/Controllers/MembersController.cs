@@ -98,5 +98,17 @@
 
             return RedirectToAction("All", "Members");
         }
+
+        public IActionResult Delete(int id)
+        {
+            if (!this.memberService.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            this.memberService.Delete(id);
+
+            return RedirectToAction("All", "Members");
+        }
     }
 }

@@ -108,5 +108,17 @@
 
             return RedirectToAction("All", "Albums");
         }
+
+        public IActionResult Delete(int id)
+        {
+            if (!this.albumService.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            this.albumService.Delete(id);
+
+            return RedirectToAction("All", "Albums");
+        }
     }
 }

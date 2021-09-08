@@ -16,6 +16,8 @@
 
         void Edit(AlbumEditModel model);
 
+        void Delete(int id);
+
         Album Get(int id);
 
         IList<string> GetAllAlbumNames();

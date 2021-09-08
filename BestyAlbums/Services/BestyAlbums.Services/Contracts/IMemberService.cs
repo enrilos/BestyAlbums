@@ -16,6 +16,8 @@
 
         bool Exists(int id);
 
+        void Delete(int id);
+
         void Edit(MemberEditModel model);
     }
 }
