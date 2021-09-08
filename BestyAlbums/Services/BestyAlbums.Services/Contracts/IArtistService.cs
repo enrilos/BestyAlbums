@@ -1,6 +1,7 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
     using Data.Models;
+    using Models.InputModels.Artists;
     using System;
     using System.Collections.Generic;
 
@@ -12,7 +13,7 @@
 
         bool Exists(string name);
 
-        void Edit(Artist model);
+        void Edit(ArtistEditModel model);
 
         Artist GetArtistByName(string name);
 

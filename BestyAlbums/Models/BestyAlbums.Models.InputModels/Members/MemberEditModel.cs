@@ -29,8 +29,6 @@
         [StringLength(maximumLength: 1024, MinimumLength = 10)]
         public string ImageUrl { get; set; }
 
-        [Required]
-        [StringLength(maximumLength: 32, MinimumLength = 10)]
         public string Artist { get; set; }
     }
 }

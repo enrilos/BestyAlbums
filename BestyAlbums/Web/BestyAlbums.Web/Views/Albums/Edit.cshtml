@@ -1,0 +1,86 @@
+﻿@model AlbumEditModel
+
+<div class="standardDiv">
+    <form asp-controller="Albums" asp-action="Edit" method="post">
+        @*<div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>*@
+        <div class="form-group">
+            <label for="released">Name</label>
+            <input class="form-control" id="released" type="text" name="name" value="@Model.Name" />
+        </div>
+        <div class="form-group">
+            <label for="coverUrl">CoverUrl</label>
+            <input class="form-control" id="coverUrl" type="text" name="coverUrl" value="@Model.CoverUrl" />
+        </div>
+        <div class="form-group">
+            <label>Genre:</label>
+            <span>@Model.Genre</span>
+        </div>
+        <div class="form-group">
+            <label>Released:</label>
+            <span>@Model.Released.ToString("yyyy-MM-dd")</span>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input class="form-control" id="price" type="number" step="0.01" name="price" value="@Model.Price" />
+        </div>
+        <div class="form-group">
+            <label>Status:</label>
+            <select class="form-select rounded" name="albumStatus">
+                @if (Model.AlbumStatus == BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued)
+                {
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued" selected>Discontinued</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction">InProduction</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling">Selling</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased">Unreleased</option>
+                }
+                else if (Model.AlbumStatus == BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction)
+                {
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued">Discontinued</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction" selected>InProduction</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling">Selling</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased">Unreleased</option>
+                }
+                else if (Model.AlbumStatus == BestyAlbums.Data.Models.Enums.AlbumStatus.Selling)
+                {
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued">Discontinued</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction">InProduction</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling" selected>Selling</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased">Unreleased</option>
+                }
+                else if (Model.AlbumStatus == BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased)
+                {
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued">Discontinued</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction">InProduction</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling">Selling</option>
+                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased" selected>Unreleased</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Artist:</label>
+            <span>@Model.Artist</span>
+        </div>
+        <div class="form-group">
+            <label>Studio type:</label>
+            <span>@Model.StudioType</span>
+        </div>
+        <div class="form-group">
+            <label>Label:</label>
+            <span>@Model.Label</span>
+        </div>
+        @if (Model?.ProductionTimeInDays != null)
+        {
+            <div class="form-group">
+                <label>Production:</label>
+                <span>@Model.ProductionTimeInDays days</span>
+            </div>
+        }
+        <div class="submitDiv">
+            <input class="btn btn-primary" type="submit" value="Submit" />
+        </div>
+    </form>
+</div>

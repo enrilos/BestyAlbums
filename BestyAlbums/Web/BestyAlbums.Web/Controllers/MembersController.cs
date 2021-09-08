@@ -2,7 +2,6 @@
 {
     using BestyAlbums.Models.InputModels.Members;
     using BestyAlbums.Models.ViewModels.Members;
-    using Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
     using System.Linq;
@@ -36,7 +35,7 @@
             var artist = this.artistService.GetArtistByName(model.Artist);
             this.memberService.Add(model.FirstName, model.LastName, model.BirthDate, model.Joined, model.Left, model.Gender, model.ImageUrl, artist);
 
-            return RedirectToAction("Members", "All");
+            return RedirectToAction("All", "Members");
         }
 
         public IActionResult All()
@@ -68,7 +67,7 @@
                 return BadRequest();
             }
 
-            var memberInputModel = new MemberInputModel
+            var memberInputModel = new MemberEditModel()
             {
                 FirstName = member.FirstName,
                 LastName = member.LastName,
@@ -95,19 +94,7 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            var member = new Member
-            {
-                Id = model.Id,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                BirthDate = model.BirthDate,
-                Joined = model.Joined,
-                Left = model.Left,
-                Gender = model.Gender,
-                ImageUrl = model.ImageUrl
-            };
-
-            this.memberService.Edit(member);
+            this.memberService.Edit(model);
 
             return RedirectToAction("All", "Members");
         }

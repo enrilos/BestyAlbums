@@ -23,7 +23,7 @@
         [StringLength(maximumLength: 256, MinimumLength = 10)]
         public string CoverUrl { get; set; }
 
-        [Range(typeof(double), "0", "9999.99")]
+        [Range(typeof(decimal), "0.00", "9999.99")]
         public decimal Price { get; set; }
 
         [EnumDataType(typeof(AlbumStatus))]

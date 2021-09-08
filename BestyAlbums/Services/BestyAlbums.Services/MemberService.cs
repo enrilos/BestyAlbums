@@ -1,5 +1,6 @@
 ﻿namespace BestyAlbums.Services
 {
+    using Models.InputModels.Members;
     using Contracts;
     using Data;
     using Data.Models;
@@ -38,7 +39,7 @@
             return member.Id;
         }
 
-        public void Edit(Member model)
+        public void Edit(MemberEditModel model)
         {
             var member = this.context.Members.Find(model.Id);
 

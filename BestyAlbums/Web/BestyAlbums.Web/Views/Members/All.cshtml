@@ -14,7 +14,7 @@
                     <p>Birthday: @Model[i].BirthDate</p>
                     <p>Artist: @Model[i].Artist</p>
                     <p>Joined: @Model[i].Joined</p>
-                    @if (@Model[i].Left != null)
+                    @if (@Model[i]?.Left != null)
                     {
                         <p>Left: @Model[i].Left</p>
                     }

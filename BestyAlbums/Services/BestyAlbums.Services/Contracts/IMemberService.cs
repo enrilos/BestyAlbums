@@ -2,6 +2,7 @@
 {
     using Data.Models;
     using Data.Models.Enums;
+    using Models.InputModels.Members;
     using System;
     using System.Collections.Generic;
 
@@ -15,6 +16,6 @@
 
         bool Exists(int id);
 
-        void Edit(Member model);
+        void Edit(MemberEditModel model);
     }
 }

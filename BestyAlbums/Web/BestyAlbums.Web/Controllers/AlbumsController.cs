@@ -1,5 +1,6 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
+    using BestyAlbums.Data.Models;
     using BestyAlbums.Models.InputModels.Albums;
     using BestyAlbums.Models.ViewModels.Albums;
     using Microsoft.AspNetCore.Mvc;
@@ -60,6 +61,50 @@
                 model.StudioType,
                 model.Label,
                 model.ProductionTimeInDays);
+
+            return RedirectToAction("All", "Albums");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            if(!this.albumService.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            var album = this.albumService.Get(id);
+
+            var albumModel = new AlbumEditModel()
+            {
+                Name = album.Name,
+                Price = album.Price,
+                CoverUrl = album.CoverUrl,
+                AlbumStatus = album.AlbumStatus,
+                Genre = album.Genre,
+                Artist = album.Artist.Name,
+                Label = album.Label,
+                ProductionTimeInDays = album.ProductionTimeInDays,
+                Released = album.Released,
+                StudioType = album.StudioType,
+
+            };
+
+            return View(albumModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AlbumEditModel model)
+        {
+            if (!this.albumService.Exists(model.Id))
+            {
+                return BadRequest();
+            }
+            if (!this.ModelState.IsValid)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            this.albumService.Edit(model);
 
             return RedirectToAction("All", "Albums");
         }

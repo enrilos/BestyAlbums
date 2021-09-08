@@ -3,6 +3,7 @@
     using Contracts;
     using Data;
     using Data.Models;
+    using Models.InputModels.Artists;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -35,12 +36,22 @@
 
         public bool Exists(int id)
         {
-            return this.context.Artists.FirstOrDefault(x => x.Id == id) != null;
+            if (this.context.Artists.FirstOrDefault(x => x.Id == id) == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public bool Exists(string name)
         {
-            return this.context.Artists.FirstOrDefault(x => x.Name == name) != null;
+            if (this.context.Artists.FirstOrDefault(x => x.Name == name) == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public Artist GetArtistByName(string name)
@@ -67,11 +78,9 @@
             return this.context.Artists.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Edit(Artist model)
+        public void Edit(ArtistEditModel model)
         {
-            var artist = this.context
-                .Artists
-                .Find(model.Id);
+            var artist = this.context.Artists.Find(model.Id);
 
             artist.Name = model.Name;
             artist.Founded = model.Founded;
