@@ -33,14 +33,14 @@
                 .HasMany(x => x.Members)
                 .WithOne(s => s.Artist)
                 .HasForeignKey(x => x.ArtistId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<Artist>()
                 .HasMany(x => x.Albums)
                 .WithOne(s => s.Artist)
                 .HasForeignKey(x => x.ArtistId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<Artist>()
@@ -57,14 +57,14 @@
                 .HasMany(x => x.Singles)
                 .WithOne(s => s.Artist)
                 .HasForeignKey(x => x.ArtistId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<Song>()
                 .HasOne(x => x.Album)
                 .WithMany(s => s.Songs)
                 .HasForeignKey(x => x.AlbumId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<Song>()

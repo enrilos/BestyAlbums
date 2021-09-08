@@ -15,6 +15,8 @@
 
         void Edit(ArtistEditModel model);
 
+        void Delete(int id);
+
         Artist GetArtistByName(string name);
 
         Artist GetArtistById(int id);

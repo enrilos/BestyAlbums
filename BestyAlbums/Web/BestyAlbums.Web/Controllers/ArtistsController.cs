@@ -93,5 +93,17 @@
 
             return RedirectToAction("All", "Artists");
         }
+
+        public IActionResult Delete(int id)
+        {
+            if (!this.artistService.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            this.artistService.Delete(id);
+
+            return RedirectToAction("All", "Artists");
+        }
     }
 }

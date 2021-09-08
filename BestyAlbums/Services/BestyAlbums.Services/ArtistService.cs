@@ -90,5 +90,12 @@
 
             this.context.SaveChanges();
         }
+
+        public void Delete(int id)
+        {
+            var artist = this.context.Artists.FirstOrDefault(x => x.Id == id);
+            this.context.Artists.Remove(artist);
+            this.context.SaveChanges();
+        }
     }
 }
