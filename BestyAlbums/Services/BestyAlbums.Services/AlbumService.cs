@@ -4,7 +4,6 @@
     using Data;
     using Data.Models;
     using Data.Models.Enums;
-    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -52,12 +51,16 @@
             return this.context.Albums.FirstOrDefault(x => x.Name == name) != null;
         }
 
-        public IList<string> GetAllAlbums()
+        public IList<string> GetAllAlbumNames()
         {
             return this.context.Albums
-                .ToList()
                 .Select(x => x.Name)
                 .ToList();
+        }
+
+        public IList<Album> GetAllAlbums()
+        {
+            return this.context.Albums.ToList();
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
     using BestyAlbums.Models.InputModels.Albums;
+    using BestyAlbums.Models.ViewModels.Albums;
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
+    using System.Linq;
 
     public class AlbumsController : Controller
     {
@@ -13,6 +15,23 @@
         {
             this.artistService = artistService;
             this.albumService = albumService;
+        }
+
+        public IActionResult All()
+        {
+            var albums = this.albumService
+                .GetAllAlbums()
+                .Select(x => new AlbumAllViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    AlbumStatus = x.AlbumStatus,
+                    CoverUrl = x.CoverUrl,
+                    Price = x.Price
+                })
+                .ToList();
+
+            return View(albums);
         }
 
         public IActionResult Add()
@@ -42,8 +61,7 @@
                 model.Label,
                 model.ProductionTimeInDays);
 
-            // This should redirect to all albums after the functionality is finished.
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("All", "Albums");
         }
     }
 }

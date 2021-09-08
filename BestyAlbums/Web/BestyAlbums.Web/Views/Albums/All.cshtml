@@ -1,0 +1,22 @@
+﻿@model IList<AlbumAllViewModel>
+
+<div class="topCenterBtnLink text-center mx-auto">
+    <a class="btn btn-primary btn-lg btn-block rounded" href="/Albums/Add">Add album</a>
+</div>
+<div class="border standardDiv">
+    <table class="text-center mx-auto">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td class="border">
+                    <img class="listingImageSize" src="@Model[i].CoverUrl" alt="Album image" />
+                    <p>Name: @Model[i].Name</p>
+                    <p>Price: @Model[i].Price $</p>
+                    <p>Status: @Model[i].AlbumStatus</p>
+                    <a class="btn btn-primary rounded" href="/Albums/Info/@Model[i].Id">View more</a>
+                    <a class="btn btn-primary rounded" href="/Albums/Edit/@Model[i].Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

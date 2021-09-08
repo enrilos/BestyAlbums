@@ -18,7 +18,7 @@
 
         public IActionResult Add()
         {
-            var albums = this.albumService.GetAllAlbums();
+            var albums = this.albumService.GetAllAlbumNames();
 
             return View(albums);
         }

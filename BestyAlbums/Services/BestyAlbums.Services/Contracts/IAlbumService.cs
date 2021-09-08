@@ -1,5 +1,6 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
+    using Data.Models;
     using Data.Models.Enums;
     using System;
     using System.Collections.Generic;
@@ -10,6 +11,8 @@
 
         bool Exists(string name);
 
-        IList<string> GetAllAlbums();
+        IList<string> GetAllAlbumNames();
+
+        IList<Album> GetAllAlbums();
     }
 }

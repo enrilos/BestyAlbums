@@ -35,22 +35,12 @@
 
         public bool Exists(int id)
         {
-            if(this.context.Artists.FirstOrDefault(x => x.Id == id) == null)
-            {
-                return false;
-            }
-
-            return true;
+            return this.context.Artists.FirstOrDefault(x => x.Id == id) != null;
         }
 
         public bool Exists(string name)
         {
-            if (this.context.Artists.FirstOrDefault(x => x.Name == name) == null)
-            {
-                return false;
-            }
-
-            return true;
+            return this.context.Artists.FirstOrDefault(x => x.Name == name) != null;
         }
 
         public Artist GetArtistByName(string name)
