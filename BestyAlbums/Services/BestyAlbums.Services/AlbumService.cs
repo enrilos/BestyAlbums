@@ -1,5 +1,6 @@
 ﻿namespace BestyAlbums.Services
 {
+    using BestyAlbums.Models.ViewModels.Albums;
     using Contracts;
     using Data;
     using Data.Models;
@@ -100,6 +101,31 @@
             var album = this.context.Albums.FirstOrDefault(x => x.Id == id);
             this.context.Albums.Remove(album);
             this.context.SaveChanges();
+        }
+
+        public AlbumSongsViewModel GetAlbumSongs(int id)
+        {
+            var album = this.context.Albums
+                .Include(x => x.Artist)
+                .Include(x => x.Songs)
+                .FirstOrDefault(x => x.Id == id);
+
+            var albumModel = new AlbumSongsViewModel
+            {
+                Name = album.Name,
+                Released = album.Released,
+                CoverUrl = album.CoverUrl,
+                Genre = album.Genre,
+                AlbumStatus = album.AlbumStatus,
+                Artist = album.Artist.Name,
+                Label = album.Label,
+                Price = album.Price,
+                ProductionTimeInDays = album.ProductionTimeInDays,
+                Songs = album.Songs.Select(x => x.Name).ToList(),
+                StudioType = album.StudioType
+            };
+
+            return albumModel;
         }
     }
 }

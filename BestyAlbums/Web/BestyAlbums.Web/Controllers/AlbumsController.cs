@@ -109,6 +109,18 @@
             return RedirectToAction("All", "Albums");
         }
 
+        public IActionResult Info(int id)
+        {
+            if (!this.albumService.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            var albumSongs = this.albumService.GetAlbumSongs(id);
+
+            return View(albumSongs);
+        }
+
         public IActionResult Delete(int id)
         {
             if (!this.albumService.Exists(id))

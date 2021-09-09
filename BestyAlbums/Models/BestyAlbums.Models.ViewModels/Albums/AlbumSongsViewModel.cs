@@ -1,7 +1,6 @@
 ﻿namespace BestyAlbums.Models.ViewModels.Albums
 {
     using Data.Models.Enums;
-    using Models.ViewModels.Songs;
     using System;
     using System.Collections.Generic;
 
@@ -27,6 +26,6 @@
 
         public int? ProductionTimeInDays { get; set; }
 
-        public IList<SongViewModel> Songs { get; set; }
+        public IList<string> Songs { get; set; }
     }
 }

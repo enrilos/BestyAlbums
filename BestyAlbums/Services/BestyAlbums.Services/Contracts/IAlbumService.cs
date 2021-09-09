@@ -1,5 +1,6 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
+    using BestyAlbums.Models.ViewModels.Albums;
     using Data.Models;
     using Data.Models.Enums;
     using Models.InputModels.Albums;
@@ -23,5 +24,7 @@
         IList<string> GetAllAlbumNames();
 
         IList<Album> GetAllAlbums();
+
+        AlbumSongsViewModel GetAlbumSongs(int id);
     }
 }

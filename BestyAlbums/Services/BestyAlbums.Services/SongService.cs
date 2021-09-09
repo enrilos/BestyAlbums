@@ -22,11 +22,11 @@
                 .ToList()
                 .FirstOrDefault(x => x.Name == album);
 
-            if(foundAlbum == null)
+            if (foundAlbum == null)
             {
                 throw new ArgumentNullException("Album name was not found.");
             }
-            if(foundAlbum.Songs.Any(x => x.Name == name && album == foundAlbum.Name))
+            if (foundAlbum.Songs.Any(x => x.Name == name && album == foundAlbum.Name))
             {
                 throw new InvalidOperationException("Song in with that name is already present in the album.");
             }

@@ -1,0 +1,28 @@
+﻿@model AlbumSongsViewModel
+
+<div class="border standardDiv">
+    <table class="text-center mx-auto">
+        <tr>
+            <td class="border">
+                <img class="listingImageSize" src="@Model.CoverUrl" alt="Album image" />
+                <p>Name: @Model.Name</p>
+                <p>Genre: @Model.Genre</p>
+                <p>Price: @Model.Price $</p>
+                <p>Released: @Model.Released.ToString("yyyy-MM-dd")</p>
+                <p>Status: @Model.AlbumStatus</p>
+                <p>Artist: @Model.Artist</p>
+                <p>Label: @Model.Label</p>
+                <p>Production in days: @Model.ProductionTimeInDays</p>
+                <p>Studio type: @Model.StudioType</p>
+            </td>
+        </tr>
+        @for (int i = 0; i < @Model.Songs.Count; i++)
+        {
+            <tr>
+                <td>
+                <p>@(i + 1). @Model.Songs[i]</p>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
