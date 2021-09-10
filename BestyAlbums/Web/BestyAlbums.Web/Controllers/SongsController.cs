@@ -44,8 +44,32 @@
                 return RedirectToAction("Error", "Home");
             }
 
-            // This should redirect to all songs after the functionality is finished.
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("All", "Songs");
+        }
+
+        public IActionResult All()
+        {
+            var songs = this.songService.GetAll();
+
+            return View(songs);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            if (this.songService.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            var song = this.songService.Get(id);
+
+            var songModel = new SongEditModel()
+            {
+                Id = song.Id,
+                Name = song.Name,
+            };
+
+            return View(songModel);
         }
     }
 }

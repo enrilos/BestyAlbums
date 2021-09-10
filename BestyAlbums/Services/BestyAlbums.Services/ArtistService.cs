@@ -1,5 +1,6 @@
 ﻿namespace BestyAlbums.Services
 {
+    using BestyAlbums.Models.ViewModels.Artists;
     using Contracts;
     using Data;
     using Data.Models;
@@ -68,9 +69,19 @@
                 .ToList();
         }
 
-        public IList<Artist> GetAll()
+        public IList<ArtistAllViewModel> GetAll()
         {
-            return this.context.Artists.ToList();
+            return this.context.Artists
+                .Select(x => new ArtistAllViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Founded = x.Founded,
+                    Rating = x.Rating,
+                    ImageUrl = x.ImageUrl,
+                    Location = x.Location
+                })
+                .ToList();
         }
 
         public Artist GetArtistById(int id)

@@ -1,9 +1,11 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
+    using BestyAlbums.Models.ViewModels.Songs;
     using Data;
     using Data.Models;
     using Microsoft.EntityFrameworkCore;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     public class SongService : ISongService
@@ -41,6 +43,32 @@
             this.context.SaveChanges();
 
             return song.Id;
+        }
+
+        public bool Exists(int id)
+        {
+            if(this.context.Songs.FirstOrDefault(x => x.Id == id) == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public Song Get(int id)
+        {
+            return this.context.Songs.FirstOrDefault(x => x.Id == id);
+        }
+
+        public IList<SongAllViewModel> GetAll()
+        {
+            return this.context.Songs
+                .Select(x => new SongAllViewModel
+                {
+                    Name = x.Name,
+                    Album = x.Album.Name
+                })
+                .ToList();
         }
     }
 }

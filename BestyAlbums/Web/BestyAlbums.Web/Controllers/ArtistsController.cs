@@ -1,10 +1,8 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
     using BestyAlbums.Models.InputModels.Artists;
-    using BestyAlbums.Models.ViewModels.Artists;
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
-    using System.Linq;
 
     public class ArtistsController : Controller
     {
@@ -17,18 +15,7 @@
 
         public IActionResult All()
         {
-            var artists = artistService
-                .GetAll()
-                .Select(a => new ArtistAllViewModel
-                {
-                    Id = a.Id,
-                    Name = a.Name,
-                    Founded = a.Founded,
-                    Location = a.Location,
-                    Rating = a.Rating,
-                    ImageUrl = a.ImageUrl
-                })
-                .ToList();
+            var artists = artistService.GetAll();
 
             return View(artists);
         }

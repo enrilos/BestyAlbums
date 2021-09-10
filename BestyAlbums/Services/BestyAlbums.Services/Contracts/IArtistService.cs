@@ -1,5 +1,6 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
+    using BestyAlbums.Models.ViewModels.Artists;
     using Data.Models;
     using Models.InputModels.Artists;
     using System;
@@ -23,6 +24,6 @@
 
         IList<string> GetAllNames();
 
-        IList<Artist> GetAll();
+        IList<ArtistAllViewModel> GetAll();
     }
 }
