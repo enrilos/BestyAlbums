@@ -80,13 +80,6 @@
                 Price = album.Price,
                 CoverUrl = album.CoverUrl,
                 AlbumStatus = album.AlbumStatus,
-                Genre = album.Genre,
-                Artist = album.Artist.Name,
-                Label = album.Label,
-                ProductionTimeInDays = album.ProductionTimeInDays,
-                Released = album.Released,
-                StudioType = album.StudioType,
-
             };
 
             return View(albumModel);

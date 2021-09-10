@@ -11,10 +11,6 @@
         [Required]
         [StringLength(maximumLength: 32, MinimumLength = 2)]
         public string Name { get; set; }
-
-        public DateTime Released { get; set; }
-
-        public Genre Genre { get; set; }
         
         [Required]
         [StringLength(maximumLength: 256, MinimumLength = 10)]
@@ -25,14 +21,5 @@
 
         [EnumDataType(typeof(AlbumStatus))]
         public AlbumStatus AlbumStatus { get; set; }
-
-        public string Artist { get; set; }
-
-        //[EnumDataType(typeof(AlbumStatus))]
-        public StudioType StudioType { get; set; }
-
-        public string Label { get; set; }
-
-        public int? ProductionTimeInDays { get; set; }
     }
 }

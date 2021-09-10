@@ -5,22 +5,22 @@
         <tr>
             <td class="border">
                 <img class="listingImageSize" src="@Model.CoverUrl" alt="Album image" />
-                <p>Name: @Model.Name</p>
-                <p>Genre: @Model.Genre</p>
-                <p>Price: @Model.Price $</p>
-                <p>Released: @Model.Released.ToString("yyyy-MM-dd")</p>
-                <p>Status: @Model.AlbumStatus</p>
-                <p>Artist: @Model.Artist</p>
-                <p>Label: @Model.Label</p>
-                <p>Production in days: @Model.ProductionTimeInDays</p>
-                <p>Studio type: @Model.StudioType</p>
+                <p>Name: <strong>@Model.Name</strong></p>
+                <p>Genre: <strong>@Model.Genre</strong></p>
+                <p>Price: <strong>@Model.Price $</strong></p>
+                <p>Released: <strong>@Model.Released.ToString("yyyy-MM-dd")</strong></p>
+                <p>Status: <strong>@Model.AlbumStatus</strong></p>
+                <p>Artist: <strong>@Model.Artist</strong></p>
+                <p>Label: <strong>@Model.Label</strong></p>
+                <p>Production in days: <strong>@Model.ProductionTimeInDays</strong></p>
+                <p>Studio type: <strong>@Model.StudioType</strong></p>
             </td>
         </tr>
         @for (int i = 0; i < @Model.Songs.Count; i++)
         {
             <tr>
                 <td>
-                <p>@(i + 1). @Model.Songs[i]</p>
+                <p>@(i + 1). <strong>@Model.Songs[i]</strong></p>
                 </td>
             </tr>
         }

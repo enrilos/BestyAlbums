@@ -20,7 +20,7 @@
             this.context = context;
         }
 
-        public int Add(string name, DateTime released, Genre genre, string coverUrl, decimal price, AlbumStatus albumStatus, string artist, StudioType studioType, string label, int? productionTimeInDays)
+        public void Add(string name, DateTime released, Genre genre, string coverUrl, decimal price, AlbumStatus albumStatus, string artist, StudioType studioType, string label, int? productionTimeInDays)
         {
             var foundArtist = this.context.Artists.FirstOrDefault(x => x.Name == artist);
 
@@ -45,8 +45,6 @@
 
             this.context.Albums.Add(album);
             this.context.SaveChanges();
-
-            return album.Id;
         }
 
         public void Edit(AlbumEditModel model)
@@ -54,9 +52,9 @@
             var album = this.context.Albums.Find(model.Id);
 
             album.Name = model.Name;
-            album.AlbumStatus = model.AlbumStatus;
             album.CoverUrl = model.CoverUrl;
             album.Price = model.Price;
+            album.AlbumStatus = model.AlbumStatus;
 
             this.context.SaveChanges();
         }

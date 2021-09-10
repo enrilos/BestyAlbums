@@ -51,7 +51,7 @@
                     Left = x.Left?.ToString("yyyy-MM-dd"),
                     Gender = x.Gender,
                     ImageUrl = x.ImageUrl,
-                    Artist = x.Artist.Name
+                    Artist = x.Artist.Name,
                 })
                 .ToList();
 
@@ -76,7 +76,6 @@
                 Left = member.Left,
                 Gender = member.Gender,
                 ImageUrl = member.ImageUrl,
-                Artist = member.Artist.Name
             };
 
             return View(memberInputModel);
