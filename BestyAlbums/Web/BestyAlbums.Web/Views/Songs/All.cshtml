@@ -1,1 +1,29 @@
 ﻿@model IList<SongAllViewModel>
+
+<div class="topCenterBtnLink text-center mx-auto">
+    <a class="btn btn-primary btn-lg btn-block rounded" href="/Songs/Add">Add song</a>
+</div>
+@if (@Model.Count > 0)
+{
+    <div class="border standardDiv">
+        <table class="text-center mx-auto">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td class="border">
+                        <p>Name: @Model[i].Name</p>
+                        <p>Album: @Model[i].Album</p>
+                        <a class="btn btn-primary rounded" href="/Songs/Edit/@Model[i].Id">Edit</a>
+                        <a class="btn btn-danger rounded" href="/Songs/Delete/@Model[i].Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+else
+{
+    <div class="border standardDiv text-center h1">
+        <p>There are no songs yet.</p>
+    </div>
+}

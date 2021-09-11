@@ -65,8 +65,9 @@
             return this.context.Songs
                 .Select(x => new SongAllViewModel
                 {
+                    Id = x.Id,
                     Name = x.Name,
-                    Album = x.Album.Name
+                    Album = x.Album.Name,
                 })
                 .ToList();
         }
