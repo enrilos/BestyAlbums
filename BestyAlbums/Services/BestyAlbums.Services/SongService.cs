@@ -1,5 +1,6 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
+    using BestyAlbums.Models.InputModels.Songs;
     using BestyAlbums.Models.ViewModels.Songs;
     using Data;
     using Data.Models;
@@ -43,6 +44,20 @@
             this.context.SaveChanges();
 
             return song.Id;
+        }
+
+        public void Delete(int id)
+        {
+            var song = this.context.Songs.FirstOrDefault(x => x.Id == id);
+            this.context.Songs.Remove(song);
+            this.context.SaveChanges();
+        }
+
+        public void Edit(SongEditModel model)
+        {
+            var song = this.context.Songs.Find(model.Id);
+            song.Name = model.Name;
+            this.context.SaveChanges();
         }
 
         public bool Exists(int id)

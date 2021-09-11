@@ -56,7 +56,7 @@
 
         public IActionResult Edit(int id)
         {
-            if (this.songService.Exists(id))
+            if (!this.songService.Exists(id))
             {
                 return BadRequest();
             }
@@ -70,6 +70,35 @@
             };
 
             return View(songModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(SongEditModel model)
+        {
+            if (!this.songService.Exists(model.Id))
+            {
+                return BadRequest();
+            }
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            this.songService.Edit(model);
+
+            return RedirectToAction("All", "Songs");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            if (!this.songService.Exists(id))
+            {
+                return BadRequest();
+            }
+
+            this.songService.Delete(id);
+
+            return RedirectToAction("All", "Songs");
         }
     }
 }

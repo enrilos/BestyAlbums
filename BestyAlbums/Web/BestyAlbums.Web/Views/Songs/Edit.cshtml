@@ -1,0 +1,13 @@
+﻿@model SongEditModel
+
+<div class="standardDiv">
+    <form asp-controller="Songs" asp-action="Edit" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" type="text" name="name" value="@Model.Name" />
+        </div>
+        <div class="submitDiv">
+            <input class="btn btn-primary" type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
