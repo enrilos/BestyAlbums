@@ -29,7 +29,5 @@
         public List<Member> Members { get; set; } = new List<Member>();
 
         public List<Album> Albums { get; set; } = new List<Album>();
-
-        public List<Single> Singles { get; set; } = new List<Single>();
     }
 }

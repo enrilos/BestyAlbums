@@ -20,8 +20,6 @@
 
         public DbSet<Member> Members { get; set; }
 
-        public DbSet<Single> Singles { get; set; }
-
         public DbSet<Song> Songs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -51,13 +49,6 @@
                 .Entity<Album>()
                 .HasIndex(x => x.Name)
                 .IsUnique();
-
-            builder
-                .Entity<Artist>()
-                .HasMany(x => x.Singles)
-                .WithOne(s => s.Artist)
-                .HasForeignKey(x => x.ArtistId)
-                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<Song>()
