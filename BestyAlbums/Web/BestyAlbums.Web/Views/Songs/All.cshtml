@@ -12,7 +12,10 @@
                 <tr>
                     <td class="border">
                         <p>Name: @Model[i].Name</p>
-                        <p>Album: @Model[i].Album</p>
+                        @if (@Model[i].Album != null)
+                        {
+                            <p>Album: @Model[i].Album</p>
+                        }
                         <a class="btn btn-primary rounded" href="/Songs/Edit/@Model[i].Id">Edit</a>
                         <a class="btn btn-danger rounded" href="/Songs/Delete/@Model[i].Id">Delete</a>
                     </td>

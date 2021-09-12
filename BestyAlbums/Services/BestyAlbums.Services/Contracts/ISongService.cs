@@ -7,7 +7,7 @@
 
     public interface ISongService
     {
-        int Add(string name, string album);
+        void Add(string name, string album);
 
         bool Exists(int id);
 

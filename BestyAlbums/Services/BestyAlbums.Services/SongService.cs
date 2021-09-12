@@ -18,32 +18,42 @@
             this.context = context;
         }
 
-        public int Add(string name, string album)
+        public void Add(string name, string album)
         {
-            var foundAlbum = this.context.Albums
-                .Include(x => x.Songs)
-                .ToList()
-                .FirstOrDefault(x => x.Name == album);
+            Song song = null;
 
-            if (foundAlbum == null)
+            if (!album.ToLower().Contains("noalbum"))
             {
-                throw new ArgumentNullException("Album name was not found.");
-            }
-            if (foundAlbum.Songs.Any(x => x.Name == name && album == foundAlbum.Name))
-            {
-                throw new InvalidOperationException("Song in with that name is already present in the album.");
-            }
+                var foundAlbum = this.context.Albums
+                    .Include(x => x.Songs)
+                    .ToList()
+                    .FirstOrDefault(x => x.Name == album);
 
-            var song = new Song
+                if (foundAlbum == null)
+                {
+                    throw new ArgumentNullException("Album name was not found.");
+                }
+                if (foundAlbum.Songs.Any(x => x.Name == name && album == foundAlbum.Name))
+                {
+                    throw new InvalidOperationException("Song in with that name is already present in the album.");
+                }
+
+                song = new Song
+                {
+                    Name = name,
+                    Album = foundAlbum
+                };
+            }
+            else
             {
-                Name = name,
-                Album = foundAlbum
-            };
+                song = new Song
+                {
+                    Name = name
+                };
+            }
 
             this.context.Songs.Add(song);
             this.context.SaveChanges();
-
-            return song.Id;
         }
 
         public void Delete(int id)
@@ -62,7 +72,7 @@
 
         public bool Exists(int id)
         {
-            if(this.context.Songs.FirstOrDefault(x => x.Id == id) == null)
+            if (this.context.Songs.FirstOrDefault(x => x.Id == id) == null)
             {
                 return false;
             }
