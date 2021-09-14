@@ -12,6 +12,6 @@
         public string Name { get; set; }
 
         public Album Album { get; set; }
-        public int? AlbumId { get; set; }
+        public int AlbumId { get; set; }
     }
 }

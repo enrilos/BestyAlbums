@@ -4,7 +4,6 @@
     using BestyAlbums.Models.ViewModels.Songs;
     using Data;
     using Data.Models;
-    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -20,37 +19,22 @@
 
         public void Add(string name, string album)
         {
-            Song song = null;
+            var foundAlbum = this.context.Albums.FirstOrDefault(x => x.Name == album);
 
-            if (!album.ToLower().Contains("noalbum"))
+            if (foundAlbum == null)
             {
-                var foundAlbum = this.context.Albums
-                    .Include(x => x.Songs)
-                    .ToList()
-                    .FirstOrDefault(x => x.Name == album);
-
-                if (foundAlbum == null)
-                {
-                    throw new ArgumentNullException("Album name was not found.");
-                }
-                if (foundAlbum.Songs.Any(x => x.Name == name && album == foundAlbum.Name))
-                {
-                    throw new InvalidOperationException("Song in with that name is already present in the album.");
-                }
-
-                song = new Song
-                {
-                    Name = name,
-                    Album = foundAlbum
-                };
+                throw new ArgumentNullException("Album name was not found.");
             }
-            else
+            if (foundAlbum.Songs.Any(x => x.Name == name && album == foundAlbum.Name))
             {
-                song = new Song
-                {
-                    Name = name
-                };
+                throw new InvalidOperationException("Song in with that name is already present in the album.");
             }
+
+            var song = new Song
+            {
+                Name = name,
+                Album = foundAlbum
+            };
 
             this.context.Songs.Add(song);
             this.context.SaveChanges();
