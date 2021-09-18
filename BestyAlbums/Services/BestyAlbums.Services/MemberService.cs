@@ -72,9 +72,7 @@
         public IList<Member> GetAll()
         {
             return this.context.Members
-                .Include(x => x.Artist)
-                .ToList()
-                .Select(x => new Member()
+                .Select(x => new Member
                 {
                     Id = x.Id,
                     FirstName = x.FirstName,

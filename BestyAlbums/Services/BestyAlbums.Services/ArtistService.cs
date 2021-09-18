@@ -62,11 +62,7 @@
 
         public IList<string> GetAllNames()
         {
-            return this.context
-                .Artists
-                .ToList()
-                .Select(x => x.Name)
-                .ToList();
+            return this.context.Artists.Select(x => x.Name).ToList();
         }
 
         public IList<ArtistAllViewModel> GetAll()
