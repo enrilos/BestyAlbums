@@ -89,9 +89,18 @@
             return this.context.Albums.Select(x => x.Name).ToList();
         }
 
-        public IList<Album> GetAllAlbums()
+        public IList<AlbumAllViewModel> GetAllAlbums()
         {
-            return this.context.Albums.ToList();
+            return this.context.Albums
+                .Select(x => new AlbumAllViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    AlbumStatus = x.AlbumStatus,
+                    CoverUrl = x.CoverUrl,
+                    Price = x.Price
+                })
+                .ToList();
         }
 
         public void Delete(int id)

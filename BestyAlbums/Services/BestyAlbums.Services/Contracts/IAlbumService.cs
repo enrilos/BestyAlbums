@@ -23,7 +23,7 @@
 
         IList<string> GetAllAlbumNames();
 
-        IList<Album> GetAllAlbums();
+        IList<AlbumAllViewModel> GetAllAlbums();
 
         AlbumSongsViewModel GetAlbumSongs(int id);
     }

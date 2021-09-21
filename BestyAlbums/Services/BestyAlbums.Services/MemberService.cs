@@ -1,11 +1,11 @@
 ﻿namespace BestyAlbums.Services
 {
-    using Models.InputModels.Members;
     using Contracts;
     using Data;
     using Data.Models;
     using Data.Models.Enums;
     using Microsoft.EntityFrameworkCore;
+    using Models.InputModels.Members;
     using System;
     using System.Collections.Generic;
     using System.Linq;

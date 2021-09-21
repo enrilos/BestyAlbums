@@ -1,5 +1,6 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
+    using BestyAlbums.Models.ViewModels.Members;
     using Data.Models;
     using Data.Models.Enums;
     using Models.InputModels.Members;
