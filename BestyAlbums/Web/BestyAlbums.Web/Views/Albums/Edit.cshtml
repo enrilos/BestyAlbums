@@ -16,35 +16,7 @@
         </div>
         <div class="form-group">
             <label>Status:</label>
-            <select class="form-select rounded" name="albumStatus">
-                @if (Model.AlbumStatus == BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued)
-                {
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued" selected>Discontinued</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction">InProduction</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling">Selling</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased">Unreleased</option>
-                }
-                else if (Model.AlbumStatus == BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction)
-                {
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued">Discontinued</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction" selected>InProduction</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling">Selling</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased">Unreleased</option>
-                }
-                else if (Model.AlbumStatus == BestyAlbums.Data.Models.Enums.AlbumStatus.Selling)
-                {
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued">Discontinued</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction">InProduction</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling" selected>Selling</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased">Unreleased</option>
-                }
-                else if (Model.AlbumStatus == BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased)
-                {
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Discontinued">Discontinued</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.InProduction">InProduction</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Selling">Selling</option>
-                    <option value="@BestyAlbums.Data.Models.Enums.AlbumStatus.Unreleased" selected>Unreleased</option>
-                }
+            <select asp-for="AlbumStatus" asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.AlbumStatus>()" class="form-select rounded">
             </select>
         </div>
         <div class="submitDiv">

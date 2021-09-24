@@ -26,7 +26,7 @@
         public AlbumStatus AlbumStatus { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 32, MinimumLength = 1)]
+        [StringLength(maximumLength: 32, MinimumLength = 2)]
         public string Artist { get; set; }
 
         [EnumDataType(typeof(StudioType))]

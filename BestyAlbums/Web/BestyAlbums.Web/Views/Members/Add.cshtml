@@ -25,9 +25,7 @@
         </div>
         <div class="form-group">
             <label>Gender</label>
-            <select class="form-select rounded" name="gender">
-                <option value="@BestyAlbums.Data.Models.Enums.Gender.Male">Male</option>
-                <option value="@BestyAlbums.Data.Models.Enums.Gender.Female">Female</option>
+            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Gender>()" name="gender" class="form-select rounded">
             </select>
         </div>
         <div class="form-group">
@@ -36,7 +34,7 @@
         </div>
         <div class="form-group">
             <label>Artist</label>
-            <select class="form-select rounded" name="artist">
+            <select name="artist" class="form-select rounded">
                 @for (int i = 0; i < Model.Count(); i++)
                 {
                     <option value="@Model[i]">@Model[i]</option>
