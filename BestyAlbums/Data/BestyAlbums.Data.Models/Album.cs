@@ -40,6 +40,6 @@
 
         public int? ProductionTimeInDays { get; set; }
 
-        public List<Song> Songs { get; set; } = new List<Song>();
+        public ICollection<Song> Songs { get; set; } = new HashSet<Song>();
     }
 }

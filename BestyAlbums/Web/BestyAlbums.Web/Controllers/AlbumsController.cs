@@ -3,7 +3,6 @@
     using BestyAlbums.Models.InputModels.Albums;
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
-    using System.Linq;
 
     public class AlbumsController : Controller
     {
@@ -18,7 +17,7 @@
 
         public IActionResult All()
         {
-            var albums = this.albumService.GetAllAlbums().ToList();
+            var albums = this.albumService.GetAllAlbums();
 
             return View(albums);
         }

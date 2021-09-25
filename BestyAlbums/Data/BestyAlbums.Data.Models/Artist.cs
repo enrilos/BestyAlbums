@@ -26,8 +26,8 @@
         [StringLength(maximumLength: 1024, MinimumLength = 10)]
         public string ImageUrl { get; set; }
 
-        public List<Member> Members { get; set; } = new List<Member>();
+        public ICollection<Member> Members { get; set; } = new HashSet<Member>();
 
-        public List<Album> Albums { get; set; } = new List<Album>();
+        public ICollection<Album> Albums { get; set; } = new HashSet<Album>();
     }
 }

@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
     using System;
+    using System.Linq;
 
     public class SongsController : Controller
     {
@@ -49,7 +50,7 @@
 
         public IActionResult All()
         {
-            var songs = this.songService.GetAll();
+            var songs = this.songService.GetAll().ToList();
 
             return View(songs);
         }
