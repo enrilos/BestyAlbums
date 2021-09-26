@@ -24,48 +24,9 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+
             base.OnModelCreating(builder);
-
-            builder
-                .Entity<Artist>()
-                .HasMany(x => x.Members)
-                .WithOne(s => s.Artist)
-                .HasForeignKey(x => x.ArtistId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder
-                .Entity<Artist>()
-                .HasMany(x => x.Albums)
-                .WithOne(s => s.Artist)
-                .HasForeignKey(x => x.ArtistId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder
-                .Entity<Artist>()
-                .HasIndex(x => x.Name)
-                .IsUnique();
-
-            builder
-                .Entity<Album>()
-                .HasIndex(x => x.Name)
-                .IsUnique();
-
-            builder
-                .Entity<Song>()
-                .HasOne(x => x.Album)
-                .WithMany(s => s.Songs)
-                .HasForeignKey(x => x.AlbumId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder
-                .Entity<Song>()
-                .HasIndex(x => new { x.Name, x.AlbumId })
-                .IsUnique();
-
-            builder
-                .Entity<Member>()
-                .HasIndex(x => new { x.ArtistId, x.FirstName, x.LastName })
-                .IsUnique();
         }
     }
 }
