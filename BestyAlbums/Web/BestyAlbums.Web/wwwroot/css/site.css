@@ -1,4 +1,15 @@
-﻿.submitDiv {
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: whitesmoke;
+}
+
+body {
+    background: linear-gradient(to right, rgb(32, 76, 183), rgb(217, 52, 59));
+}
+
+.submitDiv {
     padding-top: 20px;
     text-align: left;
 }
