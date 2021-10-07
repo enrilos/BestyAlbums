@@ -1,24 +1,49 @@
 ﻿* {
+    color: whitesmoke;
+    font-size: 18px;
+}
+
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: whitesmoke;
 }
 
 body {
     background: linear-gradient(to right, rgb(32, 76, 183), rgb(217, 52, 59));
 }
 
-.submitDiv {
+option {
+    color: rgb(52, 58, 64);
+}
+
+.nav-link-btn {
+    text-decoration: none;
+    color: rgb(97, 218, 251);
+    border: 2px solid rgb(97, 218, 251);
+    border-radius: 4px;
+    padding: 10px 20px;
+    background: inherit;
+    margin: 0 8px;
+}
+
+.nav-link-btn:hover {
+    text-decoration: none;
+    background: rgb(97, 218, 251);
+    color: #292929;
+}
+
+.container-submit {
     padding-top: 20px;
     text-align: left;
 }
 
-.standardDiv {
+.container-standard {
     padding: 30px;
 }
 
-.successDiv {
+.container-success {
     color: whitesmoke;
     background-color: #3db8ff;
     font-size: 24px;
@@ -27,52 +52,50 @@ body {
     margin-bottom: 20px;
 }
 
-.albumsText {
+.highlight-color-lightblue {
     color: #40a9ff;
+    font-size: 1em;
 }
 
-.singlesText {
-    color: greenyellow;
-}
-
-.artistsText {
+.highlight-color-lightgreen {
     color: #6effb4;
+    font-size: 1em;
 }
 
-.convenientlyText {
+.highlight-color-lightpink {
     color: #ff3686;
+    font-size: 1em;
 }
 
-.homeTitleDiv {
-    margin: auto;
+.container-home {
+    margin: 0 auto;
     text-align: center;
     width: 50%;
 }
 
-    .homeTitleDiv > p {
-        height: 55px;
-    }
-
-.homeMainDiv {
-    position: absolute;
-    margin: auto;
-    text-align: center;
-    width: 75%;
-    padding-top: 20px;
+.container-home > p {
+    padding: 10px 0;
 }
 
-    .homeMainDiv > p {
-        height: 85px;
-    }
+.container-main {
+    position: absolute;
+    margin: 0 auto;
+    text-align: center;
+    width: 75%;
+}
 
-.topCenterBtnLink {
+.container-main > p {
+    padding: 16px 10px;
+}
+
+.add-record-btn {
     margin: 20px;
     padding: 16px;
     font-size: 20px;
     width: 50%;
 }
 
-.listingImageSize {
+.img-listing-size {
     height: 450px;
     width: 350px;
     object-fit: cover;

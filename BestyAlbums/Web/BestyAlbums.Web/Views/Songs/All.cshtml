@@ -1,11 +1,11 @@
 ﻿@model IList<SongAllViewModel>
 
-<div class="topCenterBtnLink text-center mx-auto">
+<div class="add-record-btn text-center mx-auto">
     <a class="btn btn-primary btn-lg btn-block rounded" href="/Songs/Add">Add song</a>
 </div>
 @if (@Model.Count > 0)
 {
-    <div class="border standardDiv">
+    <div class="border container-standard">
         <table class="text-center mx-auto">
             @for (int i = 0; i < Model.Count; i++)
             {
@@ -26,7 +26,7 @@
 }
 else
 {
-    <div class="border standardDiv text-center h1">
+    <div class="border container-standard text-center h1">
         <p>There are no songs yet.</p>
     </div>
 }

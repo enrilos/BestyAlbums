@@ -1,6 +1,6 @@
 ﻿@model AlbumEditModel
 
-<div class="standardDiv">
+<div class="container-standard">
     <form asp-controller="Albums" asp-action="Edit" method="post">
         <div class="form-group">
             <label for="released">Name</label>
@@ -16,10 +16,10 @@
         </div>
         <div class="form-group">
             <label>Status:</label>
-            <select asp-for="AlbumStatus" asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.AlbumStatus>()" class="form-select rounded">
+            <select asp-for="AlbumStatus" asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.AlbumStatus>()" class="form-select rounded text-dark">
             </select>
         </div>
-        <div class="submitDiv">
+        <div class="container-submit">
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>

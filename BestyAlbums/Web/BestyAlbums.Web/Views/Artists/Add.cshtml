@@ -1,5 +1,5 @@
 ﻿<h2>Add your favourite artist here!</h2>
-<div class="standardDiv">
+<div class="container-standard">
     <form asp-controller="Artists" asp-action="Add" method="post">
         <div class="form-group">
             <label for="name">Name</label>
@@ -21,7 +21,7 @@
             <label for="imageUrl">ImageUrl</label>
             <input class="form-control" id="imageUrl" type="text" name="imageUrl" />
         </div>
-        <div class="submitDiv">
+        <div class="container-submit">
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>

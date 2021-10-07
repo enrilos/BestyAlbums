@@ -1,6 +1,6 @@
 ﻿@model MemberEditModel
 
-<div class="standardDiv">
+<div class="container-standard">
     <!--It is crucial to put asp-action="Edit" here since it allows the form to map the inputs and Id (which is required) with the viewmodel above-->
     <form asp-controller="Members" asp-action="Edit" method="post">
         <div class="form-group">
@@ -25,14 +25,14 @@
         </div>
         <div class="form-group">
             <label>Gender</label>
-            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Gender>()" class="form-select rounded">
+            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Gender>()" class="form-select rounded text-dark">
             </select>
         </div>
         <div class="form-group">
             <label for="imageUrl">ImageUrl</label>
             <input class="form-control" id="imageUrl" type="text" name="imageUrl" value="@Model.ImageUrl" />
         </div>
-        <div class="submitDiv">
+        <div class="container-submit">
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>

@@ -1,7 +1,7 @@
 ﻿@model IList<string>
 
 <h2>Add an album.</h2>
-<div class="standardDiv">
+<div class="container-standard">
     <form asp-controller="Albums" asp-action="Add" method="post">
         <div class="form-group">
             <label for="name">Name</label>
@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             <label>Genre</label>
-            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Genre>()" name="genre" class="form-select rounded">
+            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Genre>()" name="genre" class="form-select rounded text-dark">
             </select>
         </div>
         <div class="form-group">
@@ -26,12 +26,12 @@
         </div>
         <div class="form-group">
             <label>Status</label>
-            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.AlbumStatus>()" name="albumStatus" class="form-select rounded">
+            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.AlbumStatus>()" name="albumStatus" class="form-select rounded text-dark">
             </select>
         </div>
         <div class="form-group">
             <label>Artist</label>
-            <select class="form-select rounded" name="artist">
+            <select name="artist" class="form-select rounded text-dark">
                 @for (int i = 0; i < Model.Count; i++)
                 {
                     <option value="@Model[i]">@Model[i]</option>
@@ -40,7 +40,7 @@
         </div>
         <div class="form-group">
             <label>StudioType</label>
-            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.StudioType>()" name="studioType" class="form-select rounded">
+            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.StudioType>()" name="studioType" class="form-select rounded text-dark">
             </select>
         </div>
         <div class="form-group">
@@ -51,7 +51,7 @@
             <label for="productionTimeInDays">Production days time</label>
             <input class="form-control" id="productionTimeInDays" type="number" name="productionTimeInDays" />
         </div>
-        <div class="submitDiv">
+        <div class="container-submit">
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>

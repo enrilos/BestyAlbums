@@ -1,6 +1,6 @@
 ﻿@model ArtistEditModel
 
-    <div class="standardDiv">
+    <div class="container-standard">
         <!--It is crucial to put asp-action="Edit" here since it allows the form to map the inputs and Id (which is required) with the viewmodel above-->
         <form asp-controller="Artists" asp-action="Edit" method="post">
             <div class="form-group">
@@ -23,7 +23,7 @@
                 <label for="imageUrl">ImageUrl</label>
                 <input class="form-control" id="imageUrl" type="text" name="imageUrl" value="@Model.ImageUrl"/>
             </div>
-            <div class="submitDiv">
+            <div class="container-submit">
                 <input class="btn btn-primary" type="submit" value="Submit" />
             </div>
         </form>
