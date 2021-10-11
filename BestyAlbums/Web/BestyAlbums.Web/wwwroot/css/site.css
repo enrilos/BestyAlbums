@@ -131,3 +131,15 @@ option {
     padding: 10px;
     border: 4px solid #292929;
 }
+
+.author {
+    text-decoration: none;
+    color: rgb(97, 218, 251);
+    transition: .4s;
+}
+
+    .author:hover {
+        text-decoration: none;
+        color: rgb(136, 228, 252);
+        transition: .4s;
+    }
