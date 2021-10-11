@@ -98,6 +98,7 @@
                     Name = x.Name,
                     AlbumStatus = x.AlbumStatus,
                     CoverUrl = x.CoverUrl,
+                    SongsCount = x.Songs.Count,
                     Price = x.Price
                 })
                 .ToList();

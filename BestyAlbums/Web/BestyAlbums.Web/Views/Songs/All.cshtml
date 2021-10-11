@@ -1,16 +1,16 @@
 ﻿@model IList<SongAllViewModel>
 
-<div class="add-record-btn text-center mx-auto">
-    <a class="btn btn-primary btn-lg btn-block rounded" href="/Songs/Add">Add song</a>
+<div class="add-record-container text-center mx-auto">
+    <a class="add-record-btn" href="/Songs/Add">Add Song</a>
 </div>
 @if (@Model.Count > 0)
 {
-    <div class="border container-standard">
+    <div class="container-standard">
         <table class="text-center mx-auto">
             @for (int i = 0; i < Model.Count; i++)
             {
                 <tr>
-                    <td class="border">
+                    <td class="record-card">
                         <p>Name: @Model[i].Name</p>
                         @if (@Model[i].Album != null)
                         {

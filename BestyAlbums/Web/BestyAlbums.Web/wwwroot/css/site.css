@@ -1,8 +1,12 @@
-﻿* {
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
     color: whitesmoke;
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
     font-size: 18px;
 }
 
+*,
 *::before,
 *::after {
     margin: 0;
@@ -32,15 +36,19 @@ option {
     text-decoration: none;
     background: rgb(97, 218, 251);
     color: #292929;
+    transition: .4s;
 }
 
 .container-submit {
     padding-top: 20px;
     text-align: left;
+    margin-bottom: 20px;
 }
 
 .container-standard {
     padding: 30px;
+    border: 4px solid #292929;
+    border-radius: 10px;
 }
 
 .container-success {
@@ -88,15 +96,38 @@ option {
     padding: 16px 10px;
 }
 
-.add-record-btn {
-    margin: 20px;
-    padding: 16px;
-    font-size: 20px;
+.add-record-container {
+    margin: 20px auto;
     width: 50%;
 }
+
+.add-record-btn {
+    font-size: 24px;
+    font-weight: 600;
+    display: block;
+    padding: 20px;
+    border: none;
+    border-radius: 6px;
+    background: #eb4034;
+    color: white;
+    text-decoration: none;
+    transition: .4s;
+}
+
+    .add-record-btn:hover {
+        color: white;
+        text-decoration: none;
+        background: #f73693;
+        transition: .4s;
+    }
 
 .img-listing-size {
     height: 450px;
     width: 350px;
     object-fit: cover;
+}
+
+.record-card {
+    padding: 10px;
+    border: 4px solid #292929;
 }

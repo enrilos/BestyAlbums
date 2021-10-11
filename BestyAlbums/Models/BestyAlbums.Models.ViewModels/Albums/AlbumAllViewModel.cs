@@ -12,6 +12,8 @@
 
         public decimal Price { get; set; }
 
+        public int SongsCount { get; set; }
+
         public AlbumStatus AlbumStatus { get; set; }
     }
 }
