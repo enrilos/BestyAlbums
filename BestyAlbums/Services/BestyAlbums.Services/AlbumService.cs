@@ -138,8 +138,18 @@
 
         public IList<AlbumsHomeViewModel> GetTopThreeLatestAlbums()
         {
-            // TODO: Implement when CreatedOn property is added.
-            return null;
+            var albums = this.context.Albums
+                .OrderByDescending(x => x.CreatedOn)
+                .Take(3)
+                .Select(x => new AlbumsHomeViewModel
+                {
+                    Name = x.Name,
+                    CoverUrl = x.CoverUrl,
+                    Artist = x.Artist.Name
+                })
+                .ToList();
+
+            return albums;
         }
     }
 }

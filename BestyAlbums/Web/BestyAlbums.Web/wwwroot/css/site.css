@@ -6,13 +6,13 @@
     font-size: 18px;
 }
 
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
 body {
     background: linear-gradient(to right, rgb(32, 76, 183), rgb(217, 52, 59));
@@ -32,12 +32,12 @@ option {
     margin: 0 8px;
 }
 
-.nav-link-btn:hover {
-    text-decoration: none;
-    background: rgb(97, 218, 251);
-    color: #292929;
-    transition: .4s;
-}
+    .nav-link-btn:hover {
+        text-decoration: none;
+        background: rgb(97, 218, 251);
+        color: #292929;
+        transition: .4s;
+    }
 
 .container-submit {
     padding-top: 20px;
@@ -81,9 +81,9 @@ option {
     width: 50%;
 }
 
-.container-home > p {
-    padding: 10px 0;
-}
+    .container-home > p {
+        padding: 10px 0;
+    }
 
 .container-main {
     margin: 0 auto;
@@ -91,9 +91,9 @@ option {
     width: 100%;
 }
 
-.container-main > p {
-    padding: 16px 10px;
-}
+    .container-main > p {
+        padding: 16px 10px;
+    }
 
 .add-record-container {
     margin: 20px auto;
@@ -143,10 +143,32 @@ option {
         transition: .4s;
     }
 
-.container-latest-ablums {
+.container-latest-ablums-main {
     text-align: center;
 }
 
-.container-latest-ablums p {
-    font-size: 2em;
+    .container-latest-ablums-main > p {
+        font-size: 2em;
+    }
+
+.container-albums {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.container-album {
+    flex-basis: auto;
+    margin: 0 10px;
+    max-width: 300px;
+}
+
+    .container-album p {
+        word-wrap: break-word
+    }
+
+    .container-album img {
+        object-fit: cover;
+        width: 250px;
+        height: 250px;
+    }
