@@ -135,5 +135,11 @@
 
             return albumModel;
         }
+
+        public IList<AlbumsHomeViewModel> GetTopThreeLatestAlbums()
+        {
+            // TODO: Implement when CreatedOn property is added.
+            return null;
+        }
     }
 }

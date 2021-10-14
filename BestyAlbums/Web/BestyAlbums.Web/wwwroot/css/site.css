@@ -86,10 +86,9 @@ option {
 }
 
 .container-main {
-    position: absolute;
     margin: 0 auto;
     text-align: center;
-    width: 75%;
+    width: 100%;
 }
 
 .container-main > p {
@@ -143,3 +142,11 @@ option {
         color: rgb(136, 228, 252);
         transition: .4s;
     }
+
+.container-latest-ablums {
+    text-align: center;
+}
+
+.container-latest-ablums p {
+    font-size: 2em;
+}

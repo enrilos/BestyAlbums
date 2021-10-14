@@ -21,6 +21,8 @@
 
         Album Get(int id);
 
+        IList<AlbumsHomeViewModel> GetTopThreeLatestAlbums();
+
         IList<string> GetAllAlbumNames();
 
         IList<AlbumAllViewModel> GetAllAlbums();
