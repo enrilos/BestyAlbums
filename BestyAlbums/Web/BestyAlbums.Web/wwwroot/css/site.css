@@ -30,6 +30,7 @@ option {
     padding: 10px 20px;
     background: inherit;
     margin: 0 8px;
+    transition: .4s;
 }
 
     .nav-link-btn:hover {
@@ -153,13 +154,17 @@ option {
 
 .container-albums {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: saturate(180%) blur(10px);
 }
 
 .container-album {
     flex-basis: auto;
     margin: 0 10px;
+    padding: 10px 0;
     max-width: 300px;
 }
 
