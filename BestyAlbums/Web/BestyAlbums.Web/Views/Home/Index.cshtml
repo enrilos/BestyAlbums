@@ -15,11 +15,21 @@
         <div class="container-albums">
             @for (int i = 0; i < Model.Count; i++)
             {
-            <div class="container-album">
-                <img src="@Model[i].CoverUrl" alt="Album Cover" />
-                <p>@Model[i].Name - @Model[i].Artist</p>
-            </div>
+                <div class="container-album">
+                    <img src="@Model[i].CoverUrl" alt="Album Cover" />
+                    <p>@Model[i].Name - @Model[i].Artist</p>
+                </div>
             }
+            <a href="/Albums/All">
+            <div class="center-con">
+                <div class="round">
+                    <div id="cta">
+                        <span class="arrow primera next "></span>
+                        <span class="arrow segunda next "></span>
+                    </div>
+                </div>
+            </div>
+            </a >
         </div>
     </div>
 </div>
