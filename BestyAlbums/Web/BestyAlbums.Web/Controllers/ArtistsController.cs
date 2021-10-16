@@ -30,7 +30,8 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction("Error", "Home");
+                return View();
+                //return RedirectToAction("Error", "Home");
             }
 
             if (this.artistService.Exists(model.Name))
