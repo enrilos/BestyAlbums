@@ -31,7 +31,6 @@
             if (!this.ModelState.IsValid)
             {
                 return View();
-                //return RedirectToAction("Error", "Home");
             }
 
             if (this.artistService.Exists(model.Name))
@@ -74,7 +73,7 @@
             }
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Error", "Home");
+                return View();
             }
 
             this.artistService.Edit(model);
