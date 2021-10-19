@@ -6,29 +6,26 @@
     <title>BestyAlbums</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/navbar.css">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark mb-3">
-            <div class="container">
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">BestyAlbums</a>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li>
-                            <a class="nav-link-btn" asp-area="" asp-controller="Artists" asp-action="All">Artists</a>
-                        </li>
-                        <li>
-                            <a class="nav-link-btn" asp-area="" asp-controller="Members" asp-action="All">Members</a>
-                        </li>
-                        <li>
-                            <a class="nav-link-btn" asp-area="" asp-controller="Albums" asp-action="All">Albums</a>
-                        </li>
-                        <li>
-                            <a class="nav-link-btn" asp-area="" asp-controller="Songs" asp-action="All">Songs</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <nav class="container-navbar">
+            <a class="navbar-title" asp-area="" asp-controller="Home" asp-action="Index">BestyAlbums</a>
+            <ul class="container-navbar-menu">
+                <li>
+                    <a asp-area="" asp-controller="Artists" asp-action="All">Artists</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Members" asp-action="All">Members</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Albums" asp-action="All">Albums</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Songs" asp-action="All">Songs</a>
+                </li>
+            </ul>
         </nav>
     </header>
 

@@ -18,31 +18,9 @@ body {
     background: linear-gradient(to right, rgb(32, 76, 183), rgb(217, 52, 59));
 }
 
-body > header > nav > div > a{
-    font-family: 'Pacifico', cursive;
-}
-
 option {
     color: rgb(52, 58, 64);
 }
-
-.nav-link-btn {
-    text-decoration: none;
-    color: rgb(255, 55, 94);
-    border: 2px solid rgb(255, 55, 94);
-    border-radius: 4px;
-    padding: 10px 20px;
-    background: inherit;
-    margin: 0 8px;
-    transition: .4s;
-}
-
-    .nav-link-btn:hover {
-        text-decoration: none;
-        background: rgb(255, 55, 94);
-        color: #292929;
-        transition: .4s;
-    }
 
 .container-submit {
     padding-top: 20px;
