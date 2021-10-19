@@ -1,0 +1,88 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap');
+
+* {
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: whitesmoke;
+}
+
+option {
+    color: rgb(52, 58, 64);
+}
+
+.navbar-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 2em;
+}
+
+.container-navbar > a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.container-navbar-menu li a {
+    text-decoration: none;
+    color: rgb(255, 55, 94);
+}
+
+.container-navbar-menu li a:hover {
+    text-decoration: none;
+    color: #292929;
+}
+
+.container-success {
+    font-size: 24px;
+    color: whitesmoke;
+}
+
+.container-home p {
+    font-family: 'Pacifico', cursive;
+}
+
+.add-record-btn {
+    font-size: 1.5em;
+    color: rgb(255, 55, 94);
+    text-decoration: none;
+}
+
+.add-record-btn:hover {
+    color: #292929;
+    text-decoration: none;
+}
+
+.author {
+    text-decoration: none;
+    color: rgb(97, 218, 251);
+}
+
+.author:hover {
+    text-decoration: none;
+    color: rgb(136, 228, 252);
+}
+
+.container-latest-ablums-main > p {
+    font-size: 2em;
+}
+
+.container-footer {
+    color: white;
+}
+
+.container-footer p a {
+    color: lightskyblue;
+}
+
+.highlight-color-lightblue {
+    color: #40a9ff;
+    font-size: 1em;
+}
+
+.highlight-color-lightgreen {
+    color: #6effb4;
+    font-size: 1em;
+}
+
+.highlight-color-lightpink {
+    color: #ff3686;
+    font-size: 1em;
+}

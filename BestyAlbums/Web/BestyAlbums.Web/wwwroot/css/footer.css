@@ -3,13 +3,8 @@
     justify-content: center;
     bottom: 0;
     width: 100%;
-    color: white;
 }
 
 .container-footer p {
     margin: 0;
-}
-
-.container-footer p a {
-    color: lightskyblue;
 }

@@ -1,25 +1,13 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap');
-
-* {
-    color: whitesmoke;
-    font-family: Montserrat, Arial, Helvetica, sans-serif;
-    font-size: 18px;
+﻿*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-    *,
-    *::before,
-    *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
 body {
     background: linear-gradient(to right, rgb(32, 76, 183), rgb(217, 52, 59));
-}
-
-option {
-    color: rgb(52, 58, 64);
 }
 
 .container-submit {
@@ -35,27 +23,10 @@ option {
 }
 
 .container-success {
-    color: whitesmoke;
     background-color: #3db8ff;
-    font-size: 24px;
     text-align: center;
     padding: 10px;
     margin-bottom: 20px;
-}
-
-.highlight-color-lightblue {
-    color: #40a9ff;
-    font-size: 1em;
-}
-
-.highlight-color-lightgreen {
-    color: #6effb4;
-    font-size: 1em;
-}
-
-.highlight-color-lightpink {
-    color: #ff3686;
-    font-size: 1em;
 }
 
 .container-home {
@@ -64,10 +35,9 @@ option {
     width: 50%;
 }
 
-    .container-home > p {
-        font-family: 'Pacifico', cursive;
-        padding: 10px 0;
-    }
+.container-home > p {
+    padding: 10px 0;
+}
 
 .container-main {
     margin: 0 auto;
@@ -75,9 +45,9 @@ option {
     width: 100%;
 }
 
-    .container-main > p {
-        padding: 16px 10px;
-    }
+.container-main > p {
+    padding: 16px 10px;
+}
 
 .add-record-container {
     margin: 20px auto;
@@ -85,20 +55,15 @@ option {
 }
 
 .add-record-btn {
-    font-size: 1.5em;
     display: block;
     padding: 16px;
     border-radius: 6px;
-    color: rgb(255, 55, 94);
     border: 2px solid rgb(255, 55, 94);
-    text-decoration: none;
     transition: .4s;
 }
 
 .add-record-btn:hover {
     background: rgb(255, 55, 94);
-    color: #292929;
-    text-decoration: none;
     transition: .4s;
 }
 
@@ -114,24 +79,16 @@ option {
 }
 
 .author {
-    text-decoration: none;
-    color: rgb(97, 218, 251);
     transition: .4s;
 }
 
-    .author:hover {
-        text-decoration: none;
-        color: rgb(136, 228, 252);
-        transition: .4s;
-    }
+.author:hover {
+    transition: .4s;
+}
 
 .container-latest-ablums-main {
     text-align: center;
 }
-
-    .container-latest-ablums-main > p {
-        font-size: 2em;
-    }
 
 .container-albums {
     border-radius: 5px;
@@ -150,15 +107,15 @@ option {
     max-width: 300px;
 }
 
-    .container-album p {
-        word-wrap: break-word
-    }
+.container-album p {
+    word-wrap: break-word
+}
 
-    .container-album img {
-        object-fit: cover;
-        width: 250px;
-        height: 250px;
-    }
+.container-album img {
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+}
 
 /*home arrow*/
 
@@ -180,9 +137,9 @@ option {
     position: absolute;
 }
 
-    #cta .arrow {
-        left: 30%;
-    }
+#cta .arrow {
+    left: 30%;
+}
 
 .arrow {
     position: absolute;
@@ -246,10 +203,10 @@ option {
     animation-timing-function: linear;
 }
 
-    .round:hover .arrow.primera {
-        animation-name: bounceAlpha;
-        animation-duration: 1.4s;
-        animation-delay: 0.2s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-    }
+.round:hover .arrow.primera {
+    animation-name: bounceAlpha;
+    animation-duration: 1.4s;
+    animation-delay: 0.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
