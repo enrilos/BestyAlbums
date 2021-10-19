@@ -85,24 +85,22 @@ option {
 }
 
 .add-record-btn {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 1.5em;
     display: block;
-    padding: 20px;
-    border: none;
+    padding: 16px;
     border-radius: 6px;
-    background: #eb4034;
-    color: white;
+    color: rgb(255, 55, 94);
+    border: 2px solid rgb(255, 55, 94);
     text-decoration: none;
     transition: .4s;
 }
 
-    .add-record-btn:hover {
-        color: white;
-        text-decoration: none;
-        background: #f73693;
-        transition: .4s;
-    }
+.add-record-btn:hover {
+    background: rgb(255, 55, 94);
+    color: #292929;
+    text-decoration: none;
+    transition: .4s;
+}
 
 .img-listing-size {
     height: 450px;
@@ -136,6 +134,7 @@ option {
     }
 
 .container-albums {
+    border-radius: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
