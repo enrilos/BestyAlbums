@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap');
 
 * {
     color: whitesmoke;
@@ -16,6 +16,10 @@
 
 body {
     background: linear-gradient(to right, rgb(32, 76, 183), rgb(217, 52, 59));
+}
+
+body > header > nav > div > a{
+    font-family: 'Pacifico', cursive;
 }
 
 option {
@@ -83,6 +87,7 @@ option {
 }
 
     .container-home > p {
+        font-family: 'Pacifico', cursive;
         padding: 10px 0;
     }
 
