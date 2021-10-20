@@ -18,13 +18,42 @@
 }
 
 .container-navbar-menu li a {
-    border: 2px solid rgb(255, 55, 94);
-    border-radius: 4px;
     padding: 10px 20px;
     transition: .4s;
 }
 
 .container-navbar-menu li a:hover {
-    background: rgb(255, 55, 94);
     transition: .4s;
+}
+
+.navbar-menu-artists-btn {
+    border: 2px solid rgb(255, 55, 128);
+}
+
+.navbar-menu-artists-btn:hover {
+    background: rgb(255, 55, 94);
+}
+
+.navbar-menu-members-btn {
+    border: 2px solid rgb(255, 55, 168);
+}
+
+.navbar-menu-members-btn:hover {
+    background: rgb(255, 55, 168);
+}
+
+.navbar-menu-albums-btn {
+    border: 2px solid rgb(252, 87, 255);
+}
+
+.navbar-menu-albums-btn:hover {
+    background: rgb(252, 87, 255);
+}
+
+.navbar-menu-songs-btn {
+    border: 2px solid rgb(51, 214, 255);
+}
+
+.navbar-menu-songs-btn:hover {
+    background: rgb(51, 214, 255);
 }

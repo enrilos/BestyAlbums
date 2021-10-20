@@ -15,19 +15,21 @@ option {
     font-size: 2em;
 }
 
-.container-navbar > a {
+.container-navbar a {
     text-decoration: none;
     color: whitesmoke;
+    font-weight: 500;
 }
 
 .container-navbar-menu li a {
     text-decoration: none;
-    color: rgb(255, 55, 94);
 }
 
-.container-navbar-menu li a:hover {
-    text-decoration: none;
-    color: #292929;
+.navbar-menu-artists-btn:hover,
+.navbar-menu-members-btn:hover,
+.navbar-menu-albums-btn:hover,
+.navbar-menu-songs-btn:hover {
+    color: #191919;
 }
 
 .container-success {
