@@ -1,6 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
-.container-navbar {
+﻿.container-navbar {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
