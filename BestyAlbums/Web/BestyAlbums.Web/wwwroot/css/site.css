@@ -18,8 +18,9 @@ body {
 
 .container-standard {
     padding: 30px;
-    border: 4px solid #292929;
-    border-radius: 10px;
+    border: 4px solid transparent;
+    border-image: linear-gradient(to right, rgb(255, 2, 1), rgb(255, 192, 18));
+    border-image-slice: 1;
 }
 
 .container-success {
