@@ -32,6 +32,11 @@ option {
     color: #191919;
 }
 
+.container-home > h1 {
+    font-family: 'Pacifico', cursive;
+    color: #323232;
+}
+
 .container-success {
     font-size: 24px;
     color: whitesmoke;

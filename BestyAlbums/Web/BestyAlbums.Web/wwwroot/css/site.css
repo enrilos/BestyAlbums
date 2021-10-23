@@ -31,13 +31,14 @@ body {
 }
 
 .container-home {
+    background-color: white;
     margin: 0 auto;
-    text-align: center;
     width: 50%;
 }
 
-.container-home > p {
-    padding: 10px 0;
+.container-home > h1 {
+    text-align: center;
+    padding: 5px 0 15px 0;
 }
 
 .container-main {
@@ -69,8 +70,8 @@ body {
 }
 
 .img-listing-size {
-    height: 450px;
-    width: 350px;
+    width: 40%;
+    max-width: 40%;
     object-fit: cover;
 }
 
