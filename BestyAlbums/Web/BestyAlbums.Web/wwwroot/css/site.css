@@ -33,12 +33,26 @@ body {
 .container-home {
     background-color: white;
     margin: 0 auto;
+    position: relative;
     width: 50%;
 }
 
 .container-home > h1 {
     text-align: center;
     padding: 5px 0 15px 0;
+}
+
+.container-home > h1::before {
+    content: "";
+    background: inherit;
+    position: absolute;
+    width: 572px;
+    height: 90px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0 0 0 100px rgba(255,255,255,0.3);
+    filter: blur(10px);
 }
 
 .container-main {
