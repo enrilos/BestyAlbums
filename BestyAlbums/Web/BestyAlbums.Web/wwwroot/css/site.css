@@ -122,6 +122,10 @@ body {
     max-width: 300px;
 }
 
+.container-album:nth-child(1) {
+    margin-left: 5.9%;
+}
+
 .container-album p {
     word-wrap: break-word
 }
