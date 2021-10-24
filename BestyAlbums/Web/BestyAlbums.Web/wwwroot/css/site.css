@@ -89,6 +89,7 @@ body {
     width: 40%;
     max-width: 40%;
     object-fit: cover;
+    border-radius: 4px;
 }
 
 .record-card {
