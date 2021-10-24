@@ -61,7 +61,9 @@ body {
     width: 100%;
 }
 
-.container-main > p {
+.container-main > h2 {
+    background-color: #313131;
+    text-align: center;
     padding: 16px 10px;
 }
 
