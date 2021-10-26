@@ -97,10 +97,7 @@ body {
     border: 4px solid #292929;
 }
 
-.author {
-    transition: .4s;
-}
-
+.author,
 .author:hover {
     transition: .4s;
 }
