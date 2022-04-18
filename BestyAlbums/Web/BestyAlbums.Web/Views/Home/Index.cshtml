@@ -1,26 +1,26 @@
-﻿@model IList<AlbumsHomeViewModel>
+﻿@model IEnumerable<AlbumListingHomeViewModel>
 
 <div>
     <div class="container-home">
-        <h1>BestyAlbums</h1>
+        <p class="h1">BestyAlbums</p>
     </div>
     <div class="container-main">
-        <h2>
+        <p class="h2">
             Post your favourite <span class="highlight-color-lightblue">albums</span> along with their respected <span class="highlight-color-lightgreen">artists</span> <span class="highlight-color-lightpink">conveniently!</span>
-        </h2>
+        </p>
     </div>
     <div class="container-latest-ablums-main">
         <p>Latest albums</p>
 
         <div class="container-albums">
-            @for (int i = 0; i < Model.Count; i++)
+            @foreach (var album in Model)
             {
                 <div class="container-album">
-                    <img src="@Model[i].CoverUrl" alt="Album Cover" />
-                    <p>@Model[i].Name - @Model[i].Artist</p>
+                    <img src="@album.CoverUrl" alt="Album Cover" />
+                    <p>@album.Name - @album.Artist</p>
                 </div>
             }
-            <a href="/Albums/All">
+            <a asp-controller="Albums" asp-action="All">
                 <div class="center-con">
                     <div class="round">
                         <div id="cta">

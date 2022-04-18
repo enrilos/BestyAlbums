@@ -9,9 +9,7 @@
         private readonly IArtistService artistService;
 
         public ArtistsController(IArtistService artistService)
-        {
-            this.artistService = artistService;
-        }
+            => this.artistService = artistService;
 
         public IActionResult All()
         {
@@ -20,77 +18,79 @@
             return View(artists);
         }
 
-        public IActionResult Add()
-        {
-            return View();
-        }
+        public IActionResult Add() => View();
 
         [HttpPost]
-        public IActionResult Add(ArtistInputModel model)
+        public IActionResult Add(AddArtistFormModel model)
         {
-            if (!this.ModelState.IsValid)
+            if (artistService.Exists(model.Name))
             {
-                return View();
+                ModelState.AddModelError(nameof(model.Name), "Artist with that name already exists!");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(model);
             }
 
-            if (this.artistService.Exists(model.Name))
-            {
-                return BadRequest();
-            }
+            artistService.Add(
+                model.Name,
+                model.Founded,
+                model.Location,
+                model.Rating,
+                model.ImageUrl);
 
-            this.artistService.Add(model.Name, model.Founded, model.Location, model.Rating, model.ImageUrl);
-
-            return RedirectToAction("All", "Artists");
+            return RedirectToAction(nameof(All));
         }
 
         public IActionResult Edit(int id)
         {
-            var artist = this.artistService.GetArtistById(id);
-
-            if(artist == null)
+            if (!artistService.Exists(id))
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            var artistModel = new ArtistEditModel()
-            {
-                Name = artist.Name,
-                Founded = artist.Founded,
-                Location = artist.Location,
-                Rating = artist.Rating,
-                ImageUrl = artist.ImageUrl
-            };
+            var artistEditModel = artistService.GetEditModel(id);
 
-            return View(artistModel);
+            return View(artistEditModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(ArtistEditModel model)
+        public IActionResult Edit(EditArtistFormModel model)
         {
-            if (!this.artistService.Exists(model.Id))
+            if (!artistService.Exists(model.Id))
             {
-                return BadRequest();
+                return NotFound();
+            }
+            if (artistService.Exists(model.Name))
+            {
+                ModelState.AddModelError(nameof(model.Name), "Artist with that name already exists!");
             }
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(model);
             }
 
-            this.artistService.Edit(model);
+            artistService.Edit(
+                model.Id,
+                model.Name,
+                model.Founded,
+                model.Location,
+                model.Rating,
+                model.ImageUrl);
 
-            return RedirectToAction("All", "Artists");
+            return RedirectToAction(nameof(All));
         }
 
         public IActionResult Delete(int id)
         {
-            if (!this.artistService.Exists(id))
+            if (!artistService.Exists(id))
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            this.artistService.Delete(id);
+            artistService.Delete(id);
 
-            return RedirectToAction("All", "Artists");
+            return RedirectToAction(nameof(All));
         }
     }
 }

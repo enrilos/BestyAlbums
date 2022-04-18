@@ -1,32 +1,40 @@
 ﻿namespace BestyAlbums.Services
 {
-    using BestyAlbums.Models.ViewModels.Albums;
     using Contracts;
     using Data;
     using Data.Models;
     using Data.Models.Enums;
     using Microsoft.EntityFrameworkCore;
     using Models.InputModels.Albums;
+    using Models.ViewModels.Albums;
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
     public class AlbumService : IAlbumService
     {
-        private readonly BestyAlbumsDbContext context;
+        private readonly BestyAlbumsDbContext data;
 
-        public AlbumService(BestyAlbumsDbContext context)
-        {
-            this.context = context;
-        }
+        public AlbumService(BestyAlbumsDbContext data)
+            => this.data = data;
 
-        public void Add(string name, DateTime released, Genre genre, string coverUrl, decimal price, AlbumStatus albumStatus, string artist, StudioType studioType, string label, int? productionTimeInDays)
+        public int Add(
+            string name,
+            DateTime released,
+            Genre genre,
+            string coverUrl,
+            decimal price,
+            AlbumStatus albumStatus,
+            string artist,
+            StudioType studioType,
+            string label,
+            int? productionTimeInDays)
         {
-            var foundArtist = this.context.Artists.FirstOrDefault(x => x.Name == artist);
+            var foundArtist = data.Artists.FirstOrDefault(x => x.Name == artist);
 
             if (foundArtist == null)
             {
-                throw new ArgumentNullException("Artist name was not found.");
+                return 0;
             }
 
             var album = new Album
@@ -43,82 +51,94 @@
                 ProductionTimeInDays = productionTimeInDays
             };
 
-            this.context.Albums.Add(album);
-            this.context.SaveChanges();
+            data.Albums.Add(album);
+            data.SaveChanges();
+
+            return album.Id;
         }
 
-        public void Edit(AlbumEditModel model)
+        public bool Edit(
+            int id,
+            string name,
+            string coverUrl,
+            decimal price,
+            AlbumStatus albumStatus)
         {
-            var album = this.context.Albums.Find(model.Id);
+            var album = data.Albums.Find(id);
 
-            album.Name = model.Name;
-            album.CoverUrl = model.CoverUrl;
-            album.Price = model.Price;
-            album.AlbumStatus = model.AlbumStatus;
+            if (album == null)
+            {
+                return false;
+            }
 
-            this.context.SaveChanges();
+            album.Name = name;
+            album.CoverUrl = coverUrl;
+            album.Price = price;
+            album.AlbumStatus = albumStatus;
+
+            data.SaveChanges();
+
+            return true;
         }
 
         public bool Exists(string name)
-        {
-            if (this.context.Albums.FirstOrDefault(x => x.Name == name) == null)
-            {
-                return false;
-            }
-
-            return true;
-        }
+            => data.Albums
+            .Any(x => x.Name == name);
 
         public bool Exists(int id)
+            => data.Albums
+            .Any(x => x.Id == id);
+
+        public EditAlbumFormModel GetEditModel(int id)
         {
-            if (this.context.Albums.FirstOrDefault(x => x.Id == id) == null)
+            var album = data
+                .Albums
+                .FirstOrDefault(x => x.Id == id);
+
+            return new EditAlbumFormModel
             {
-                return false;
-            }
-
-            return true;
+                Id = album.Id,
+                Name = album.Name,
+                Price = album.Price,
+                CoverUrl = album.CoverUrl,
+                AlbumStatus = album.AlbumStatus
+            };
         }
 
-        public Album Get(int id)
-        {
-            return this.context.Albums.Include(x => x.Artist).FirstOrDefault(x => x.Id == id);
-        }
+        public IEnumerable<string> GetNames()
+            => data.Albums
+            .Select(x => x.Name)
+            .ToList();
 
-        public IList<string> GetAllAlbumNames()
-        {
-            return this.context.Albums.Select(x => x.Name).ToList();
-        }
-
-        public IList<AlbumAllViewModel> GetAllAlbums()
-        {
-            return this.context.Albums
-                .Select(x => new AlbumAllViewModel
+        public IEnumerable<AlbumListingViewModel> GetAll()
+            => data.Albums
+                .Select(x => new AlbumListingViewModel
                 {
                     Id = x.Id,
                     Name = x.Name,
                     AlbumStatus = x.AlbumStatus,
                     CoverUrl = x.CoverUrl,
-                    SongsCount = x.Songs.Count,
+                    SongCount = x.Songs.Count,
                     Price = x.Price
                 })
                 .ToList();
-        }
 
         public void Delete(int id)
         {
-            var album = this.context.Albums.FirstOrDefault(x => x.Id == id);
-            this.context.Albums.Remove(album);
-            this.context.SaveChanges();
+            var album = data.Albums.FirstOrDefault(x => x.Id == id);
+            data.Albums.Remove(album);
+            data.SaveChanges();
         }
 
-        public AlbumSongsViewModel GetAlbumSongs(int id)
+        public AlbumSongListingViewModel GetSongs(int id)
         {
-            var album = this.context.Albums
+            var album = data.Albums
+                .Where(x => x.Id == id)
                 .Include(x => x.Artist)
                 .Include(x => x.Songs)
-                .FirstOrDefault(x => x.Id == id);
+                .FirstOrDefault();
 
-            var albumModel = new AlbumSongsViewModel
+            var albumModel = new AlbumSongListingViewModel
             {
                 Name = album.Name,
                 Released = album.Released,
@@ -129,27 +149,23 @@
                 Label = album.Label,
                 Price = album.Price,
                 ProductionTimeInDays = album.ProductionTimeInDays,
-                Songs = album.Songs.Select(x => x.Name).ToList(),
+                SongNames = album.Songs.Select(x => x.Name).ToList(),
                 StudioType = album.StudioType
             };
 
             return albumModel;
         }
 
-        public IList<AlbumsHomeViewModel> GetTopThreeLatestAlbums()
-        {
-            var albums = this.context.Albums
+        public IEnumerable<AlbumListingHomeViewModel> GetLatestThree()
+            => data.Albums
                 .OrderByDescending(x => x.CreatedOn)
                 .Take(3)
-                .Select(x => new AlbumsHomeViewModel
+                .Select(x => new AlbumListingHomeViewModel
                 {
                     Name = x.Name,
                     CoverUrl = x.CoverUrl,
                     Artist = x.Artist.Name
                 })
                 .ToList();
-
-            return albums;
-        }
     }
 }

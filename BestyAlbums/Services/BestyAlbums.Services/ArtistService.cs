@@ -1,24 +1,27 @@
 ﻿namespace BestyAlbums.Services
 {
-    using BestyAlbums.Models.ViewModels.Artists;
     using Contracts;
     using Data;
     using Data.Models;
     using Models.InputModels.Artists;
+    using Models.ViewModels.Artists;
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
     public class ArtistService : IArtistService
     {
-        private readonly BestyAlbumsDbContext context;
+        private readonly BestyAlbumsDbContext data;
 
-        public ArtistService(BestyAlbumsDbContext context)
-        {
-            this.context = context;
-        }
+        public ArtistService(BestyAlbumsDbContext data)
+            => this.data = data;
 
-        public int Add(string name, DateTime founded, string location, double rating, string imageUrl)
+        public int Add(
+            string name,
+            DateTime founded,
+            string location,
+            double rating,
+            string imageUrl)
         {
             var artist = new Artist
             {
@@ -29,46 +32,32 @@
                 ImageUrl = imageUrl
             };
 
-            this.context.Artists.Add(artist);
-            this.context.SaveChanges();
+            data.Artists.Add(artist);
+            data.SaveChanges();
 
             return artist.Id;
         }
 
         public bool Exists(int id)
-        {
-            if (this.context.Artists.FirstOrDefault(x => x.Id == id) == null)
-            {
-                return false;
-            }
-
-            return true;
-        }
+            => data.Artists
+            .Any(x => x.Id == id);
 
         public bool Exists(string name)
-        {
-            if (this.context.Artists.FirstOrDefault(x => x.Name == name) == null)
-            {
-                return false;
-            }
+            => data.Artists
+            .Any(x => x.Name == name);
 
-            return true;
-        }
+        public int GetIdByName(string name)
+            => data.Artists
+            .FirstOrDefault(x => x.Name == name).Id;
 
-        public Artist GetArtistByName(string name)
-        {
-            return this.context.Artists.FirstOrDefault(x => x.Name == name);
-        }
+        public IEnumerable<string> GetNames()
+            => data.Artists
+            .Select(x => x.Name)
+            .ToList();
 
-        public IList<string> GetAllNames()
-        {
-            return this.context.Artists.Select(x => x.Name).ToList();
-        }
-
-        public IList<ArtistAllViewModel> GetAll()
-        {
-            return this.context.Artists
-                .Select(x => new ArtistAllViewModel
+        public IEnumerable<ArtistListingViewModel> GetAll()
+            => data.Artists
+                .Select(x => new ArtistListingViewModel
                 {
                     Id = x.Id,
                     Name = x.Name,
@@ -78,31 +67,51 @@
                     Location = x.Location
                 })
                 .ToList();
+
+        public EditArtistFormModel GetEditModel(int id)
+        {
+            var artist = data.Artists.Find(id);
+
+            if (artist == null)
+            {
+                return null;
+            }
+
+            return new EditArtistFormModel
+            {
+                Name = artist.Name,
+                Founded = artist.Founded,
+                Location = artist.Location,
+                Rating = artist.Rating,
+                ImageUrl = artist.ImageUrl
+            };
         }
 
-        public Artist GetArtistById(int id)
+        public void Edit(
+            int id,
+            string name,
+            DateTime founded,
+            string location,
+            double rating,
+            string imageUrl)
         {
-            return this.context.Artists.FirstOrDefault(x => x.Id == id);
-        }
+            var artist = data.Artists.Find(id);
 
-        public void Edit(ArtistEditModel model)
-        {
-            var artist = this.context.Artists.Find(model.Id);
+            artist.Name = name;
+            artist.Founded = founded;
+            artist.Location = location;
+            artist.Rating = rating;
+            artist.ImageUrl = imageUrl;
 
-            artist.Name = model.Name;
-            artist.Founded = model.Founded;
-            artist.Location = model.Location;
-            artist.Rating = model.Rating;
-            artist.ImageUrl = model.ImageUrl;
-
-            this.context.SaveChanges();
+            data.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var artist = this.context.Artists.FirstOrDefault(x => x.Id == id);
-            this.context.Artists.Remove(artist);
-            this.context.SaveChanges();
+            var artist = data.Artists.FirstOrDefault(x => x.Id == id);
+
+            data.Artists.Remove(artist);
+            data.SaveChanges();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model AlbumSongsViewModel
+﻿@model AlbumSongListingViewModel
 
 <div class="border container-standard">
     <table class="text-center mx-auto">
@@ -16,18 +16,18 @@
                 <p>Studio type: <strong>@Model.StudioType</strong></p>
             </td>
         </tr>
-        @if (@Model.Songs.Count > 0)
+        @if (@Model.SongNames.Count > 0)
         {
             <tr>
                 <td>
                     <h3>Songs:</h3>
                 </td>
             </tr>
-            @for (int i = 0; i < @Model.Songs.Count; i++)
+            @for (int i = 0; i < @Model.SongNames.Count; i++)
             {
                 <tr>
                     <td>
-                        <p>@(i + 1). <strong>@Model.Songs[i]</strong></p>
+                        <p>@(i + 1). <strong>@Model.SongNames[i]</strong></p>
                     </td>
                 </tr>
             }

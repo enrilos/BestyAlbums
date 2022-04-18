@@ -4,7 +4,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class AlbumEditModel
+    public class EditAlbumFormModel
     {
         public int Id { get; set; }
 
@@ -20,6 +20,7 @@
         public decimal Price { get; set; }
 
         [EnumDataType(typeof(AlbumStatus))]
+        [Display(Name = "Status")]
         public AlbumStatus AlbumStatus { get; set; }
     }
 }

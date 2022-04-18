@@ -1,28 +1,31 @@
-﻿@model IList<MemberAllViewModel>
+﻿@model IEnumerable<MemberListingViewModel>
 
 <div class="add-record-container text-center mx-auto">
-    <a class="add-record-btn" href="/Members/Add">Add Member</a>
+    <a asp-controller="Members" asp-action="Add" class="add-record-btn">Add Member</a>
 </div>
-@if (@Model.Count > 0)
+
+@if (Model.Any())
 {
     <div class="container-standard">
         <table class="text-center mx-auto">
-            @for (int i = 0; i < Model.Count; i++)
+            @foreach (var member in Model)
             {
                 <tr>
                     <td class="record-card">
-                        <img class="img-listing-size" src="@Model[i].ImageUrl" alt="Artist image" />
-                        <p>@Model[i].FirstName @Model[i].LastName</p>
-                        <p>Birthday: @Model[i].BirthDate</p>
-                        <p>Artist: @Model[i].Artist</p>
-                        <p>Joined: @Model[i].Joined</p>
-                        @if (@Model[i]?.Left != null)
+                        <img class="img-listing-size" src="@member.ImageUrl" alt="Artist image" />
+                        <p>@member.FirstName @member.LastName</p>
+                        <p>Birthday: @member.BirthDate</p>
+                        <p>Artist: @member.Artist</p>
+                        <p>Joined: @member.Joined</p>
+
+                        @if (@member?.Left != null)
                         {
-                            <p>Left: @Model[i].Left</p>
+                            <p>Left: @member.Left</p>
                         }
-                        <p>Gender: @Model[i].Gender</p>
-                        <a class="btn btn-primary rounded" href="/Members/Edit/@Model[i].Id">Edit</a>
-                        <a class="btn btn-danger rounded" href="/Members/Delete/@Model[i].Id">Delete</a>
+
+                        <p>Gender: @member.Gender</p>
+                        <a class="btn btn-primary rounded" asp-controller="Members" asp-action="Edit" asp-route-id="@member.Id">Edit</a>
+                        <a class="btn btn-danger rounded" asp-controller="Members" asp-action="Delete" asp-route-id="@member.Id">Delete</a>
                     </td>
                 </tr>
             }

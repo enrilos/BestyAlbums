@@ -1,23 +1,26 @@
-﻿@model IList<SongAllViewModel>
+﻿@model IEnumerable<SongListingViewModel>
 
 <div class="add-record-container text-center mx-auto">
-    <a class="add-record-btn" href="/Songs/Add">Add Song</a>
+    <a class="add-record-btn" asp-controller="Songs" asp-action="Add">Add Song</a>
 </div>
-@if (@Model.Count > 0)
+
+@if (@Model.Any())
 {
     <div class="container-standard">
         <table class="text-center mx-auto">
-            @for (int i = 0; i < Model.Count; i++)
+            @foreach (var song in Model)
             {
                 <tr>
                     <td class="record-card">
-                        <p>Name: @Model[i].Name</p>
-                        @if (@Model[i].Album != null)
+                        <p>Name: @song.Name</p>
+
+                        @if (song.Album != null)
                         {
-                            <p>Album: @Model[i].Album</p>
+                            <p>Album: @song.Album</p>
                         }
-                        <a class="btn btn-primary rounded" href="/Songs/Edit/@Model[i].Id">Edit</a>
-                        <a class="btn btn-danger rounded" href="/Songs/Delete/@Model[i].Id">Delete</a>
+
+                        <a class="btn btn-primary rounded" asp-controller="Songs" asp-action="Edit" asp-route-id="@song.Id">Edit</a>
+                        <a class="btn btn-danger rounded" asp-controller="Songs" asp-action="Delete" asp-route-id="@song.Id">Delete</a>
                     </td>
                 </tr>
             }

@@ -2,9 +2,10 @@
 {
     using Data.Models.Enums;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class AlbumInputModel
+    public class AddAlbumFormModel
     {
         [Required]
         [StringLength(maximumLength: 32, MinimumLength = 2)]
@@ -17,7 +18,7 @@
 
         [Required]
         [StringLength(maximumLength: 1024, MinimumLength = 10)]
-        public string CoverURL { get; set; }
+        public string CoverUrl { get; set; }
 
         [Range(typeof(decimal), "0.00", "9999.99")]
         public decimal Price { get; set; }
@@ -29,6 +30,8 @@
         [StringLength(maximumLength: 32, MinimumLength = 2)]
         public string Artist { get; set; }
 
+        public IEnumerable<string> ArtistNames { get; set; }
+
         [EnumDataType(typeof(StudioType))]
         public StudioType StudioType { get; set; }
 
@@ -36,6 +39,7 @@
         [StringLength(maximumLength: 32, MinimumLength = 2)]
         public string Label { get; set; }
 
+        [Display(Name = "Production time in days")]
         public int? ProductionTimeInDays { get; set; }
     }
 }

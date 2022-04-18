@@ -3,7 +3,6 @@
     using BestyAlbums.Models.InputModels.Songs;
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
-    using System;
     using System.Linq;
 
     public class SongsController : Controller
@@ -11,95 +10,101 @@
         private readonly ISongService songService;
         private readonly IAlbumService albumService;
 
-        public SongsController(ISongService songService, IAlbumService albumService)
+        public SongsController(
+            ISongService songService,
+            IAlbumService albumService)
         {
             this.songService = songService;
             this.albumService = albumService;
         }
 
+        public IActionResult All()
+        {
+            var songs = songService
+                .GetAll()
+                .ToList();
+
+            return View(songs);
+        }
+
         public IActionResult Add()
         {
-            var albums = this.albumService.GetAllAlbumNames();
+            var albums = albumService.GetNames();
 
             return View(albums);
         }
 
         [HttpPost]
-        public IActionResult Add(SongInputModel model)
+        public IActionResult Add(AddSongFormModel model)
         {
-            if (!this.ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("Error", "Home");
+                model.Albums = albumService.GetNames();
+
+                return View(model);
             }
 
-            try
+            if (!albumService.Exists(model.AlbumName))
             {
-                this.songService.Add(model.Name, model.Album);
-            }
-            catch (ArgumentNullException)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-            catch (InvalidOperationException)
-            {
-                return RedirectToAction("Error", "Home");
+                return NotFound();
             }
 
-            return RedirectToAction("All", "Songs");
-        }
+            var result = songService.Add(model.Name, model.AlbumName);
 
-        public IActionResult All()
-        {
-            var songs = this.songService.GetAll().ToList();
+            if (!result)
+            {
+                return BadRequest();
+            }
 
-            return View(songs);
+            return RedirectToAction(nameof(All));
         }
 
         public IActionResult Edit(int id)
         {
-            if (!this.songService.Exists(id))
+            if (!songService.Exists(id))
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            var song = this.songService.Get(id);
+            var songEditModel = songService.GetEditModel(id);
 
-            var songModel = new SongEditModel()
-            {
-                Id = song.Id,
-                Name = song.Name,
-            };
-
-            return View(songModel);
+            return View(songEditModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(SongEditModel model)
+        public IActionResult Edit(EditSongFormModel model)
         {
-            if (!this.songService.Exists(model.Id))
+            if (!songService.Exists(model.Id))
             {
-                return BadRequest();
+                return NotFound();
             }
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Error", "Home");
+                return View(model);
             }
 
-            this.songService.Edit(model);
+            var editResult = songService.Edit(
+                model.Id,
+                model.Name);
 
-            return RedirectToAction("All", "Songs");
+            if (!editResult)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction(nameof(All));
         }
 
         public IActionResult Delete(int id)
         {
-            if (!this.songService.Exists(id))
+            if (!songService.Exists(id))
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            this.songService.Delete(id);
+            songService.Delete(id);
 
-            return RedirectToAction("All", "Songs");
+            return RedirectToAction(nameof(All));
         }
     }
 }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\BestyAlbums.Data.Models\BestyAlbums.Data.Models.csproj" />
+    <ProjectReference Include="..\BestyAlbums.Models.ViewModels\BestyAlbums.Models.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

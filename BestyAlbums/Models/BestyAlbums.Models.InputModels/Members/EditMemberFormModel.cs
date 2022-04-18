@@ -4,7 +4,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class MemberEditModel
+    public class EditMemberFormModel
     {
         public int Id { get; set; }
 

@@ -8,13 +8,11 @@
         private readonly IAlbumService albumService;
 
         public HomeController(IAlbumService albumService)
-        {
-            this.albumService = albumService;
-        }
+            => this.albumService = albumService;
 
         public IActionResult Index()
         {
-            var topThreeLatestAlbums = this.albumService.GetTopThreeLatestAlbums();
+            var topThreeLatestAlbums = albumService.GetLatestThree();
 
             return View(topThreeLatestAlbums);
         }

@@ -1,22 +1,25 @@
 ﻿namespace BestyAlbums.Services.Contracts
 {
-    using BestyAlbums.Models.InputModels.Songs;
-    using BestyAlbums.Models.ViewModels.Songs;
-    using Data.Models;
+    using Models.InputModels.Songs;
+    using Models.ViewModels.Songs;
     using System.Collections.Generic;
 
     public interface ISongService
     {
-        void Add(string name, string album);
+        bool Add(
+            string name,
+            string album);
 
         bool Exists(int id);
 
         void Delete(int id);
 
-        void Edit(SongEditModel model);
+        bool Edit(
+            int id,
+            string name);
 
-        Song Get(int id);
+        EditSongFormModel GetEditModel(int id);
 
-        IList<SongAllViewModel> GetAll();
+        IEnumerable<SongListingViewModel> GetAll();
     }
 }

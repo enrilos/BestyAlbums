@@ -1,34 +1,46 @@
-﻿@model ArtistInputModel
+﻿@model AddArtistFormModel
 
-<h2>Add your favourite artist here!</h2>
+<p class="h2">Add your favourite artist.</p>
+
 <div class="container-standard">
     <form asp-controller="Artists" asp-action="Add" method="post">
+
         <div class="form-group">
-            <label for="name">Name</label>
-            <input class="form-control" id="name" type="text" name="name" />
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control"/>
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="founded">Founded</label>
-            <input class="form-control" id="founded" type="date" name="founded" />
+            <label asp-for="Founded"></label>
+            <input asp-for="Founded" class="form-control" />
+            <span asp-validation-for="Founded" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="location">Location</label>
-            <input class="form-control" id="location" type="text" name="location" />
+            <label asp-for="Location"></label>
+            <input asp-for="Location" class="form-control" />
             <span asp-validation-for="Location" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="rating">Rating</label>
-            <input class="form-control" id="rating" type="number" step="0.1" name="rating" />
+            <label asp-for="Rating"></label>
+            <input asp-for="Rating" class="form-control" step="0.1" />
             <span asp-validation-for="Rating" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="imageUrl">ImageUrl</label>
-            <input class="form-control" id="imageUrl" type="text" name="imageUrl" />
+            <label asp-for="ImageUrl"></label>
+            <input asp-for="ImageUrl" class="form-control" />
             <span asp-validation-for="ImageUrl" class="text-danger"></span>
         </div>
+
         <div class="container-submit">
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

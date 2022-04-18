@@ -1,48 +1,75 @@
-﻿@model IList<string>
+﻿@model AddMemberFormModel
 
-<h2>Add a member to an artist.</h2>
+<p class="h2">Add a member to an artist.</p>
+
 <div class="container-standard">
     <form asp-controller="Members" asp-action="Add" method="post">
+
         <div class="form-group">
-            <label for="firstName">First name</label>
-            <input class="form-control" id="firstName" type="text" name="firstName" />
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="lastName">Last name</label>
-            <input class="form-control" id="lastName" type="text" name="lastName" />
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="birthdate">Birthdate</label>
-            <input class="form-control" id="birthdate" type="date" name="birthdate" />
+            <label asp-for="BirthDate"></label>
+            <input asp-for="BirthDate" class="form-control" />
+            <span asp-validation-for="BirthDate" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="joined">Joined</label>
-            <input class="form-control" id="joined" type="date" name="joined" />
+            <label asp-for="Joined"></label>
+            <input asp-for="Joined" class="form-control" />
+            <span asp-validation-for="Joined" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="left">Left</label>
-            <input class="form-control" id="left" type="date" name="left" />
+            <label asp-for="Left"></label>
+            <input asp-for="Left" class="form-control" />
+            <span asp-validation-for="Left" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label>Gender</label>
-            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Gender>()" name="gender" class="form-select rounded text-dark">
+            <label asp-for="Gender"></label>
+            <select asp-for="Gender"
+                    asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Gender>()"
+                    class="form-select rounded text-dark">
             </select>
+            <span asp-validation-for="Gender" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="imageUrl">ImageUrl</label>
-            <input class="form-control" id="imageUrl" type="text" name="imageUrl" />
+            <label asp-for="ImageUrl"></label>
+            <input asp-for="ImageUrl" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label>Artist</label>
-            <select name="artist" class="form-select rounded text-dark">
-                @for (int i = 0; i < Model.Count(); i++)
+            <label asp-for="ArtistName"></label>
+            <select asp-for="ArtistName" class="form-select rounded text-dark">
+
+                <option value="">-- select artist --</option>
+
+                @foreach (var artistName in Model.Artists)
                 {
-                    <option value="@Model[i]">@Model[i]</option>
+                    <option value="@artistName">@artistName</option>
                 }
+
             </select>
+            <span asp-validation-for="ArtistName" class="small text-danger"></span>
         </div>
         <div class="container-submit">
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

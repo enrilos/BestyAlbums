@@ -5,7 +5,7 @@
     using Microsoft.Extensions.Configuration;
     using System.IO;
 
-    public class DesingTimeDbContextFactory : IDesignTimeDbContextFactory<BestyAlbumsDbContext>
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<BestyAlbumsDbContext>
     {
         public BestyAlbumsDbContext CreateDbContext(string[] args)
         {

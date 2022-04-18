@@ -6,20 +6,27 @@
     using Data.Models.Enums;
     using Microsoft.EntityFrameworkCore;
     using Models.InputModels.Members;
+    using Models.ViewModels.Members;
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
     public class MemberService : IMemberService
     {
-        private readonly BestyAlbumsDbContext context;
+        private readonly BestyAlbumsDbContext data;
 
-        public MemberService(BestyAlbumsDbContext context)
-        {
-            this.context = context;
-        }
+        public MemberService(BestyAlbumsDbContext data)
+            => this.data = data;
 
-        public int Add(string firstName, string lastName, DateTime birthdate, DateTime joined, DateTime? left, Gender gender, string imageUrl, Artist artist)
+        public int Add(
+            string firstName,
+            string lastName,
+            DateTime birthdate,
+            DateTime joined,
+            DateTime? left,
+            Gender gender,
+            string imageUrl,
+            int artistId)
         {
             var member = new Member
             {
@@ -30,68 +37,86 @@
                 Left = left,
                 Gender = gender,
                 ImageUrl = imageUrl,
-                Artist = artist
+                ArtistId = artistId
             };
 
-            this.context.Members.Add(member);
-            this.context.SaveChanges();
+            data.Members.Add(member);
+            data.SaveChanges();
 
             return member.Id;
         }
 
-        public void Edit(MemberEditModel model)
+        public void Edit(
+            int id,
+            string firstName,
+            string lastName,
+            DateTime birthDate,
+            DateTime joined,
+            DateTime? left,
+            Gender gender,
+            string imageUrl)
         {
-            var member = this.context.Members.Find(model.Id);
+            var member = data.Members.Find(id);
 
-            member.FirstName = model.FirstName;
-            member.LastName = model.LastName;
-            member.BirthDate = model.BirthDate;
-            member.Joined = model.Joined;
-            member.Left = model.Left;
-            member.Gender = model.Gender;
-            member.ImageUrl = model.ImageUrl;
+            member.FirstName = firstName;
+            member.LastName = lastName;
+            member.BirthDate = birthDate;
+            member.Joined = joined;
+            member.Left = left;
+            member.Gender = gender;
+            member.ImageUrl = imageUrl;
 
-            this.context.SaveChanges();
+            data.SaveChanges();
         }
 
         public bool Exists(int id)
+            => data.Members
+            .Any(x => x.Id == id);
+
+        public EditMemberFormModel GetEditModel(int id)
         {
-            if (this.context.Members.FirstOrDefault(x => x.Id == id) == null)
+            var member = data.Members
+                .Where(x => x.Id == id)
+                .Include(x => x.Artist)
+                .FirstOrDefault();
+
+            return new EditMemberFormModel
             {
-                return false;
-            }
-
-            return true;
+                Id = member.Id,
+                FirstName = member.FirstName,
+                LastName = member.LastName,
+                BirthDate = member.BirthDate,
+                Joined = member.Joined,
+                Left = member.Left,
+                Gender = member.Gender,
+                ImageUrl = member.ImageUrl,
+            };
         }
 
-        public Member Get(int id)
+        public IEnumerable<MemberListingViewModel> GetAll()
         {
-            return this.context.Members.Include(x => x.Artist).FirstOrDefault(x => x.Id == id);
-        }
-
-        public IList<Member> GetAll()
-        {
-            return this.context.Members
-                .Select(x => new Member
+            return data.Members
+                .Select(x => new MemberListingViewModel
                 {
                     Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
-                    BirthDate = x.BirthDate,
-                    Joined = x.Joined,
-                    Left = x.Left,
+                    BirthDate = x.BirthDate.ToShortDateString(),
+                    Joined = x.Joined.ToShortDateString(),
+                    Left = x.Left == null ? null : x.Left.ToString(),
                     Gender = x.Gender,
                     ImageUrl = x.ImageUrl,
-                    Artist = x.Artist
+                    Artist = x.Artist.Name
                 })
                 .ToList();
         }
 
         public void Delete(int id)
         {
-            var member = this.context.Members.FirstOrDefault(x => x.Id == id);
-            this.context.Members.Remove(member);
-            this.context.SaveChanges();
+            var member = data.Members.FirstOrDefault(x => x.Id == id);
+
+            data.Members.Remove(member);
+            data.SaveChanges();
         }
     }
 }

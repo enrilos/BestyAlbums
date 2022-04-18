@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class SongEditModel
+    public class EditSongFormModel
     {
         public int Id { get; set; }
 

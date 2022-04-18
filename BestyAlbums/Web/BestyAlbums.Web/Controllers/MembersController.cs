@@ -1,113 +1,119 @@
 ﻿namespace BestyAlbums.Web.Controllers
 {
     using BestyAlbums.Models.InputModels.Members;
-    using BestyAlbums.Models.ViewModels.Members;
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
-    using System.Linq;
 
     public class MembersController : Controller
     {
         private readonly IMemberService memberService;
         private readonly IArtistService artistService;
 
-        public MembersController(IMemberService memberService, IArtistService artistService)
+        public MembersController(
+            IMemberService memberService,
+            IArtistService artistService)
         {
             this.memberService = memberService;
             this.artistService = artistService;
         }
 
-        public IActionResult Add()
-        {
-            var artistsNames = artistService.GetAllNames();
-
-            return View(artistsNames);
-        }
-
-        [HttpPost]
-        public IActionResult Add(MemberInputModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-
-            var artist = this.artistService.GetArtistByName(model.Artist);
-            this.memberService.Add(model.FirstName, model.LastName, model.BirthDate, model.Joined, model.Left, model.Gender, model.ImageUrl, artist);
-
-            return RedirectToAction("All", "Members");
-        }
-
         public IActionResult All()
         {
-            var members = memberService.GetAll()
-                .Select(x => new MemberAllViewModel()
-                {
-                    Id = x.Id,
-                    FirstName = x.FirstName,
-                    LastName = x.LastName,
-                    BirthDate = x.BirthDate.ToString("yyyy-MM-dd"),
-                    Joined = x.Joined.ToString("yyyy-MM-dd"),
-                    Left = x.Left?.ToString("yyyy-MM-dd"),
-                    Gender = x.Gender,
-                    ImageUrl = x.ImageUrl,
-                    Artist = x.Artist.Name,
-                })
-                .ToList();
+            var members = memberService.GetAll();
 
             return View(members);
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Add()
         {
-            var member = this.memberService.Get(id);
+            var artistsNames = artistService.GetNames();
 
-            if (member == null)
+            var memberModel = new AddMemberFormModel
             {
-                return BadRequest();
-            }
-
-            var memberInputModel = new MemberEditModel()
-            {
-                FirstName = member.FirstName,
-                LastName = member.LastName,
-                BirthDate = member.BirthDate,
-                Joined = member.Joined,
-                Left = member.Left,
-                Gender = member.Gender,
-                ImageUrl = member.ImageUrl,
+                Artists = artistsNames
             };
 
-            return View(memberInputModel);
+            return View(memberModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(MemberEditModel model)
+        public IActionResult Add(AddMemberFormModel model)
         {
-            if(!this.memberService.Exists(model.Id))
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                model.Artists = artistService.GetNames();
+
+                return View(model);
+            }
+
+            if (!artistService.Exists(model.ArtistName))
+            {
+                return NotFound();
+            }
+
+            var artistId = artistService.GetIdByName(model.ArtistName);
+
+            memberService
+                .Add(
+                model.FirstName,
+                model.LastName,
+                model.BirthDate,
+                model.Joined,
+                model.Left,
+                model.Gender,
+                model.ImageUrl,
+                artistId);
+
+            return RedirectToAction(nameof(All));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            if (!memberService.Exists(id))
+            {
+                return NotFound();
+            }
+
+            var memberEditModel = memberService.GetEditModel(id);
+
+            return View(memberEditModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditMemberFormModel model)
+        {
+            if(!memberService.Exists(model.Id))
+            {
+                return NotFound();
             }
             if(!ModelState.IsValid)
             {
-                return RedirectToAction("Error", "Home");
+                return View(model);
             }
 
-            this.memberService.Edit(model);
+            memberService.Edit(
+                model.Id,
+                model.FirstName,
+                model.LastName,
+                model.BirthDate,
+                model.Joined,
+                model.Left,
+                model.Gender,
+                model.ImageUrl);
 
-            return RedirectToAction("All", "Members");
+            return RedirectToAction(nameof(All));
         }
 
         public IActionResult Delete(int id)
         {
-            if (!this.memberService.Exists(id))
+            if (!memberService.Exists(id))
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            this.memberService.Delete(id);
+            memberService.Delete(id);
 
-            return RedirectToAction("All", "Members");
+            return RedirectToAction(nameof(All));
         }
     }
 }

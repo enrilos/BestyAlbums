@@ -9,7 +9,9 @@
         private readonly IArtistService artistService;
         private readonly IAlbumService albumService;
 
-        public AlbumsController(IArtistService artistService, IAlbumService albumService)
+        public AlbumsController(
+            IArtistService artistService,
+            IAlbumService albumService)
         {
             this.artistService = artistService;
             this.albumService = albumService;
@@ -17,31 +19,46 @@
 
         public IActionResult All()
         {
-            var albums = this.albumService.GetAllAlbums();
+            var albums = albumService.GetAll();
 
             return View(albums);
         }
 
         public IActionResult Add()
         {
-            var artists = this.artistService.GetAllNames();
+            var artistNames = artistService.GetNames();
 
-            return View(artists);
+            var albumModel = new AddAlbumFormModel
+            {
+                ArtistNames = artistNames
+            };
+
+            return View(albumModel);
         }
 
         [HttpPost]
-        public IActionResult Add(AlbumInputModel model)
+        public IActionResult Add(AddAlbumFormModel model)
         {
-            if (!this.ModelState.IsValid || this.albumService.Exists(model.Name))
+            if (!artistService.Exists(model.Artist))
             {
-                return RedirectToAction("Error", "Home");
+                return NotFound();
+            }
+            if (albumService.Exists(model.Name))
+            {
+                ModelState.AddModelError(nameof(model.Name), "Album with that name already exists!");
+            }
+            if (!ModelState.IsValid)
+            {
+                model.ArtistNames = artistService.GetNames();
+
+                return View(model);
             }
 
-            this.albumService.Add(
+            var id = albumService.Add(
                 model.Name,
                 model.Released,
                 model.Genre,
-                model.CoverURL,
+                model.CoverUrl,
                 model.Price,
                 model.AlbumStatus,
                 model.Artist,
@@ -49,68 +66,70 @@
                 model.Label,
                 model.ProductionTimeInDays);
 
-            return RedirectToAction("All", "Albums");
-        }
-
-        public IActionResult Edit(int id)
-        {
-            if(!this.albumService.Exists(id))
+            if (id == 0)
             {
                 return BadRequest();
             }
 
-            var album = this.albumService.Get(id);
+            return RedirectToAction(nameof(Info), new { id = id });
+        }
 
-            var albumModel = new AlbumEditModel()
+        public IActionResult Edit(int id)
+        {
+            if(!albumService.Exists(id))
             {
-                Name = album.Name,
-                Price = album.Price,
-                CoverUrl = album.CoverUrl,
-                AlbumStatus = album.AlbumStatus,
-            };
+                return NotFound();
+            }
+
+            var albumModel = albumService.GetEditModel(id);
 
             return View(albumModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(AlbumEditModel model)
+        public IActionResult Edit(EditAlbumFormModel model)
         {
-            if (!this.albumService.Exists(model.Id))
+            if (!albumService.Exists(model.Id))
             {
-                return BadRequest();
+                return NotFound();
             }
-            if (!this.ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("Error", "Home");
+                return View(model);
             }
 
-            this.albumService.Edit(model);
+            albumService.Edit(
+                model.Id,
+                model.Name,
+                model.CoverUrl,
+                model.Price,
+                model.AlbumStatus);
 
-            return RedirectToAction("All", "Albums");
+            return RedirectToAction(nameof(Info), new { id = model.Id });
         }
 
         public IActionResult Info(int id)
         {
-            if (!this.albumService.Exists(id))
+            if (!albumService.Exists(id))
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            var albumSongs = this.albumService.GetAlbumSongs(id);
+            var albumSongs = albumService.GetSongs(id);
 
             return View(albumSongs);
         }
 
         public IActionResult Delete(int id)
         {
-            if (!this.albumService.Exists(id))
+            if (!albumService.Exists(id))
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            this.albumService.Delete(id);
+            albumService.Delete(id);
 
-            return RedirectToAction("All", "Albums");
+            return RedirectToAction(nameof(All));
         }
     }
 }

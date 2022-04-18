@@ -2,9 +2,10 @@
 {
     using Data.Models.Enums;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class MemberInputModel
+    public class AddMemberFormModel
     {
         [Required]
         [StringLength(maximumLength: 32, MinimumLength = 2)]
@@ -29,6 +30,8 @@
 
         [Required]
         [StringLength(maximumLength: 32, MinimumLength = 2)]
-        public string Artist { get; set; }
+        public string ArtistName { get; set; }
+
+        public IEnumerable<string> Artists { get; set; }
     }
 }

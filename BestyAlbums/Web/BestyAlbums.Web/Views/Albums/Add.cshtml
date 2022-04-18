@@ -1,58 +1,93 @@
-﻿@model IList<string>
+﻿@model AddAlbumFormModel
 
-<h2>Add an album.</h2>
+<p class="h2">Add an album.</p>
+
 <div class="container-standard">
     <form asp-controller="Albums" asp-action="Add" method="post">
+
         <div class="form-group">
-            <label for="name">Name</label>
-            <input class="form-control" id="name" type="text" name="name" />
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="released">Released</label>
-            <input class="form-control" id="released" type="date" name="released" />
+            <label asp-for="Released"></label>
+            <input asp-for="Released" class="form-control" />
+            <span asp-validation-for="Released" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label>Genre</label>
-            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Genre>()" name="genre" class="form-select rounded text-dark">
+            <label asp-for="Genre"></label>
+            <select asp-for="Genre"
+                    asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Genre>()"
+                    class="form-select rounded text-dark">
             </select>
+            <span asp-validation-for="Genre" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="coverUrl">CoverUrl</label>
-            <input class="form-control" id="coverUrl" type="text" name="coverUrl" />
+            <label asp-for="CoverUrl"></label>
+            <input asp-for="CoverUrl" class="form-control" />
+            <span asp-validation-for="CoverUrl" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="price">Price</label>
-            <input class="form-control" id="price" type="number" step="0.01" name="price" />
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" step="0.01" />
+            <span asp-validation-for="Price" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label>Status</label>
-            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.AlbumStatus>()" name="albumStatus" class="form-select rounded text-dark">
+            <label asp-for="AlbumStatus"></label>
+            <select asp-for="AlbumStatus"
+                    asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.AlbumStatus>()"
+                    class="form-select rounded text-dark">
             </select>
+            <span asp-validation-for="AlbumStatus" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label>Artist</label>
-            <select name="artist" class="form-select rounded text-dark">
-                @for (int i = 0; i < Model.Count; i++)
+            <label asp-for="Artist"></label>
+            <select asp-for="Artist" class="form-select rounded text-dark">
+                <option value="">-- select artist --</option>
+
+                @foreach (var artist in Model.ArtistNames)
                 {
-                    <option value="@Model[i]">@Model[i]</option>
+                    <option value="@artist">@artist</option>
                 }
+
             </select>
+            <span asp-validation-for="Artist" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label>StudioType</label>
-            <select asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.StudioType>()" name="studioType" class="form-select rounded text-dark">
+            <label asp-for="StudioType"></label>
+            <select asp-for="StudioType"
+                    asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.StudioType>()"
+                    class="form-select rounded text-dark">
             </select>
+            <span asp-validation-for="StudioType" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="label">Label</label>
-            <input class="form-control" id="label" type="text" name="label" />
+            <label asp-for="Label"></label>
+            <input asp-for="Label" class="form-control" />
+            <span asp-validation-for="Label" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="productionTimeInDays">Production days time</label>
-            <input class="form-control" id="productionTimeInDays" type="number" name="productionTimeInDays" />
+            <label asp-for="ProductionTimeInDays"></label>
+            <input asp-for="ProductionTimeInDays" class="form-control" />
+            <span asp-validation-for="ProductionTimeInDays" class="text-danger"></span>
         </div>
+
         <div class="container-submit">
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

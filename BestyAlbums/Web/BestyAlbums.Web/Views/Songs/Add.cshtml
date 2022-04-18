@@ -1,22 +1,36 @@
-﻿@model IList<string>
-<h2>Add a song.</h2>
+﻿@model AddSongFormModel
+
+<p class="h2">Add a song</p>
+
 <div class="container-standard">
     <form asp-controller="Songs" asp-action="Add" method="post">
         <div class="form-group">
-            <label for="name">Name</label>
-            <input class="form-control" id="name" type="text" name="name" />
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="small text-danger"></span>
         </div>
         <div class="form-group">
-            <label>Album</label>
-            <select name="album" class="form-select rounded text-dark">
-                @for (int i = 0; i < Model.Count; i++)
+            <label asp-for="AlbumName"></label>
+
+            <select asp-for="AlbumName" class="form-control">
+
+                <option value="" selected>-- select album --</option>
+
+                @foreach (var album in Model.Albums)
                 {
-                    <option value="@Model[i]">@Model[i]</option>
+                    <option value="@album">@album</option>
                 }
+
             </select>
+
+            <span asp-validation-for="AlbumName" class="small text-danger"></span>
         </div>
         <div class="container-submit">
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

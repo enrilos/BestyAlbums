@@ -1,39 +1,60 @@
-﻿@model MemberEditModel
+﻿@model EditMemberFormModel
 
 <div class="container-standard">
-    <!--It is crucial to put asp-action="Edit" here since it allows the form to map the inputs and Id (which is required) with the viewmodel above-->
     <form asp-controller="Members" asp-action="Edit" method="post">
+        <input asp-for="Id" type="hidden" />
+
         <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input class="form-control" id="firstName" type="text" name="firstName" value="@Model.FirstName" />
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input class="form-control" id="lastName" type="text" name="lastName" value="@Model.LastName" />
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="birthdate">Birthdate</label>
-            <input class="form-control" id="birthdate" type="date" name="birthdate" value="@Model.BirthDate.ToString("yyyy-MM-dd")" />
+            <label asp-for="BirthDate"></label>
+            <input asp-for="BirthDate" class="form-control" />
+            <span asp-validation-for="BirthDate" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="joined">Joined</label>
-            <input class="form-control" id="joined" type="date" name="joined" value="@Model.Joined.ToString("yyyy-MM-dd")" />
+            <label asp-for="Joined"></label>
+            <input asp-for="Joined" class="form-control" />
+            <span asp-validation-for="Joined" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="left">Left</label>
-            <input class="form-control" id="left" type="date" name="left" value="@Model.Left?.ToString("yyyy-MM-dd")" />
+            <label asp-for="Left"></label>
+            <input asp-for="Left" class="form-control" />
+            <span asp-validation-for="Left" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label>Gender</label>
-            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Gender>()" class="form-select rounded text-dark">
+            <label asp-for="Gender"></label>
+            <select asp-for="Gender"
+                    asp-items="Html.GetEnumSelectList<BestyAlbums.Data.Models.Enums.Gender>()"
+                    class="form-select rounded text-dark">
             </select>
+            <span asp-validation-for="Gender" class="small text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label for="imageUrl">ImageUrl</label>
-            <input class="form-control" id="imageUrl" type="text" name="imageUrl" value="@Model.ImageUrl" />
+            <label asp-for="ImageUrl"></label>
+            <input asp-for="ImageUrl" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="small text-danger"></span>
         </div>
+
         <div class="container-submit">
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
 </div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
